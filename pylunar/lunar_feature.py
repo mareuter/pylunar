@@ -57,5 +57,5 @@ class LunarFeature(object):
         result.append("Name = {}".format(self.name))
         result.append("Lat/Long = ({:.2}, {:.2})".format(self.latitude, self.longitude))
         result.append("Type = {}".format(self.feature_type))
-        result.append("Delta Lat/Long = (%.2lf, %.2lf)" % (self.delta_latitude, self.delta_longitude))
+        result.append("Delta Lat/Long = ({:.2}, {:.2})".format(self.delta_latitude, self.delta_longitude))
         return os.linesep.join(result)
