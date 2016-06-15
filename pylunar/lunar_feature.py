@@ -5,6 +5,8 @@
 # ------------------------------------------------------------------------------
 import os
 
+__all__ = ["LunarFeature"]
+
 
 class LunarFeature(object):
 
