@@ -20,7 +20,10 @@ Documentation
 The full documentation is at http://pylunar.rtfd.org."""
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
-requirements = []
+requirements = [
+    "ephem"
+]
+
 test_requirements = [
     "wheel>=0.22",
     "bumpversion",
