@@ -2,6 +2,10 @@
 Python Lunar
 =============================
 
+.. image:: https://img.shields.io/badge/license-MIT-blue.svg
+   :target: http://opensource.org/licenses/MIT
+   :alt: MIT License
+
 .. image:: https://badge.fury.io/py/pylunar.png
     :target: http://badge.fury.io/py/pylunar
 
