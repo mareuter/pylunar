@@ -61,3 +61,18 @@ class LunarFeature(object):
         result.append("Type = {}".format(self.feature_type))
         result.append("Delta Lat/Long = ({:.2}, {:.2})".format(self.delta_latitude, self.delta_longitude))
         return os.linesep.join(result)
+
+    @classmethod
+    def from_row(cls, row):
+        """Initialize from a database row.
+
+        Parameters
+        ----------
+        row : list
+            The database row containing the information.
+
+        Returns
+        -------
+        :class:`.LunarFeature`
+        """
+        return cls(row[1], row[3], row[4], row[7], row[5], row[6], row[10], row[11])

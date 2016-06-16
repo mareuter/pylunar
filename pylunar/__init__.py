@@ -3,3 +3,4 @@ __email__ = 'mareuternh@gmail.com'
 __version__ = '0.1.0'
 
 from .lunar_feature import LunarFeature
+from .lunar_feature_container import LunarFeatureContainer
