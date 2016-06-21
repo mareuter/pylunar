@@ -35,3 +35,14 @@ class MoonInfo(object):
         self.observer.lat = tuple_to_string(latitude)
         self.observer.long = tuple_to_string(longitude)
         self.moon = ephem.Moon()
+
+    def update(self, datetime):
+        """Update the moon information based on time,
+
+        Parameters
+        ----------
+        datetime : tuple
+            The current UTC time in a tuple of numbers.
+        """
+        self.observer.date = datetime
+        self.moon.compute(self.observer)
