@@ -6,6 +6,18 @@
 """Module for helper functions.
 """
 
+import ephem
+
+
+def mjd_to_date_tuple(mjd):
+    """Convert a Modified Julian date to a UTC time tuple.
+
+    Returns
+    -------
+    tuple
+    """
+    return ephem.Date(mjd).tuple()
+
 
 def tuple_to_string(coord):
     """Return a colon-delimited string.

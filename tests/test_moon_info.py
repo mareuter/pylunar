@@ -18,3 +18,14 @@ class TestMoonInfo(object):
 
     def test_moon_information(self):
         self.mi.update(self.obs_datetime)
+
+        assert self.mi.age() == 13.892695861570246
+        assert self.mi.colong() == 83.97189956624061
+        assert self.mi.fractional_phase() == 0.9998519924481626
+        assert self.mi.libration_lon() == 5.23107551788429
+        assert self.mi.libration_lat() == -1.4788210646482465
+
+        next_four_phases = self.mi.next_four_phases()
+        phase_names = [x[0] for x in next_four_phases]
+        assert phase_names == ["full", "tq", "new", "fq"]
+        assert next_four_phases[0][1] == (2013, 10, 18, 23, 37, 39.644067962653935)
