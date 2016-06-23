@@ -24,6 +24,8 @@ class TestMoonInfo(object):
         assert self.mi.fractional_phase() == 0.9998519924481626
         assert self.mi.libration_lon() == 5.23107551788429
         assert self.mi.libration_lat() == -1.4788210646482465
+        assert self.mi.altitude() == -9.8149186580585
+        assert self.mi.azimuth() == 69.75156520051686
 
         next_four_phases = self.mi.next_four_phases()
         phase_names = [x[0] for x in next_four_phases]

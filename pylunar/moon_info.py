@@ -51,6 +51,24 @@ class MoonInfo(object):
         prev_new = ephem.previous_new_moon(self.observer.date)
         return self.observer.date - prev_new
 
+    def altitude(self):
+        """The moon's altitude in degrees.
+
+        Returns
+        -------
+        float
+        """
+        return math.degrees(self.moon.alt)
+
+    def azimuth(self):
+        """The moon's azimuth in degrees.
+
+        Returns
+        -------
+        float
+        """
+        return math.degrees(self.moon.az)
+
     def colong(self):
         """The moon's selenographic colongitude in degrees.
 
