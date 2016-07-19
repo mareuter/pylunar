@@ -110,8 +110,8 @@ class MoonInfo(object):
 
         Returns
         -------
-        list[(str: float)]
-            Set of moon phases specified by an abbreviated phase name and Modified Julian date.
+        list[(str, float)]
+            Set of moon phases specified by an abbreviated phase name and Modified Julian Date.
         """
         phases = {}
         phases["new"] = ephem.next_new_moon(self.observer.date)
@@ -125,7 +125,28 @@ class MoonInfo(object):
         return sorted_phases
 
     def update(self, datetime):
-        """Update the moon information based on time,
+        """Update the moon information based on time.
+
+        This fuction updates the Observer instance's datetime setting. The incoming datetime tuple should be
+        in UTC with the following placement of values: (YYYY, m, d, H, M, S) as defined below::
+
+            YYYY
+                Four digit year
+
+            m
+                month (1-12)
+
+            d
+                day (1-31)
+
+            H
+                hours (0-23)
+
+            M
+                minutes (0-59)
+
+            S
+                seconds (0-59)
 
         Parameters
         ----------

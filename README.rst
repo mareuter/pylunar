@@ -22,5 +22,5 @@ Information for completing the Astronomical League's Lunar and Lunar II observin
 Features
 --------
 
-* TODO
+* Offer moon information based off location and date/time.
 

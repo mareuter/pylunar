@@ -12,9 +12,15 @@ import ephem
 def mjd_to_date_tuple(mjd):
     """Convert a Modified Julian date to a UTC time tuple.
 
+    Parameters
+    ----------
+    mjd : float
+        The Modified Julian Date to convert.
+
     Returns
     -------
     tuple
+        The UTC time for the MJD.
     """
     return ephem.Date(mjd).tuple()
 
