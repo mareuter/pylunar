@@ -22,6 +22,7 @@ class TestMoonInfo(object):
         assert self.mi.age() == 13.892695861570246
         assert self.mi.colong() == 83.97189956624061
         assert self.mi.fractional_phase() == 0.9998519924481626
+        assert self.mi.phase_name() == "WAXING_GIBBOUS"
         assert self.mi.libration_lon() == 5.23107551788429
         assert self.mi.libration_lat() == -1.4788210646482465
         assert self.mi.altitude() == -9.8149186580585

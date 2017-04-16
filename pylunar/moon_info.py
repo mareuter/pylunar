@@ -3,6 +3,7 @@
 # Copyright (c) 2016, Michael Reuter
 # Distributed under the MIT License. See LICENSE for more information.
 # ------------------------------------------------------------------------------
+from enum import Enum
 import math
 from operator import itemgetter
 
@@ -12,6 +13,15 @@ from pylunar import mjd_to_date_tuple, tuple_to_string
 
 __all__ = ["MoonInfo"]
 
+class PhaseName(Enum):
+    NEW_MOON = 0
+    WAXING_CRESENT = 1
+    FIRST_QUARTER = 2
+    WAXING_GIBBOUS = 3
+    FULL_MOON = 4
+    WANING_GIBBOUS = 5
+    THIRD_QUARTER = 6
+    WANING_CRESENT = 7
 
 class MoonInfo(object):
     """Handle all moon information.
@@ -123,6 +133,34 @@ class MoonInfo(object):
         sorted_phases = [(phase[0], mjd_to_date_tuple(phase[1])) for phase in sorted_phases]
 
         return sorted_phases
+
+    def phase_name(self):
+        """The standard name of the moon's phase, i.e. Waxing Cresent
+
+        This function returns a standard name for the moon's phase based on the current selenographic
+        colongitude.
+
+        Returns
+        -------
+        str
+        """
+        colong = self.colong()
+        if colong == 270.0:
+            return PhaseName.NEW_MOON.name
+        if 270.0 < colong < 360.0:
+            return PhaseName.WAXING_CRESENT.name
+        if colong == 0.0 or colong == 360.0:
+            return PhaseName.FIRST_QUARTER.name
+        if 0.0 < colong < 90.0:
+            return PhaseName.WAXING_GIBBOUS.name
+        if colong == 90.0:
+            return PhaseName.FULL_MOON.name
+        if 90.0 < colong < 180.0:
+            return PhaseName.WANING_GIBBOUS.name
+        if colong == 180.0:
+            return PhaseName.THIRD_QUARTER.name
+        if 180.0 < colong < 270.0:
+            return PhaseName.WANING_CRESENT.name
 
     def update(self, datetime):
         """Update the moon information based on time.
