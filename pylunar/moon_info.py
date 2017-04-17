@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # ------------------------------------------------------------------------------
-# Copyright (c) 2016, Michael Reuter
+# Copyright (c) 2016-2017, Michael Reuter
 # Distributed under the MIT License. See LICENSE for more information.
 # ------------------------------------------------------------------------------
 from enum import Enum
@@ -33,6 +33,8 @@ class MoonInfo(object):
     moon : ephem.Moon instance
         The instance of the moon object.
     """
+
+    DAYS_TO_HOURS = 24.0
 
     def __init__(self, latitude, longitude, name=None):
         """Initialize the class.
@@ -161,6 +163,42 @@ class MoonInfo(object):
             return PhaseName.THIRD_QUARTER.name
         if 180.0 < colong < 270.0:
             return PhaseName.WANING_CRESENT.name
+
+    def time_from_new_moon(self):
+        """The time (hours) from the previous new moon.
+
+        This function calculates the time from the previous new moon.
+
+        Returns
+        -------
+        float
+        """
+        previous_new_moon = ephem.previous_new_moon(self.observer.date)
+        return MoonInfo.DAYS_TO_HOURS * (self.observer.date - previous_new_moon)
+
+    def time_to_full_moon(self):
+        """The time (days) to the next full moon.
+
+        This function calculates the time to the next full moon.
+
+        Returns
+        -------
+        float
+        """
+        next_full_moon = ephem.next_full_moon(self.observer.date)
+        return next_full_moon - self.observer.date
+
+    def time_to_new_moon(self):
+        """The time (hours) to the next new moon.
+
+        This function calculates the time to the next new moon.
+
+        Returns
+        -------
+        float
+        """
+        next_new_moon = ephem.next_new_moon(self.observer.date)
+        return MoonInfo.DAYS_TO_HOURS * (next_new_moon - self.observer.date)
 
     def update(self, datetime):
         """Update the moon information based on time.

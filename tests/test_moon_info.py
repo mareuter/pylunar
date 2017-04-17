@@ -27,6 +27,9 @@ class TestMoonInfo(object):
         assert self.mi.libration_lat() == -1.4788210646482465
         assert self.mi.altitude() == -9.8149186580585
         assert self.mi.azimuth() == 69.75156520051686
+        assert self.mi.time_from_new_moon() == 333.4247006776859
+        assert self.mi.time_to_new_moon() == 374.8327396878158
+        assert self.mi.time_to_full_moon() == 0.06781995449273381
 
         next_four_phases = self.mi.next_four_phases()
         phase_names = [x[0] for x in next_four_phases]
