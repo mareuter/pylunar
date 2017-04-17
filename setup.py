@@ -50,6 +50,7 @@ setup(
     package_dir={'pylunar': 'pylunar'},
     include_package_data=True,
     install_requires=requirements,
+    extras_require={':python_version=="2.7"': ['enum34']},
     license='MIT',
     zip_safe=False,
     keywords='pylunar',
