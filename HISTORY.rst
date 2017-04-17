@@ -3,6 +3,16 @@
 History
 -------
 
+0.2.0 (2017-04-16)
+++++++++++++++++++
+
+* MoonInfo object additions
+
+  * phase name
+  * time from new moon
+  * time to new moon
+  * time to full moon
+
 0.1.0 (2016-07-18)
 ++++++++++++++++++
 
