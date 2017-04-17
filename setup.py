@@ -37,7 +37,7 @@ test_requirements = [
 
 setup(
     name='pylunar',
-    version='0.1.0',
+    version='0.2.0',
     description='Information for completing the Astronomical League\'s ' +
                 'Lunar and Lunar II observing programs.',
     long_description=readme + '\n\n' + doclink + '\n\n' + history,
