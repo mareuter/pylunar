@@ -22,7 +22,7 @@ class TestMoonInfo(object):
         assert self.mi.age() == 13.892695861570246
         assert self.mi.colong() == 83.97189956624061
         assert self.mi.fractional_phase() == 0.9998519924481626
-        assert self.mi.phase_name() == "WAXING_GIBBOUS"
+        assert self.mi.phase_name() == "FULL_MOON"
         assert self.mi.libration_lon() == 5.23107551788429
         assert self.mi.libration_lat() == -1.4788210646482465
         assert self.mi.altitude() == -9.8149186580585
@@ -33,5 +33,25 @@ class TestMoonInfo(object):
 
         next_four_phases = self.mi.next_four_phases()
         phase_names = [x[0] for x in next_four_phases]
-        assert phase_names == ["full", "tq", "new", "fq"]
+        assert phase_names == ["full_moon", "last_quarter", "new_moon", "first_quarter"]
         assert next_four_phases[0][1] == (2013, 10, 18, 23, 37, 39.644067962653935)
+
+    def test_different_phase_names(self):
+        self.mi.update((2013, 10, 18, 18, 0, 0))
+        assert self.mi.phase_name() == "WAXING_GIBBOUS"
+        self.mi.update((2013, 10, 5, 0, 0, 0))
+        assert self.mi.phase_name() == "NEW_MOON"
+        self.mi.update((2013, 10, 8, 6, 0, 0))
+        assert self.mi.phase_name() == "WAXING_CRESCENT"
+        self.mi.update((2013, 10, 11, 22, 0, 0))
+        assert self.mi.phase_name() == "FIRST_QUARTER"
+        self.mi.update((2013, 10, 12, 3, 30, 0))
+        assert self.mi.phase_name() == "WAXING_GIBBOUS"
+        self.mi.update((2013, 10, 19, 1, 30, 0))
+        assert self.mi.phase_name() == "FULL_MOON"
+        self.mi.update((2013, 10, 24, 15, 0, 0))
+        assert self.mi.phase_name() == "WANING_GIBBOUS"
+        self.mi.update((2013, 10, 26, 23, 40, 0))
+        assert self.mi.phase_name() == "LAST_QUARTER"
+        self.mi.update((2013, 11, 2, 23, 0, 0))
+        assert self.mi.phase_name() == "WANING_CRESCENT"
