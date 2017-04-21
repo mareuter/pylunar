@@ -15,13 +15,13 @@ __all__ = ["MoonInfo"]
 
 class PhaseName(Enum):
     NEW_MOON = 0
-    WAXING_CRESENT = 1
+    WAXING_CRESCENT = 1
     FIRST_QUARTER = 2
     WAXING_GIBBOUS = 3
     FULL_MOON = 4
     WANING_GIBBOUS = 5
-    THIRD_QUARTER = 6
-    WANING_CRESENT = 7
+    LAST_QUARTER = 6
+    WANING_CRESCENT = 7
 
 class MoonInfo(object):
     """Handle all moon information.
@@ -35,6 +35,15 @@ class MoonInfo(object):
     """
 
     DAYS_TO_HOURS = 24.0
+    MAIN_PHASE_CUTOFF = 2.0
+    # Time cutoff (hours) around the NM, FQ, FM, and LQ phases
+
+    reverse_phase_lookup = {
+        "new_moon": (ephem.previous_last_quarter_moon, "last_quarter"),
+        "first_quarter": (ephem.previous_new_moon, "new_moon"),
+        "full_moon": (ephem.previous_first_quarter_moon, "first_quarter"),
+        "last_quarter": (ephem.previous_full_moon, "full_moon")
+    }
 
     def __init__(self, latitude, longitude, name=None):
         """Initialize the class.
@@ -126,10 +135,10 @@ class MoonInfo(object):
             Set of moon phases specified by an abbreviated phase name and Modified Julian Date.
         """
         phases = {}
-        phases["new"] = ephem.next_new_moon(self.observer.date)
-        phases["fq"] = ephem.next_first_quarter_moon(self.observer.date)
-        phases["full"] = ephem.next_full_moon(self.observer.date)
-        phases["tq"] = ephem.next_last_quarter_moon(self.observer.date)
+        phases["new_moon"] = ephem.next_new_moon(self.observer.date)
+        phases["first_quarter"] = ephem.next_first_quarter_moon(self.observer.date)
+        phases["full_moon"] = ephem.next_full_moon(self.observer.date)
+        phases["last_quarter"] = ephem.next_last_quarter_moon(self.observer.date)
 
         sorted_phases = sorted(phases.items(), key=itemgetter(1))
         sorted_phases = [(phase[0], mjd_to_date_tuple(phase[1])) for phase in sorted_phases]
@@ -146,23 +155,30 @@ class MoonInfo(object):
         -------
         str
         """
-        colong = self.colong()
-        if colong == 270.0:
-            return PhaseName.NEW_MOON.name
-        if 270.0 < colong < 360.0:
-            return PhaseName.WAXING_CRESENT.name
-        if colong == 0.0 or colong == 360.0:
-            return PhaseName.FIRST_QUARTER.name
-        if 0.0 < colong < 90.0:
-            return PhaseName.WAXING_GIBBOUS.name
-        if colong == 90.0:
-            return PhaseName.FULL_MOON.name
-        if 90.0 < colong < 180.0:
-            return PhaseName.WANING_GIBBOUS.name
-        if colong == 180.0:
-            return PhaseName.THIRD_QUARTER.name
-        if 180.0 < colong < 270.0:
-            return PhaseName.WANING_CRESENT.name
+        next_phase_name = self.next_four_phases()[0][0]
+        try:
+            next_phase_time = getattr(ephem, "next_{}".format(next_phase_name))(self.observer.date)
+        except AttributeError:
+            next_phase_time = getattr(ephem, "next_{}_moon".format(next_phase_name))(self.observer.date)
+        previous_phase = self.reverse_phase_lookup[next_phase_name]
+        time_to_next_phase = math.fabs(next_phase_time - self.observer.date) * self.DAYS_TO_HOURS
+        time_to_previous_phase = math.fabs(self.observer.date -
+                                           previous_phase[0](self.observer.date)) * self.DAYS_TO_HOURS
+        previous_phase_name = previous_phase[1]
+
+        if time_to_previous_phase < self.MAIN_PHASE_CUTOFF:
+            return getattr(PhaseName, previous_phase_name.upper()).name
+        elif time_to_next_phase < self.MAIN_PHASE_CUTOFF:
+            return getattr(PhaseName, next_phase_name.upper()).name
+        else:
+            if previous_phase_name == "new_moon" and next_phase_name == "first_quarter":
+                return PhaseName.WAXING_CRESCENT.name
+            elif previous_phase_name == "first_quarter" and next_phase_name == "full_moon":
+                return PhaseName.WAXING_GIBBOUS.name
+            elif previous_phase_name == "full_moon" and next_phase_name == "last_quarter":
+                return PhaseName.WANING_GIBBOUS.name
+            elif previous_phase_name == "last_quarter" and next_phase_name == "new_moon":
+                return PhaseName.WANING_CRESCENT.name
 
     def time_from_new_moon(self):
         """The time (hours) from the previous new moon.
