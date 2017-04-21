@@ -3,6 +3,11 @@
 History
 -------
 
+0.2.1 (2017-04-20)
+++++++++++++++++++
+
+* Changed mechanism to determine phase name
+
 0.2.0 (2017-04-16)
 ++++++++++++++++++
 
