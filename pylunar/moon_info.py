@@ -142,9 +142,9 @@ class MoonInfo(object):
         float
         """
         colong = self.colong()
-        if colong >= 90.0 and colong < 270.0:
+        if 90.0 <= colong < 270.0:
             longitude = 180.0 - colong
-        elif colong >= 270. and colong < 360.0:
+        elif 270.0 <= colong < 360.0:
             longitude = 360.0 - colong
         else:
             longitude = -colong
@@ -213,7 +213,7 @@ class MoonInfo(object):
         float
         """
         colong = self.colong()
-        if colong >= 90.0 and colong < 270.0:
+        if 90.0 <= colong < 270.0:
             return TimeOfDay.EVENING.name
         else:
             return TimeOfDay.MORNING.name
