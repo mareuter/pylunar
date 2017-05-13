@@ -7,6 +7,14 @@ class TestMoonInfo(object):
         location = ((35, 58, 10), (-84, 19, 0))
         self.obs_datetime = (2013, 10, 18, 22, 0, 0)
         self.mi = MoonInfo(location[0], location[1])
+        self.date_list = [(2013, 10, 5, 0, 0, 0),
+                          (2013, 10, 8, 6, 0, 0),
+                          (2013, 10, 11, 22, 0, 0),
+                          (2013, 10, 12, 3, 30, 0),
+                          (2013, 10, 19, 1, 30, 0),
+                          (2013, 10, 24, 15, 0, 0),
+                          (2013, 10, 26, 23, 40, 0),
+                          (2013, 11, 2, 23, 0, 0)]
 
     def test_basic_information_after_creation(self):
         assert self.mi.observer is not None
@@ -55,3 +63,21 @@ class TestMoonInfo(object):
         assert self.mi.phase_name() == "LAST_QUARTER"
         self.mi.update((2013, 11, 2, 23, 0, 0))
         assert self.mi.phase_name() == "WANING_CRESCENT"
+
+    def test_colong_to_long(self):
+        self.mi.update(self.date_list[0])
+        assert self.mi.colong_to_long() == 85.63604081994191
+        self.mi.update(self.date_list[1])
+        assert self.mi.colong_to_long() == 46.01878527028475
+        self.mi.update(self.date_list[2])
+        assert self.mi.colong_to_long() == 1.2909929717534965
+        self.mi.update(self.date_list[3])
+        assert self.mi.colong_to_long() == -1.5152263359641438
+        self.mi.update(self.date_list[4])
+        assert self.mi.colong_to_long() == -85.74623915427537
+        self.mi.update(self.date_list[5])
+        assert self.mi.colong_to_long() == 26.4615811331646
+        self.mi.update(self.date_list[6])
+        assert self.mi.colong_to_long() == -2.1812638653489103
+        self.mi.update(self.date_list[7])
+        assert self.mi.colong_to_long() == -87.15293941124628

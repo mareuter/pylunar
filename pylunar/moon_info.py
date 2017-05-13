@@ -23,6 +23,10 @@ class PhaseName(Enum):
     LAST_QUARTER = 6
     WANING_CRESCENT = 7
 
+class TimeOfDay(Enum):
+    MORNING = 0
+    EVENING = 1
+
 class MoonInfo(object):
     """Handle all moon information.
 
@@ -37,6 +41,10 @@ class MoonInfo(object):
     DAYS_TO_HOURS = 24.0
     MAIN_PHASE_CUTOFF = 2.0
     # Time cutoff (hours) around the NM, FQ, FM, and LQ phases
+    FEATURE_CUTOFF = 15.0
+    # The offset (degrees) from the colongitude used for visibility check
+    NO_CUTOFF_TYPE = ("Mare", "Oceanus")
+    # Feature types that are not subject to longitude cutoffs
 
     reverse_phase_lookup = {
         "new_moon": (ephem.previous_last_quarter_moon, "last_quarter"),
@@ -125,6 +133,23 @@ class MoonInfo(object):
         float
         """
         return math.degrees(self.moon.libration_long)
+
+    def colong_to_long(self):
+        """The selenographic longitude in degrees based on the terminator.
+
+        Returns
+        -------
+        float
+        """
+        colong = self.colong()
+        if colong >= 90.0 and colong < 270.0:
+            longitude = 180.0 - colong
+        elif colong >= 270. and colong < 360.0:
+            longitude = 360.0 - colong
+        else:
+            longitude = -colong
+
+        return longitude
 
     def next_four_phases(self):
         """The next for phases in date sorted order (closest phase first).
