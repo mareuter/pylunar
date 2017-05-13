@@ -81,3 +81,21 @@ class TestMoonInfo(object):
         assert self.mi.colong_to_long() == -2.1812638653489103
         self.mi.update(self.date_list[7])
         assert self.mi.colong_to_long() == -87.15293941124628
+
+    def test_time_of_day(self):
+        self.mi.update(self.date_list[0])
+        assert self.mi.time_of_day() == "MORNING"
+        self.mi.update(self.date_list[1])
+        assert self.mi.time_of_day() == "MORNING"
+        self.mi.update(self.date_list[2])
+        assert self.mi.time_of_day() == "MORNING"
+        self.mi.update(self.date_list[3])
+        assert self.mi.time_of_day() == "MORNING"
+        self.mi.update(self.date_list[4])
+        assert self.mi.time_of_day() == "MORNING"
+        self.mi.update(self.date_list[5])
+        assert self.mi.time_of_day() == "EVENING"
+        self.mi.update(self.date_list[6])
+        assert self.mi.time_of_day() == "EVENING"
+        self.mi.update(self.date_list[7])
+        assert self.mi.time_of_day() == "EVENING"

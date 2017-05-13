@@ -205,6 +205,19 @@ class MoonInfo(object):
             elif previous_phase_name == "last_quarter" and next_phase_name == "new_moon":
                 return PhaseName.WANING_CRESCENT.name
 
+    def time_of_day(self):
+        """Determine if the terminator is sunrise (morning) or sunset (evening).
+
+        Returns
+        -------
+        float
+        """
+        colong = self.colong()
+        if colong >= 90.0 and colong < 270.0:
+            return TimeOfDay.EVENING.name
+        else:
+            return TimeOfDay.MORNING.name
+
     def time_from_new_moon(self):
         """The time (hours) from the previous new moon.
 
