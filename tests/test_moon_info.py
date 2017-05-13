@@ -1,4 +1,4 @@
-from pylunar import MoonInfo
+from pylunar import LunarFeature, MoonInfo
 
 
 class TestMoonInfo(object):
@@ -99,3 +99,52 @@ class TestMoonInfo(object):
         assert self.mi.time_of_day() == "EVENING"
         self.mi.update(self.date_list[7])
         assert self.mi.time_of_day() == "EVENING"
+
+    def test_is_visible(self):
+        feature1 = LunarFeature("A", 0.0, 46.0, "Crater", 0.01, 0.01, "Lunar", "Telescope")
+        feature2 = LunarFeature("B", 50.0, 46.0, "Crater", 0.5, 0.5, "Lunar", "Binocular")
+        feature3 = LunarFeature("C", -30.0, 46.0, "Mare", 5.0, 10.0, "Lunar", "Naked Eye")
+        self.mi.update(self.date_list[0])
+        assert self.mi.is_visible(feature1) is False
+        assert self.mi.is_visible(feature2) is False
+        assert self.mi.is_visible(feature3) is False
+        self.mi.update((2013, 10, 8, 6, 15, 0))
+        assert self.mi.is_visible(feature1) is True
+        assert self.mi.is_visible(feature2) is False
+        assert self.mi.is_visible(feature3) is False
+        self.mi.update((2013, 10, 8, 7, 0, 0))
+        assert self.mi.is_visible(feature1) is True
+        assert self.mi.is_visible(feature2) is True
+        assert self.mi.is_visible(feature3) is False
+        self.mi.update((2013, 10, 8, 16, 0, 0))
+        assert self.mi.is_visible(feature1) is True
+        assert self.mi.is_visible(feature2) is True
+        assert self.mi.is_visible(feature3) is True
+        self.mi.update((2013, 10, 9, 12, 0, 0))
+        assert self.mi.is_visible(feature1) is False
+        assert self.mi.is_visible(feature2) is True
+        assert self.mi.is_visible(feature3) is True
+        self.mi.update((2013, 10, 10, 5, 0, 0))
+        assert self.mi.is_visible(feature1) is False
+        assert self.mi.is_visible(feature2) is False
+        assert self.mi.is_visible(feature3) is True
+        self.mi.update((2013, 10, 21, 2, 30, 0))
+        assert self.mi.is_visible(feature1) is False
+        assert self.mi.is_visible(feature2) is True
+        assert self.mi.is_visible(feature3) is True
+        self.mi.update((2013, 10, 21, 19, 0, 0))
+        assert self.mi.is_visible(feature1) is True
+        assert self.mi.is_visible(feature2) is True
+        assert self.mi.is_visible(feature3) is True
+        self.mi.update((2013, 10, 22, 15, 0, 0))
+        assert self.mi.is_visible(feature1) is True
+        assert self.mi.is_visible(feature2) is True
+        assert self.mi.is_visible(feature3) is False
+        self.mi.update((2013, 10, 23, 0, 0, 0))
+        assert self.mi.is_visible(feature1) is True
+        assert self.mi.is_visible(feature2) is False
+        assert self.mi.is_visible(feature3) is False
+        self.mi.update((2013, 10, 23, 1, 0, 0))
+        assert self.mi.is_visible(feature1) is False
+        assert self.mi.is_visible(feature2) is False
+        assert self.mi.is_visible(feature3) is False
