@@ -3,6 +3,7 @@
 # Copyright (c) 2016-2017, Michael Reuter
 # Distributed under the MIT License. See LICENSE for more information.
 # ------------------------------------------------------------------------------
+from __future__ import division
 from enum import Enum
 import math
 from operator import itemgetter
@@ -23,6 +24,10 @@ class PhaseName(Enum):
     LAST_QUARTER = 6
     WANING_CRESCENT = 7
 
+class TimeOfDay(Enum):
+    MORNING = 0
+    EVENING = 1
+
 class MoonInfo(object):
     """Handle all moon information.
 
@@ -37,6 +42,10 @@ class MoonInfo(object):
     DAYS_TO_HOURS = 24.0
     MAIN_PHASE_CUTOFF = 2.0
     # Time cutoff (hours) around the NM, FQ, FM, and LQ phases
+    FEATURE_CUTOFF = 15.0
+    # The offset (degrees) from the colongitude used for visibility check
+    NO_CUTOFF_TYPE = ("Mare", "Oceanus")
+    # Feature types that are not subject to longitude cutoffs
 
     reverse_phase_lookup = {
         "new_moon": (ephem.previous_last_quarter_moon, "last_quarter"),
@@ -126,6 +135,69 @@ class MoonInfo(object):
         """
         return math.degrees(self.moon.libration_long)
 
+    def colong_to_long(self):
+        """The selenographic longitude in degrees based on the terminator.
+
+        Returns
+        -------
+        float
+        """
+        colong = self.colong()
+        if 90.0 <= colong < 270.0:
+            longitude = 180.0 - colong
+        elif 270.0 <= colong < 360.0:
+            longitude = 360.0 - colong
+        else:
+            longitude = -colong
+
+        return longitude
+
+    def is_visible(self, feature):
+        """Determine if lunar feature is visible.
+
+        Parameters
+        ----------
+        feature : :class:`.LunarFeature`
+            The Lunar feature instance to check.
+
+        Returns
+        -------
+        bool
+            True if visible, False if not.
+        """
+        selco_lon = self.colong_to_long()
+        current_tod = self.time_of_day()
+
+        min_lon = feature.longitude - feature.delta_longitude / 2
+        max_lon = feature.longitude + feature.delta_longitude / 2
+
+        if min_lon > max_lon:
+            min_lon, max_lon = max_lon, min_lon
+
+        is_visible = False
+        latitude_scaling = math.cos(math.radians(feature.latitude))
+        if feature.feature_type not in MoonInfo.NO_CUTOFF_TYPE:
+            cutoff = MoonInfo.FEATURE_CUTOFF / latitude_scaling
+        else:
+            cutoff = MoonInfo.FEATURE_CUTOFF
+
+        if current_tod == TimeOfDay.MORNING.name:
+            # Minimum longitude for morning visibility
+            lon_cutoff = min_lon - cutoff
+            if feature.feature_type in MoonInfo.NO_CUTOFF_TYPE:
+                is_visible = selco_lon <= min_lon
+            else:
+                is_visible = lon_cutoff <= selco_lon <= min_lon
+        else:
+            # Maximum longitude for evening visibility
+            lon_cutoff = max_lon + cutoff
+            if feature.feature_type in MoonInfo.NO_CUTOFF_TYPE:
+                is_visible = max_lon <= selco_lon
+            else:
+                is_visible = max_lon <= selco_lon <= lon_cutoff
+
+        return is_visible
+
     def next_four_phases(self):
         """The next for phases in date sorted order (closest phase first).
 
@@ -179,6 +251,19 @@ class MoonInfo(object):
                 return PhaseName.WANING_GIBBOUS.name
             elif previous_phase_name == "last_quarter" and next_phase_name == "new_moon":
                 return PhaseName.WANING_CRESCENT.name
+
+    def time_of_day(self):
+        """Determine if the terminator is sunrise (morning) or sunset (evening).
+
+        Returns
+        -------
+        float
+        """
+        colong = self.colong()
+        if 90.0 <= colong < 270.0:
+            return TimeOfDay.EVENING.name
+        else:
+            return TimeOfDay.MORNING.name
 
     def time_from_new_moon(self):
         """The time (hours) from the previous new moon.
