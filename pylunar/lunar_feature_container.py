@@ -3,6 +3,7 @@
 # Copyright (c) 2016, Michael Reuter
 # Distributed under the MIT License. See LICENSE for more information.
 # ------------------------------------------------------------------------------
+import collections
 import pkg_resources
 import sqlite3
 
@@ -28,7 +29,7 @@ class LunarFeatureContainer(object):
         dbname = rsman.resource_filename('pylunar', 'db/lunar.db')
         self.conn = sqlite3.connect(dbname)
         self.club_name = club_name
-        self.features = {}
+        self.features = collections.OrderedDict()
         self.club_type = set()
         self.feature_type = set()
 
@@ -62,7 +63,7 @@ class LunarFeatureContainer(object):
             Restrict the number of features read to the given value.
         """
         if len(self.features) != 0:
-            self.features = {}
+            self.features = collections.OrderedDict()
 
         cur = self.conn.cursor()
         sql = "select * from Features where Lunar_Code = \"{}\" or "\
