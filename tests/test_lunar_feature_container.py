@@ -1,4 +1,4 @@
-from pylunar import LunarFeatureContainer,  MoonInfo
+from pylunar import LunarFeatureContainer, MoonInfo
 
 
 class TestLunarFeatureContainer(object):
