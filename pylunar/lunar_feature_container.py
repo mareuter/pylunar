@@ -16,12 +16,18 @@ class LunarFeatureContainer(object):
     database.
     """
 
-    def __init__(self):
+    def __init__(self, club_name):
         """Initialize the class.
+
+        Parameters
+        ----------
+        club_name : str
+            The name of the observing club to sort on. Values are Lunar and LunarII.
         """
         rsman = pkg_resources.ResourceManager()
         dbname = rsman.resource_filename('pylunar', 'db/lunar.db')
         self.conn = sqlite3.connect(dbname)
+        self.club_name = club_name
         self.features = {}
         self.club_type = set()
         self.feature_type = set()
@@ -45,11 +51,13 @@ class LunarFeatureContainer(object):
         """
         return len(self.features)
 
-    def load(self, limit=None):
+    def load(self, moon_info=None, limit=None):
         """Read the Lunar features from the database.
 
         Parameters
         ----------
+        moon_info : :class:`.MoonInfo`
+            Instance of the Lunar information class.
         limit : int, optional
             Restrict the number of features read to the given value.
         """
@@ -57,15 +65,21 @@ class LunarFeatureContainer(object):
             self.features = {}
 
         cur = self.conn.cursor()
-        sql = "select * from Features"
+        sql = "select * from Features where Lunar_Code = \"{}\" or "\
+              "Lunar_Code = \"Both\"".format(self.club_name)
         if limit is not None:
             sql += " limit {}".format(limit)
         cur.execute(sql)
 
         for row in cur:
             feature = LunarFeature.from_row(row)
-            self.features[id(feature)] = feature
-            self.club_type.add(row[11])
-            self.feature_type.add(row[7])
+            try:
+                is_visible = moon_info.is_visible(feature)
+            except AttributeError:
+                is_visible = True
+            if is_visible:
+                self.features[id(feature)] = feature
+                self.club_type.add(row[11])
+                self.feature_type.add(row[7])
 
         cur.close()
