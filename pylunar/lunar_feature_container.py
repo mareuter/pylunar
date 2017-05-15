@@ -57,7 +57,7 @@ class LunarFeatureContainer(object):
 
         Parameters
         ----------
-        moon_info : :class:`.MoonInfo`
+        moon_info : :class:`.MoonInfo`, optional
             Instance of the Lunar information class.
         limit : int, optional
             Restrict the number of features read to the given value.
