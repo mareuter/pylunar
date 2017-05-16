@@ -3,6 +3,19 @@
 History
 -------
 
+0.3.0 (2017-05-15)
+++++++++++++++++++
+
+* MoonInfo object additions
+
+  * time of day
+  * is feature visible
+
+* LunarFeatureContainer object changes
+
+  * Made constructor club related
+  * Load call can check if feature is visible using MoonInfo instance
+
 0.2.1 (2017-04-20)
 ++++++++++++++++++
 
