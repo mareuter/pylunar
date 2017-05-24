@@ -101,9 +101,12 @@ class TestMoonInfo(object):
         assert self.mi.time_of_day() == "EVENING"
 
     def test_is_visible(self):
-        feature1 = LunarFeature("A", 0.0, 46.0, "Crater", 0.01, 0.01, "Lunar", "Telescope")
-        feature2 = LunarFeature("B", 50.0, 46.0, "Crater", 0.5, 0.5, "Lunar", "Binocular")
-        feature3 = LunarFeature("C", -30.0, 46.0, "Mare", 5.0, 10.0, "Lunar", "Naked Eye")
+        feature1 = LunarFeature("A", 0.1, 0.0, 46.0, 0.01, 0.01, "Crater",
+                                "Taruntius", "LAC-61", "Lunar", "Telescope")
+        feature2 = LunarFeature("B", 1.0, 50.0, 46.0, 0.5, 0.5, "Crater",
+                                "Endymion", "LAC-14", "Lunar", "Binocular")
+        feature3 = LunarFeature("C", 100.0, -30.0, 46.0, 5.0, 10.0, "Mare",
+                                "Fracastorius", "LAC-97", "Lunar", "Naked Eye")
         self.mi.update(self.date_list[0])
         assert self.mi.is_visible(feature1) is False
         assert self.mi.is_visible(feature2) is False
