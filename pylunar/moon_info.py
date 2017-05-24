@@ -108,6 +108,15 @@ class MoonInfo(object):
         """
         return math.degrees(self.moon.colong)
 
+    def dec(self):
+        """The moon's current declination in degrees.
+
+        Returns
+        -------
+        float
+        """
+        return math.degrees(self.moon.dec)
+
     def fractional_phase(self):
         """The moon's fractional illumination. Always less than 1.0.
 
@@ -251,6 +260,15 @@ class MoonInfo(object):
                 return PhaseName.WANING_GIBBOUS.name
             elif previous_phase_name == "last_quarter" and next_phase_name == "new_moon":
                 return PhaseName.WANING_CRESCENT.name
+
+    def ra(self):
+        """The moon's current right ascension in degrees.
+
+        Returns
+        -------
+        float
+        """
+        return math.degrees(self.moon.ra)
 
     def time_of_day(self):
         """Determine if the terminator is sunrise (morning) or sunset (evening).
