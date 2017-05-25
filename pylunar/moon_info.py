@@ -90,6 +90,15 @@ class MoonInfo(object):
         """
         return math.degrees(self.moon.alt)
 
+    def angular_size(self):
+        """The moon's current angular size in degrees.
+
+        Returns
+        -------
+        float
+        """
+        return self.moon.size / 3600.0
+
     def azimuth(self):
         """The moon's azimuth in degrees.
 
@@ -117,6 +126,15 @@ class MoonInfo(object):
         """
         return math.degrees(self.moon.dec)
 
+    def earth_distance(self):
+        """The moon's current distance from the earth in km.
+
+        Returns
+        -------
+        float
+        """
+        return self.moon.earth_distance * ephem.meters_per_au / 1000.0
+
     def fractional_phase(self):
         """The moon's fractional illumination. Always less than 1.0.
 
@@ -143,6 +161,15 @@ class MoonInfo(object):
         float
         """
         return math.degrees(self.moon.libration_long)
+
+    def magnitude(self):
+        """ The moon's current magnitude.
+
+        Returns
+        -------
+        float
+        """
+        return self.moon.mag
 
     def colong_to_long(self):
         """The selenographic longitude in degrees based on the terminator.
@@ -269,6 +296,15 @@ class MoonInfo(object):
         float
         """
         return math.degrees(self.moon.ra)
+
+    def subsolar_lat(self):
+        """The latitude in degress on the moon where the sun is overhead.
+
+        Returns
+        -------
+        float
+        """
+        return math.degrees(self.moon.subsolar_lat)
 
     def time_of_day(self):
         """Determine if the terminator is sunrise (morning) or sunset (evening).

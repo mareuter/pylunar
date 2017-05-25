@@ -40,6 +40,10 @@ class TestMoonInfo(object):
         assert self.mi.time_to_full_moon() == 0.06781995449273381
         assert self.mi.ra() == 23.331888825304354
         assert self.mi.dec() == 10.129795148334347
+        assert self.mi.earth_distance() == 386484.25078267464
+        assert self.mi.angular_size() == 0.5159071519639757
+        assert self.mi.magnitude() == -12.63
+        assert self.mi.subsolar_lat() == -0.3366501792590513
 
         next_four_phases = self.mi.next_four_phases()
         phase_names = [x[0] for x in next_four_phases]
