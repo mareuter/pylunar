@@ -4,11 +4,13 @@
 # Distributed under the MIT License. See LICENSE for more information.
 # ------------------------------------------------------------------------------
 from __future__ import division
+from datetime import datetime
 from enum import Enum
 import math
 from operator import itemgetter
 
 import ephem
+import pytz
 
 from pylunar import mjd_to_date_tuple, tuple_to_string
 
@@ -296,6 +298,70 @@ class MoonInfo(object):
         float
         """
         return math.degrees(self.moon.ra)
+
+    def rise_set_times(self, timezone):
+        """Calculate the rise, set and transit times in the local time system.
+
+        Parameters
+        ----------
+        timezone : str
+            The timezone identifier for the calculations.
+
+        Returns
+        -------
+        list[(str, tuple)]
+            Set of rise, set, and transit times in the local time system. If event
+            does not happen, 'Does not xxx' is tuple value.
+        """
+        utc = pytz.utc
+        try:
+            tz = pytz.timezone(timezone)
+        except pytz.UnknownTimeZoneError:
+            tz = utc
+
+        func_map = {"rise": "rising", "transit": "transit", "set": "setting"}
+
+        # Need to set observer's horizon and pressure to get times
+        old_pressure = self.observer.pressure
+        old_horizon = self.observer.horizon
+
+        current_date_utc = datetime(*mjd_to_date_tuple(self.observer.date,
+                                                       round_off=True), tzinfo=utc)
+        current_date = current_date_utc.astimezone(tz)
+        current_day = current_date.day
+        times = {}
+        does_not = None
+        for time_type in ("rise", "transit", "set"):
+            mjd_time = getattr(self.observer,
+                               "{}_{}".format("next",
+                                              func_map[time_type]))(self.moon)
+            utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True),
+                                tzinfo=utc)
+            local_date = utc_time.astimezone(tz)
+            if local_date.day == current_day:
+                times[time_type] = local_date
+            else:
+                mjd_time = getattr(self.observer,
+                                   "{}_{}".format("previous",
+                                                  func_map[time_type]))(self.moon)
+                utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True),
+                                    tzinfo=utc)
+                local_date = utc_time.astimezone(tz)
+                if local_date.day == current_day:
+                    times[time_type] = local_date
+                else:
+                    does_not = (time_type, "Does not {}".format(time_type))
+
+        # Return observer to previous state
+        self.observer.pressure = old_pressure
+        self.observer.horizon = old_horizon
+
+        sorted_times = sorted(times.items(), key=itemgetter(1))
+        sorted_times = [(xtime[0], xtime[1].timetuple()[:6]) for xtime in sorted_times]
+        if does_not is not None:
+            sorted_times.insert(0, does_not)
+
+        return sorted_times
 
     def subsolar_lat(self):
         """The latitude in degress on the moon where the sun is overhead.

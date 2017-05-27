@@ -44,11 +44,27 @@ class TestMoonInfo(object):
         assert self.mi.angular_size() == 0.5159071519639757
         assert self.mi.magnitude() == -12.63
         assert self.mi.subsolar_lat() == -0.3366501792590513
+        rise_set_times = self.mi.rise_set_times('America/New_York')
+        position_names = [x[0] for x in rise_set_times]
+        assert position_names == ["transit", "set", "rise"]
+        assert rise_set_times[0][1] == (2013, 10, 18, 0, 43, 22)
 
         next_four_phases = self.mi.next_four_phases()
         phase_names = [x[0] for x in next_four_phases]
         assert phase_names == ["full_moon", "last_quarter", "new_moon", "first_quarter"]
         assert next_four_phases[0][1] == (2013, 10, 18, 23, 37, 39.644067962653935)
+
+    def test_different_rise_set_times(self):
+        self.mi.update((2013, 10, 17, 22, 0, 0))
+        rise_set_times = self.mi.rise_set_times('America/New_York')
+        position_names = [x[0] for x in rise_set_times]
+        assert position_names == ["transit", "set", "rise"]
+        assert rise_set_times[0][1] == "Does not transit"
+        self.mi.update((2013, 9, 26, 22, 0, 0))
+        rise_set_times = self.mi.rise_set_times('America/New_York')
+        position_names = [x[0] for x in rise_set_times]
+        assert position_names == ["rise", "transit", "set"]
+        assert rise_set_times[0][1] == "Does not rise"
 
     def test_different_phase_names(self):
         self.mi.update((2013, 10, 18, 18, 0, 0))
