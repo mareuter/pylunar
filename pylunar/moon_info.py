@@ -137,6 +137,18 @@ class MoonInfo(object):
         """
         return self.moon.earth_distance * ephem.meters_per_au / 1000.0
 
+    def elongation(self):
+        """The moon's elongation from the sun in degrees.
+
+        Returns
+        -------
+        float
+        """
+        elongation = math.degrees(self.moon.elong)
+        if elongation < 0:
+            elongation += 360.0
+        return elongation
+
     def fractional_phase(self):
         """The moon's fractional illumination. Always less than 1.0.
 
