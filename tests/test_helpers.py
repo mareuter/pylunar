@@ -11,4 +11,4 @@ class TestHelperFunctions(object):
         date_tuple = mjd_to_date_tuple(41564.48448662116)
         assert date_tuple == (2013, 10, 18, 23, 37, 39.644067962653935)
         date_tuple = mjd_to_date_tuple(41564.48448662116, round_off=True)
-        assert date_tuple == (2013, 10, 18, 23, 37, 40)
+        assert date_tuple == (2013, 10, 18, 23, 37, 39)

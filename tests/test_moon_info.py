@@ -44,10 +44,11 @@ class TestMoonInfo(object):
         assert self.mi.angular_size() == 0.5159071519639757
         assert self.mi.magnitude() == -12.63
         assert self.mi.subsolar_lat() == -0.3366501792590513
+
         rise_set_times = self.mi.rise_set_times('America/New_York')
         position_names = [x[0] for x in rise_set_times]
         assert position_names == ["transit", "set", "rise"]
-        assert rise_set_times[0][1] == (2013, 10, 18, 0, 43, 22)
+        assert rise_set_times[0][1] == (2013, 10, 18, 0, 43, 21)
 
         next_four_phases = self.mi.next_four_phases()
         phase_names = [x[0] for x in next_four_phases]

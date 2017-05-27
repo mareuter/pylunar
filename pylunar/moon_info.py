@@ -325,6 +325,9 @@ class MoonInfo(object):
         old_pressure = self.observer.pressure
         old_horizon = self.observer.horizon
 
+        self.observer.pressure = 0
+        self.observer.horizon = "-0:34"
+
         current_date_utc = datetime(*mjd_to_date_tuple(self.observer.date,
                                                        round_off=True), tzinfo=utc)
         current_date = current_date_utc.astimezone(tz)

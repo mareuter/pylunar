@@ -25,10 +25,7 @@ def mjd_to_date_tuple(mjd, round_off=False):
         The UTC time for the MJD.
     """
     if round_off:
-        values = [round(x) for x in ephem.Date(mjd).tuple()]
-        if values[-1] == 60:
-            values[-1] = 0
-        return tuple(values)
+        return tuple(int(x) for x in ephem.Date(mjd).tuple())
     else:
         return ephem.Date(mjd).tuple()
 
