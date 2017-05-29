@@ -21,7 +21,8 @@ The full documentation is at http://pylunar.rtfd.org."""
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 requirements = [
-    "ephem"
+    "ephem",
+    "pytz"
 ]
 
 test_requirements = [
