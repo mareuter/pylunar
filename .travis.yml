@@ -46,5 +46,11 @@ matrix:
   - env:
     - TOXENV=py35-style
     python: 3.5
+  - env:
+    - TOXENV=py36
+    python: 3.6
+  - env:
+    - TOXENV=py36-style
+    python: 3.6
 script: tox
 sudo: false
