@@ -3,6 +3,21 @@
 History
 -------
 
+0.4.0 (2017-05-28)
+++++++++++++++++++
+
+* Added landing sites to feature database
+* Expanding LunarFeature content
+* MoonInfo object additions
+
+  * right ascension and declination
+  * solar elongation
+  * earth distance
+  * rise, transit and set times
+  * angular size
+  * magnitude
+  * sub-solar latitude
+
 0.3.1 (2017-05-15)
 ++++++++++++++++++
 
