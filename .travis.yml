@@ -4,7 +4,7 @@ before_script:
 deploy:
   true:
     branch: master
-    condition: $TOXENV == py35
+    condition: $TOXENV == py36
     repo: mareuter/pylunar
     tags: true
   distributions: sdist bdist_wheel
