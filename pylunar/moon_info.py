@@ -46,7 +46,7 @@ class MoonInfo(object):
     # Time cutoff (hours) around the NM, FQ, FM, and LQ phases
     FEATURE_CUTOFF = 15.0
     # The offset (degrees) from the colongitude used for visibility check
-    NO_CUTOFF_TYPE = ("Mare", "Oceanus")
+    NO_CUTOFF_TYPE = ("Landing Site", "Mare", "Oceanus")
     # Feature types that are not subject to longitude cutoffs
 
     reverse_phase_lookup = {
