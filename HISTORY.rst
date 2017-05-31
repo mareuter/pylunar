@@ -3,6 +3,12 @@
 History
 -------
 
+0.4.1 (2017-05-30)
+++++++++++++++++++
+
+* Corrected moon state after rise/set function call
+* Made landing sites always visible once visible
+
 0.4.0 (2017-05-28)
 ++++++++++++++++++
 
