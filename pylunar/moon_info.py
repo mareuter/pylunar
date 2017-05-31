@@ -367,9 +367,10 @@ class MoonInfo(object):
                 else:
                     does_not = (time_type, "Does not {}".format(time_type))
 
-        # Return observer to previous state
+        # Return observer and moon to previous state
         self.observer.pressure = old_pressure
         self.observer.horizon = old_horizon
+        self.moon.compute(self.observer)
 
         sorted_times = sorted(times.items(), key=itemgetter(1))
         sorted_times = [(xtime[0], xtime[1].timetuple()[:6]) for xtime in sorted_times]
