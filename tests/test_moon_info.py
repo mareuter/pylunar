@@ -6,6 +6,7 @@ class TestMoonInfo(object):
     def setup_class(self):
         location = ((35, 58, 10), (-84, 19, 0))
         self.obs_datetime = (2013, 10, 18, 22, 0, 0)
+        self.timezone = 'America/New_York'
         self.mi = MoonInfo(location[0], location[1])
         self.date_list = [(2013, 10, 5, 0, 0, 0),
                           (2013, 10, 8, 6, 0, 0),
@@ -46,7 +47,7 @@ class TestMoonInfo(object):
         assert self.mi.subsolar_lat() == -0.3366501792590513
         assert self.mi.elongation() == 178.56298828125
 
-        rise_set_times = self.mi.rise_set_times('America/New_York')
+        rise_set_times = self.mi.rise_set_times(self.timezone)
         position_names = [x[0] for x in rise_set_times]
         assert position_names == ["transit", "set", "rise"]
         assert rise_set_times[0][1] == (2013, 10, 18, 0, 43, 21)
@@ -66,15 +67,20 @@ class TestMoonInfo(object):
 
     def test_different_rise_set_times(self):
         self.mi.update((2013, 10, 17, 22, 0, 0))
-        rise_set_times = self.mi.rise_set_times('America/New_York')
+        rise_set_times = self.mi.rise_set_times(self.timezone)
         position_names = [x[0] for x in rise_set_times]
         assert position_names == ["transit", "set", "rise"]
         assert rise_set_times[0][1] == "Does not transit"
         self.mi.update((2013, 9, 26, 22, 0, 0))
-        rise_set_times = self.mi.rise_set_times('America/New_York')
+        rise_set_times = self.mi.rise_set_times(self.timezone)
         position_names = [x[0] for x in rise_set_times]
         assert position_names == ["rise", "transit", "set"]
         assert rise_set_times[0][1] == "Does not rise"
+
+    def test_state_reset_after_rise_test_call(self):
+        self.mi.update(self.obs_datetime)
+        self.mi.rise_set_times(self.timezone)
+        assert self.mi.colong() == 83.97189956624061
 
     def test_different_phase_names(self):
         self.mi.update((2013, 10, 18, 18, 0, 0))
