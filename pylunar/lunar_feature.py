@@ -91,6 +91,18 @@ class LunarFeature(object):
         """
         return cls(*row[1:])
 
+    def latitude_range(self):
+        """Get the latitude range of the feature.
+
+        Returns
+        -------
+        tuple(float, float)
+            The (minimum, maximum) latitude values for the feature.
+        """
+        min_lat = self.latitude - (self.delta_latitude / 2.0)
+        max_lat = self.latitude + (self.delta_latitude / 2.0)
+        return (min_lat, max_lat)
+
     def list_from_feature(self):
         """list: Convert the feature information into a list.
         """
@@ -98,3 +110,15 @@ class LunarFeature(object):
                 self.delta_latitude, self.delta_longitude, self.feature_type,
                 self.quad_name, self.quad_code, self.code_name,
                 self.lunar_club_type]
+
+    def longitude_range(self):
+        """Get the longitude range of the feature.
+
+        Returns
+        -------
+        tuple(float, float)
+            The (minimum, maximum) longitude values for the feature.
+        """
+        min_lon = self.longitude - (self.delta_longitude / 2.0)
+        max_lon = self.longitude + (self.delta_longitude / 2.0)
+        return (min_lon, max_lon)

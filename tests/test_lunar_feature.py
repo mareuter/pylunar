@@ -21,6 +21,8 @@ class TestLunarFeature(object):
         assert lf.quad_code == self.feature_info[8]
         assert lf.code_name == self.feature_info[9]
         assert lf.lunar_club_type == self.feature_info[10]
+        assert lf.latitude_range() == (-62.430559651643, -54.815102116853005)
+        assert lf.longitude_range() == (-22.034792792535, -7.420187842583001)
 
         val = str(lf)
         assert val.startswith("Name")
