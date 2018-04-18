@@ -23,6 +23,7 @@ class TestLunarFeature(object):
         assert lf.lunar_club_type == self.feature_info[10]
         assert lf.latitude_range() == (-62.430559651643, -54.815102116853005)
         assert lf.longitude_range() == (-22.034792792535, -7.420187842583001)
+        assert lf.feature_angle() == 194.10225514559056
 
         val = str(lf)
         assert val.startswith("Name")

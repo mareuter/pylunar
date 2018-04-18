@@ -3,6 +3,7 @@
 # Copyright (c) 2016-2017, Michael Reuter
 # Distributed under the MIT License. See LICENSE for more information.
 # ------------------------------------------------------------------------------
+import math
 import os
 
 __all__ = ["LunarFeature"]
@@ -90,6 +91,25 @@ class LunarFeature(object):
         :class:`.LunarFeature`
         """
         return cls(*row[1:])
+
+    def feature_angle(self):
+        """Get the angle of the feature on the lunar face relative to North.
+
+        The feature angle is determined by calculating atan2(lon, lat) and
+        then adding 360 degrees if the result is less than zero. This makes
+        North zero degrees, East 90 degrees, South 180 degrees and West 270
+        degrees.
+
+        Returns
+        -------
+        float
+            The feature angle in degrees.
+        """
+        lat_rad = math.radians(self.latitude)
+        lon_rad = math.radians(self.longitude)
+        fa = math.degrees(math.atan2(lon_rad, lat_rad))
+        fa += 360.0 if fa < 0 else 0.0
+        return fa
 
     def latitude_range(self):
         """Get the latitude range of the feature.
