@@ -34,6 +34,7 @@ class TestMoonInfo(object):
         assert self.mi.phase_name() == "FULL_MOON"
         assert self.mi.libration_lon() == 5.23107551788429
         assert self.mi.libration_lat() == -1.4788210646482465
+        assert self.mi.libration_phase_angle() == 105.7855572234932
         assert self.mi.altitude() == -9.8149186580585
         assert self.mi.azimuth() == 69.75156520051686
         assert self.mi.time_from_new_moon() == 333.4247006776859

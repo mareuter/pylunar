@@ -176,6 +176,17 @@ class MoonInfo(object):
         """
         return math.degrees(self.moon.libration_long)
 
+    def libration_phase_angle(self):
+        """The phase angle of the moon's current libration in degrees.
+
+        Returns
+        -------
+        float
+        """
+        phase_angle = math.atan2(self.moon.libration_long, self.moon.libration_lat)
+        phase_angle += 2.0 * math.pi if phase_angle < 0 else 0.0
+        return math.degrees(phase_angle)
+
     def magnitude(self):
         """ The moon's current magnitude.
 
