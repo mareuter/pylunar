@@ -48,6 +48,10 @@ class MoonInfo(object):
     # The offset (degrees) from the colongitude used for visibility check
     NO_CUTOFF_TYPE = ("Landing Site", "Mare", "Oceanus")
     # Feature types that are not subject to longitude cutoffs
+    LIBRATION_ZONE = 80.0
+    # Latitude and/or longitude where librations have a big effect
+    MAXIMUM_LIBRATION_PHASE_ANGLE_CUTOFF = 65.0
+    # The maximum value of the libration phase angle difference for a feature
 
     reverse_phase_lookup = {
         "new_moon": (ephem.previous_last_quarter_moon, "last_quarter"),
@@ -213,6 +217,34 @@ class MoonInfo(object):
 
         return longitude
 
+    def is_libration_ok(self, feature):
+        """Determine if lunar feature is visible due to libration effect.
+
+        Parameters
+        ----------
+        feature : :class:`.LunarFeature`
+            The Lunar feature instance to check.
+
+        Returns
+        -------
+        bool
+            True if visible, False if not.
+        """
+        is_lon_in_zone = math.fabs(feature.longitude) > self.LIBRATION_ZONE
+        is_lat_in_zone = math.fabs(feature.latitude) > self.LIBRATION_ZONE
+        if is_lat_in_zone or is_lon_in_zone:
+            feature_angle = feature.feature_angle()
+            libration_phase_angle = self.libration_phase_angle()
+            delta_phase_angle = libration_phase_angle - feature_angle
+            delta_phase_angle -= 360.0 if delta_phase_angle > 180.0 else 0.0
+            print(delta_phase_angle)
+            if math.fabs(delta_phase_angle) <= self.MAXIMUM_LIBRATION_PHASE_ANGLE_CUTOFF:
+                return True
+            else:
+                return False
+
+        return True
+
     def is_visible(self, feature):
         """Determine if lunar feature is visible.
 
@@ -257,7 +289,7 @@ class MoonInfo(object):
             else:
                 is_visible = max_lon <= selco_lon <= lon_cutoff
 
-        return is_visible
+        return is_visible and self.is_libration_ok(feature)
 
     def next_four_phases(self):
         """The next for phases in date sorted order (closest phase first).
