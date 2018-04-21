@@ -44,3 +44,6 @@ output/*/index.html
 docs/_build
 docs/modules.rst
 docs/pylunar.rst
+
+# MacOs
+.DS_Store

@@ -34,6 +34,7 @@ class TestMoonInfo(object):
         assert self.mi.phase_name() == "FULL_MOON"
         assert self.mi.libration_lon() == 5.23107551788429
         assert self.mi.libration_lat() == -1.4788210646482465
+        assert self.mi.libration_phase_angle() == 105.7855572234932
         assert self.mi.altitude() == -9.8149186580585
         assert self.mi.azimuth() == 69.75156520051686
         assert self.mi.time_from_new_moon() == 333.4247006776859
@@ -189,3 +190,26 @@ class TestMoonInfo(object):
         assert self.mi.is_visible(feature1) is False
         assert self.mi.is_visible(feature2) is False
         assert self.mi.is_visible(feature3) is False
+
+    def test_is_libration_ok(self):
+        feature1 = LunarFeature("A", 374.0, -2.0, 87.0, 12.0, 12.0, "Mare",
+                                "Ansgarius", "LAC-81", "LunarII", None)
+        feature2 = LunarFeature("B", 358.0, 13.0, 86.5, 9.0, 12.0, "Mare",
+                                "Neper", "LAC-63", "LunarII", None)
+        feature3 = LunarFeature("C", 682.0, -19.5, -95.0, 22.5, 23.0, "Mons",
+                                "Mare Orientale", "LAC-108", "LunarII", None)
+        self.mi.update((2017, 5, 27, 12, 21, 0))
+        assert self.mi.is_libration_ok(feature1) is True
+        assert self.mi.is_libration_ok(feature2) is True
+        assert self.mi.is_libration_ok(feature3) is False
+        assert self.mi.is_visible(feature1) is True
+        self.mi.update((2017, 11, 24, 22, 0, 0))
+        assert self.mi.is_libration_ok(feature1) is False
+        assert self.mi.is_libration_ok(feature2) is False
+        assert self.mi.is_visible(feature2) is False
+        assert self.mi.is_libration_ok(feature3) is True
+        assert self.mi.is_visible(feature3) is False
+        self.mi.update((2017, 7, 17, 6, 0, 0))
+        assert self.mi.is_libration_ok(feature1) is False
+        assert self.mi.is_libration_ok(feature2) is False
+        assert self.mi.is_libration_ok(feature3) is True
