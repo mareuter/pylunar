@@ -3,6 +3,24 @@
 History
 -------
 
+0.5.1 (2018-04-20)
+++++++++++++++++++
+
+* Add changelog updates
+
+0.5.0 (2018-04-20)
+++++++++++++++++++
+
+* LunarFeature additions
+
+  * Latitude and Longitude ranges
+  * Feature angle
+* MoonInfo additions
+
+  * Libration phase angle
+  * Libration visibility check
+  * Updated is_visible to use libration visibility check
+
 0.4.1 (2017-05-30)
 ++++++++++++++++++
 
