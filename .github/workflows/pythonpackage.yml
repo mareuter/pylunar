@@ -26,4 +26,4 @@ jobs:
         python setup.py install
     - name: Run tests
       run: |
-        pytest --flake8 -v
+        pytest

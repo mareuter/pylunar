@@ -29,7 +29,6 @@ test_requirements = [
     "wheel>=0.22",
     "bumpversion",
     "flake8",
-    "tox",
     "coverage",
     "Sphinx",
     "cryptography",
