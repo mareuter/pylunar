@@ -1,0 +1,5 @@
+flake8
+tox
+coverage
+pytest
+pytest-flake8
