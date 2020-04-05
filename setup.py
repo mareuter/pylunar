@@ -20,20 +20,13 @@ Documentation
 The full documentation is at http://pylunar.rtfd.org."""
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
-requirements = [
-    "ephem",
-    "pytz"
-]
+requirements = None
+with open('requirements/prod.txt') as prodFile:
+    requirements = [x.strip() for x in prodFile]
 
-test_requirements = [
-    "wheel>=0.22",
-    "bumpversion",
-    "flake8",
-    "coverage",
-    "Sphinx",
-    "cryptography",
-    "PyYAML"
-]
+test_requirements = None
+with open('requirements/test.txt') as testFile:
+    test_requirements = [x.strip() for x in testFile]
 
 setup(
     name='pylunar',
@@ -50,7 +43,6 @@ setup(
     package_dir={'pylunar': 'pylunar'},
     include_package_data=True,
     install_requires=requirements,
-    extras_require={':python_version=="2.7"': ['enum34']},
     license='MIT',
     zip_safe=False,
     keywords='pylunar',
@@ -67,5 +59,4 @@ setup(
     ],
     test_suite='tests',
     tests_require=test_requirements
-
 )
