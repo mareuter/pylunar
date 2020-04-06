@@ -58,7 +58,7 @@ setup(
     zip_safe=False,
     keywords='pylunar',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
