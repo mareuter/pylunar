@@ -1,4 +1,15 @@
 #!/usr/bin/env python
+
+# This file is part of pylunar.
+#
+# Developed by Michael Reuter.
+#
+# See the LICENSE file at the top-level directory of this distribution
+# for details of code ownership.
+#
+# Use of this source code is governed by a 3-clause BSD-style
+# license that can be found in the LICENSE file.
+
 import os
 import sys
 
@@ -43,13 +54,13 @@ setup(
     package_dir={'pylunar': 'pylunar'},
     include_package_data=True,
     install_requires=requirements,
-    license='MIT',
+    license='BSD 3-Clause License',
     zip_safe=False,
     keywords='pylunar',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
