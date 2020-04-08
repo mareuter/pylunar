@@ -1,4 +1,15 @@
 #!/usr/bin/env python
+
+# This file is part of pylunar.
+#
+# Developed by Michael Reuter.
+#
+# See the LICENSE file at the top-level directory of this distribution
+# for details of code ownership.
+#
+# Use of this source code is governed by a 3-clause BSD-style
+# license that can be found in the LICENSE file.
+
 import os
 import sys
 
@@ -20,21 +31,13 @@ Documentation
 The full documentation is at http://pylunar.rtfd.org."""
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
-requirements = [
-    "ephem",
-    "pytz"
-]
+requirements = None
+with open('requirements/prod.txt') as prodFile:
+    requirements = [x.strip() for x in prodFile]
 
-test_requirements = [
-    "wheel>=0.22",
-    "bumpversion",
-    "flake8",
-    "tox",
-    "coverage",
-    "Sphinx",
-    "cryptography",
-    "PyYAML"
-]
+test_requirements = None
+with open('requirements/test.txt') as testFile:
+    test_requirements = [x.strip() for x in testFile]
 
 setup(
     name='pylunar',
@@ -51,24 +54,20 @@ setup(
     package_dir={'pylunar': 'pylunar'},
     include_package_data=True,
     install_requires=requirements,
-    extras_require={':python_version=="2.7"': ['enum34']},
-    license='MIT',
+    license='BSD 3-Clause License',
     zip_safe=False,
     keywords='pylunar',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
     test_suite='tests',
     tests_require=test_requirements
-
 )

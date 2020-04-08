@@ -27,10 +27,9 @@ lint:
 	flake8 pylunar tests
 
 test:
-	py.test
+	pytest -v --doctest-glob=docs/usage.rst
 
-test-all:
-	tox
+test-all: test
 
 coverage:
 	coverage run --source pylunar setup.py test
