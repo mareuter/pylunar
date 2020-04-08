@@ -242,7 +242,7 @@ class MoonInfo(object):
             libration_phase_angle = self.libration_phase_angle()
             delta_phase_angle = libration_phase_angle - feature_angle
             delta_phase_angle -= 360.0 if delta_phase_angle > 180.0 else 0.0
-            print(delta_phase_angle)
+
             if math.fabs(delta_phase_angle) <= self.MAXIMUM_LIBRATION_PHASE_ANGLE_CUTOFF:
                 return True
             else:
