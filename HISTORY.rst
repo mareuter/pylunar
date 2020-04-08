@@ -3,6 +3,16 @@
 History
 -------
 
+0.6.0 (2020-04-07)
+++++++++++++++++++
+
+* Drop Python 2 and 3.4 and 3.5 support
+* Add Python 3.7 and 3.8 support
+* Change to 3-clause BSD license
+* Switch to pytest from tox
+* Add Github workflows for build and package upload
+* Remove Travis
+
 0.5.1 (2018-04-20)
 ++++++++++++++++++
 
