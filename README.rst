@@ -10,10 +10,6 @@ Python Lunar
    :target: https://pypi.python.org/pypi/pylunar
    :alt: Software Version
 
-.. |travis| image:: https://img.shields.io/travis/mareuter/pylunar/master.svg
-  :target: https://travis-ci.org/mareuter/pylunar
-  :alt: Travis build status
-
 .. |github| image:: https://img.shields.io/github/mareuter/pylunar/pythonpackage/master.svg
   :target: https://github.com/mareuter/pylunar
   :alt: Github build status
@@ -26,7 +22,7 @@ Python Lunar
   :target: https://pylunar.readthedocs.io
   :alt: Readthedocs status
 
-|license| |python| |version| |travis| |github| |docs|
+|license| |python| |version| |github| |docs|
 
 Information for completing the Astronomical League's Lunar and Lunar II observing programs.
 
