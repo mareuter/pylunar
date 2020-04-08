@@ -8,7 +8,6 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
-from __future__ import division
 from datetime import datetime
 from enum import Enum
 import math
