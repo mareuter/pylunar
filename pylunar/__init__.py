@@ -10,7 +10,7 @@
 
 __author__ = 'Michael Reuter'
 __email__ = 'mareuternh@gmail.com'
-__version__ = '0.5.1'
+__version__ = '0.6.0'
 
 from .helpers import *
 from .lunar_feature import LunarFeature
