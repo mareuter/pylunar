@@ -10,7 +10,7 @@ Python Lunar
    :target: https://pypi.python.org/pypi/pylunar
    :alt: Software Version
 
-.. |github| image:: https://img.shields.io/github/mareuter/pylunar/pythonpackage/master.svg
+.. |github| image:: https://github.com/mareuter/pylunar/workflows/Python%20package/badge.svg
   :target: https://github.com/mareuter/pylunar
   :alt: Github build status
 
