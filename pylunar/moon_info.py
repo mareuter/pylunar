@@ -349,7 +349,6 @@ class MoonInfo(object):
             elif previous_phase_name == "last_quarter" and next_phase_name == "new_moon":
                 return PhaseName.WANING_CRESCENT.name
 
-
     def phase_emoji(self):
         """The standard emoji of the moon's phase, i.e. '🌒',
 
@@ -361,14 +360,14 @@ class MoonInfo(object):
         str
         """
         return {
-            'NEW_MOON':         '🌑',
-            'WAXING_CRESCENT':  '🌒',
-            'FIRST_QUARTER':    '🌓',
-            'WAXING_GIBBOUS':   '🌔',
-            'FULL_MOON':        '🌕',
-            'WANING_GIBBOUS':   '🌖',
-            'LAST_QUARTER':     '🌗',
-            'WANING_CRESCENT':  '🌘'
+            'NEW_MOON':'🌑',
+            'WAXING_CRESCENT':'🌒',
+            'FIRST_QUARTER':'🌓',
+            'WAXING_GIBBOUS':'🌔',
+            'FULL_MOON':'🌕',
+            'WANING_GIBBOUS':'🌖',
+            'LAST_QUARTER':'🌗',
+            'WANING_CRESCENT':'🌘'
         }[self.phase_name()]
 
     def ra(self):
