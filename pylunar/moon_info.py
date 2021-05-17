@@ -91,6 +91,17 @@ class MoonInfo(object):
         prev_new = ephem.previous_new_moon(self.observer.date)
         return self.observer.date - prev_new
 
+    def fractional_age(self):
+        """The moon's fractional age. Always less than 1.0.
+
+        Returns
+        -------
+        float
+        """
+        prev_new = ephem.previous_new_moon(self.observer.date)
+        next_new = ephem.next_new_moon(self.observer.date)
+        return (self.observer.date - prev_new) / (next_new - prev_new)
+
     def altitude(self):
         """The moon's altitude in degrees.
 
