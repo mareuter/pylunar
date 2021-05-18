@@ -70,9 +70,9 @@ class MoonInfo(object):
         Parameters
         ----------
         latitude : tuple of 3 ints
-            The latitude of the observer.
+            The latitude of the observer in GPS DMS(Degrees, Minutes and Seconds) format.
         longitude : tuple of 3 ints
-            The longitude of the observer.
+            The longitude of the observer in GPS DMS(Degrees, Minutes and Seconds) format.
         name : str, optional
             A name for the observer's location.
         """
