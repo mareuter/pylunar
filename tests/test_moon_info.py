@@ -113,6 +113,26 @@ class TestMoonInfo(object):
         self.mi.update((2013, 11, 2, 23, 0, 0))
         assert self.mi.phase_name() == "WANING_CRESCENT"
 
+    def test_different_phase_emoji(self):
+        self.mi.update((2013, 10, 18, 18, 0, 0))
+        assert self.mi.phase_emoji() == "🌔"
+        self.mi.update((2013, 10, 5, 0, 0, 0))
+        assert self.mi.phase_emoji() == "🌑"
+        self.mi.update((2013, 10, 8, 6, 0, 0))
+        assert self.mi.phase_emoji() == "🌒"
+        self.mi.update((2013, 10, 11, 22, 0, 0))
+        assert self.mi.phase_emoji() == "🌓"
+        self.mi.update((2013, 10, 12, 3, 30, 0))
+        assert self.mi.phase_emoji() == "🌔"
+        self.mi.update((2013, 10, 19, 1, 30, 0))
+        assert self.mi.phase_emoji() == "🌕"
+        self.mi.update((2013, 10, 24, 15, 0, 0))
+        assert self.mi.phase_emoji() == "🌖"
+        self.mi.update((2013, 10, 26, 23, 40, 0))
+        assert self.mi.phase_emoji() == "🌗"
+        self.mi.update((2013, 11, 2, 23, 0, 0))
+        assert self.mi.phase_emoji() == "🌘"
+
     def test_colong_to_long(self):
         self.mi.update(self.date_list[0])
         assert self.mi.colong_to_long() == 85.63604081994191
