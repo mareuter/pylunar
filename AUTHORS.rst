@@ -10,4 +10,7 @@ Development Lead
 Contributors
 ------------
 
-None yet. Why not be the first?
+* `1kastner <https://github.com/1kastner>`_
+* `Louis Knapp <https://github.com/lknapp>`_
+* `Bryan Neal Garrison <https://github.com/noblecloud>`_
+* `Peyman Majidi Moein <https://github.com/peymanmajidi>`_

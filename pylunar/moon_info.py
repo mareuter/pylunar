@@ -359,8 +359,7 @@ class MoonInfo(object):
                 return PhaseName.WANING_GIBBOUS.name
             elif previous_phase_name == "last_quarter" and next_phase_name == "new_moon":
                 return PhaseName.WANING_CRESCENT.name
-            
-            
+
     def phase_shape_in_ascii(self):
         """Display moon's phase shape in ASCII art,
 
@@ -371,67 +370,65 @@ class MoonInfo(object):
         str
         """
         phase = self.phase_name()
-        
+
         if phase == PhaseName.NEW_MOON.name:
             return """   _..._
  .:::::::.
-:::::::::::  
+:::::::::::
 :::::::::::
 `:::::::::'
   `':::''        """
         elif phase == PhaseName.WAXING_CRESCENT.name:
             return """   _..._
  .::::. `.
-:::::::.  : 
+:::::::.  :
 ::::::::  :
 `::::::' .'
-  `'::'-'        """        
+  `'::'-'        """
         elif phase == PhaseName.FIRST_QUARTER.name:
             return """   _..._
  .::::  `.
-::::::    : 
+::::::    :
 ::::::    :
 `:::::   .'
-  `'::.-'        """       
+  `'::.-'        """
         elif phase == PhaseName.WAXING_GIBBOUS.name:
             return """   _..._
  .::'   `.
-:::       : 
+:::       :
 :::       :
 `::.     .'
-  `':..-'        """       
+  `':..-'        """
         elif phase == PhaseName.FULL_MOON.name:
             return """   _..._
  .'     `.
 :         :
 :         :
 `.       .'
-  `-...-'        """       
+  `-...-'        """
         elif phase == PhaseName.WANING_GIBBOUS.name:
             return """   _..._
  .'   `::.
-:       :::  
+:       :::
 :       :::
 `.     .::'
-  `-..:''        """       
+  `-..:''        """
         elif phase == PhaseName.LAST_QUARTER.name:
             return """   _..._
  .'  ::::.
 :    ::::::
 :    ::::::
 `.   :::::'
-  `-.::''        """       
+  `-.::''        """
         elif phase == PhaseName.WAXING_CRESCENT.name:
             return """   _..._
  .' .::::.
-:  :::::::: 
+:  ::::::::
 :  ::::::::
 `. '::::::'
-  `-.::''        """     
+  `-.::''        """
         else:
-            return phase  
-
-            
+            return phase
 
     def phase_emoji(self):
         """The standard emoji of the moon's phase, i.e. '🌒',

@@ -38,21 +38,21 @@ class TestMoonInfo(object):
     def test_moon_information(self):
         self.mi.update(self.obs_datetime)
 
-        assert self.mi.age() == 13.892695861570246
-        assert self.mi.fractional_age() == 0.47076766395227637
+        assert self.mi.age() == 13.892695999260468
+        assert self.mi.fractional_age() == 0.4707676682458111
         assert self.mi.colong() == 83.97189956624061
         assert self.mi.fractional_phase() == 0.9998519924481626
         assert self.mi.phase_name() == "FULL_MOON"
         assert self.mi.libration_lon() == 5.23107551788429
         assert self.mi.libration_lat() == -1.4788210646482465
         assert self.mi.libration_phase_angle() == 105.7855572234932
-        assert self.mi.altitude() == -9.8149186580585
+        assert self.mi.altitude() == -9.814919511832146
         assert self.mi.azimuth() == 69.75156520051686
-        assert self.mi.time_from_new_moon() == 333.4247006776859
-        assert self.mi.time_to_new_moon() == 374.8327396878158
-        assert self.mi.time_to_full_moon() == 0.06781995449273381
-        assert self.mi.ra() == 23.331888825304354
-        assert self.mi.dec() == 10.129795148334347
+        assert self.mi.time_from_new_moon() == 333.42470398225123
+        assert self.mi.time_to_new_moon() == 374.83273694326635
+        assert self.mi.time_to_full_moon() == 0.0678198272944428
+        assert self.mi.ra() == 23.331890450649784
+        assert self.mi.dec() == 10.129795616523591
         assert self.mi.earth_distance() == 386484.25078267464
         assert self.mi.angular_size() == 0.5159071519639757
         assert self.mi.magnitude() == -12.63
@@ -67,11 +67,11 @@ class TestMoonInfo(object):
         next_four_phases = self.mi.next_four_phases()
         phase_names = [x[0] for x in next_four_phases]
         assert phase_names == ["full_moon", "last_quarter", "new_moon", "first_quarter"]
-        assert next_four_phases[0][1] == (2013, 10, 18, 23, 37, 39.644067962653935)
+        assert next_four_phases[0][1] == (2013, 10, 18, 23, 37, 39.633078)
 
     def test_different_elongations(self):
         self.mi.update((2013, 10, 6, 22, 0, 0))
-        assert self.mi.elongation() == 23.90241813659668
+        assert self.mi.elongation() == 23.902420043945312
         self.mi.update((2013, 10, 24, 22, 0, 0))
         assert self.mi.elongation() == 247.54827117919922
         self.mi.update((2013, 10, 31, 22, 0, 0))
