@@ -39,6 +39,7 @@ class TestMoonInfo(object):
         self.mi.update(self.obs_datetime)
 
         assert self.mi.age() == 13.892695861570246
+        assert self.mi.fractional_age() == 0.47076766395227637
         assert self.mi.colong() == 83.97189956624061
         assert self.mi.fractional_phase() == 0.9998519924481626
         assert self.mi.phase_name() == "FULL_MOON"
