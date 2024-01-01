@@ -3,6 +3,15 @@
 History
 -------
 
+0.7.0 (2023-12-31)
+++++++++++++++++++
+
+* Add phase emoji function
+* Add phase ASCII art function
+* Add fractional age function
+* Updates to API docs
+* Infrastructure updates and fixes
+
 0.6.0 (2020-04-07)
 ++++++++++++++++++
 
