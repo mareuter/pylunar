@@ -9,7 +9,7 @@
 # license that can be found in the LICENSE file.
 
 import collections
-import pkg_resources
+from importlib.resources import files
 import sqlite3
 
 from pylunar import LunarFeature
@@ -30,8 +30,7 @@ class LunarFeatureContainer(object):
         club_name : str
             The name of the observing club to sort on. Values are Lunar and LunarII.
         """
-        rsman = pkg_resources.ResourceManager()
-        dbname = rsman.resource_filename('pylunar', 'db/lunar.db')
+        dbname = files("pylunar.data").joinpath("lunar.db")
         self.conn = sqlite3.connect(dbname)
         self.club_name = club_name
         self.features = collections.OrderedDict()
