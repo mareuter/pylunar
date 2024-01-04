@@ -8,9 +8,16 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
+from importlib.metadata import version, PackageNotFoundError
+
 __author__ = 'Michael Reuter'
 __email__ = 'mareuternh@gmail.com'
-__version__ = '0.7.0'
+try:
+    __version__ = version("pylunar")
+except PackageNotFoundError:
+    # package is not installed
+    pass
+
 
 from .helpers import *
 from .lunar_feature import LunarFeature
