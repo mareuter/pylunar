@@ -1,8 +1,10 @@
-.PHONY: help check-build clean clean-pyc clean-build list test test-all coverage docs release sdist
+.PHONY: help check-build clean clean-pyc clean-build clean-docs list test test-all coverage docs release sdist
 
 help:
 	@echo "clean-build - remove build artifacts"
 	@echo "clean-pyc - remove Python file artifacts"
+	@echo "clean-docs - remove doc build artifacts"
+	@echo "clean - remove all artifacts"
 	@echo "lint - check style with flake8"
 	@echo "test - run tests quickly with the default Python"
 	@echo "testall - run tests on every Python version with tox"
@@ -12,7 +14,7 @@ help:
 	@echo "sdist - package"
 	@echo "check-build - check distribution packaging"
 
-clean: clean-build clean-pyc
+clean: clean-build clean-docs clean-pyc
 
 clean-build:
 	rm -fr build/
@@ -23,6 +25,11 @@ clean-pyc:
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
+
+clean-docs:
+	rm -f docs/pylunar.rst
+	rm -f docs/modules.rst
+	$(MAKE) -C docs clean
 
 lint:
 	flake8 pylunar tests
@@ -38,11 +45,8 @@ coverage:
 	coverage html
 	open htmlcov/index.html
 
-docs:
-	rm -f docs/pylunar.rst
-	rm -f docs/modules.rst
+docs: clean-docs
 	sphinx-apidoc -o docs/ pylunar
-	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	open docs/_build/html/index.html
 
@@ -55,6 +59,6 @@ sdist: clean
 	python setup.py bdist_wheel upload
 	ls -l dist
 
-check-build:
+check-build: clean
 	python -m build
 	twine check dist/*
