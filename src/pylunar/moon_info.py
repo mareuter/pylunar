@@ -16,7 +16,7 @@ from operator import itemgetter
 import ephem
 import pytz
 
-from pylunar import mjd_to_date_tuple, tuple_to_string
+from .helpers import mjd_to_date_tuple, tuple_to_string
 
 __all__ = ["MoonInfo"]
 

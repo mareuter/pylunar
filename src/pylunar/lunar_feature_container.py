@@ -12,7 +12,7 @@ import collections
 from importlib.resources import files
 import sqlite3
 
-from pylunar import LunarFeature
+from .lunar_feature import LunarFeature
 
 
 class LunarFeatureContainer(object):
