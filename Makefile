@@ -27,8 +27,7 @@ clean-pyc:
 	find . -name '*~' -exec rm -f {} +
 
 clean-docs:
-	rm -f docs/pylunar.rst
-	rm -f docs/modules.rst
+	rm -fr docs/api
 	$(MAKE) -C docs clean
 
 lint:
@@ -46,7 +45,7 @@ coverage:
 	open htmlcov/index.html
 
 docs: clean-docs
-	sphinx-apidoc -o docs/ pylunar
+	sphinx-apidoc -fMeT -o docs/api src/pylunar
 	$(MAKE) -C docs html
 	open docs/_build/html/index.html
 
