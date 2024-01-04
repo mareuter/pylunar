@@ -1,4 +1,4 @@
-.PHONY: help clean clean-pyc clean-build list test test-all coverage docs release sdist
+.PHONY: help check-build clean clean-pyc clean-build list test test-all coverage docs release sdist
 
 help:
 	@echo "clean-build - remove build artifacts"
@@ -10,13 +10,14 @@ help:
 	@echo "docs - generate Sphinx HTML documentation, including API docs"
 	@echo "release - package and upload a release"
 	@echo "sdist - package"
+	@echo "check-build - check distribution packaging"
 
 clean: clean-build clean-pyc
 
 clean-build:
 	rm -fr build/
 	rm -fr dist/
-	rm -fr *.egg-info
+	rm -fr src/*.egg-info
 
 clean-pyc:
 	find . -name '*.pyc' -exec rm -f {} +
@@ -53,3 +54,7 @@ sdist: clean
 	python setup.py sdist
 	python setup.py bdist_wheel upload
 	ls -l dist
+
+check-build:
+	python -m build
+	twine check dist/*

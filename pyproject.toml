@@ -37,8 +37,10 @@ Repository = "https://github.com/mareuter/pylunar"
 
 [project.optional-dependencies]
 dev = [
+    "build",
     "pytest",
-    "sphinx"
+    "sphinx",
+    "twine"
 ]
 
 [tool.setuptools_scm]
