@@ -16,8 +16,13 @@ try:
     __version__ = version("pylunar")
 except PackageNotFoundError:
     # package is not installed
-    pass
+    __version__ = "0.0.0"
 
+version_info = __version__.split(".")
+"""The decomposed version, split across "``.``."
+
+Use this for version comparison.
+"""
 
 from .helpers import *
 from .lunar_feature import LunarFeature
