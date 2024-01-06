@@ -41,7 +41,7 @@ dev = [
     "tox"
 ]
 test = [
-    "coverage"
+    "coverage[toml]>=5.0.2",
     "pytest",
 ]
 build = [

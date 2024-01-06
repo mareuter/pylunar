@@ -25,4 +25,4 @@ jobs:
         uses: lsst-sqre/run-tox@v1
         with:
           python-version: ${{ matrix.python }}
-          tox-envs: "py"
+          tox-envs: "py,coverage-report"
