@@ -3,7 +3,7 @@ Contributing
 ============
 
 Contributions are welcome, and they are greatly appreciated! Every
-little bit helps, and credit will always be given. 
+little bit helps, and credit will always be given.
 
 You can contribute in many ways:
 
@@ -36,7 +36,7 @@ is open to whoever wants to implement it.
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
-Python Lunar could always use more documentation, whether as part of the 
+Python Lunar could always use more documentation, whether as part of the
 official Python Lunar docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
@@ -94,7 +94,7 @@ Before you submit a pull request, check that it meets these guidelines:
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
 3. The pull request should work for Python 2.7, and 3.5, and for PyPy.
-   Check https://travis-ci.org/mareuter/pylunar 
+   Check https://travis-ci.org/mareuter/pylunar
    under pull requests for active pull requests or run the ``tox`` command and
    make sure that the tests pass for all supported Python versions.
 
