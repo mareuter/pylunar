@@ -37,12 +37,15 @@ Repository = "https://github.com/mareuter/pylunar"
 
 [project.optional-dependencies]
 dev = [
-    "pylunar[build,docs,test]",
+    "pylunar[build,docs,lint,test]",
     "tox"
 ]
 test = [
     "coverage[toml]>=5.0.2",
     "pytest",
+]
+lint = [
+    "pre-commit"
 ]
 build = [
     "build",

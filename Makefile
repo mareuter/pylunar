@@ -1,4 +1,4 @@
-.PHONY: help check-build clean clean-pyc clean-build clean-docs list test test-all coverage docs release sdist
+.PHONY: help init check-build clean clean-pyc clean-build clean-docs list test test-all coverage docs release sdist
 
 help:
 	@echo "clean-build - remove build artifacts"
@@ -13,6 +13,10 @@ help:
 	@echo "release - package and upload a release"
 	@echo "sdist - package"
 	@echo "check-build - check distribution packaging"
+
+init:
+	pip install --editable .[dev]
+	pre-commit install
 
 clean: clean-build clean-docs clean-pyc
 
