@@ -57,3 +57,16 @@ docs = [
 ]
 
 [tool.setuptools_scm]
+
+[tool.ruff]
+exclude = [
+    "docs/**",
+]
+line-length = 110
+
+[tool.ruff.per-file-ignores]
+"src/pylunar/__init__.py" = [
+    "E402",
+    "F401",
+    "F403"
+]
