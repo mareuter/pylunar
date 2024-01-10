@@ -8,10 +8,10 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
+__all__ = ["LunarFeature"]
+
 import math
 import os
-
-__all__ = ["LunarFeature"]
 
 
 class LunarFeature(object):

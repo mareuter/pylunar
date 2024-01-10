@@ -8,6 +8,8 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
+__all__ = ["LunarFeatureContainer"]
+
 import collections
 from importlib.resources import files
 import sqlite3

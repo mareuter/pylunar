@@ -8,6 +8,8 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
+__all__ = ["__author__", "__email__", "__version__", "version_info"]
+
 from importlib.metadata import version, PackageNotFoundError
 
 __author__ = 'Michael Reuter'

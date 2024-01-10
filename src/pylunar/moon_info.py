@@ -8,6 +8,8 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
+__all__ = ["MoonInfo"]
+
 from datetime import datetime
 from enum import Enum
 import math
@@ -18,7 +20,6 @@ import pytz
 
 from .helpers import mjd_to_date_tuple, tuple_to_string
 
-__all__ = ["MoonInfo"]
 
 class PhaseName(Enum):
     NEW_MOON = 0
