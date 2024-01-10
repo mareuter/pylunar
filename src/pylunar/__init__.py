@@ -10,7 +10,7 @@
 
 __all__ = ["__author__", "__email__", "__version__", "version_info"]
 
-from importlib.metadata import version, PackageNotFoundError
+from importlib.metadata import PackageNotFoundError, version
 
 __author__ = 'Michael Reuter'
 __email__ = 'mareuternh@gmail.com'
