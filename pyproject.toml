@@ -64,9 +64,11 @@ exclude = [
 ]
 line-length = 110
 select = [
+    "B",
     "E",
     "F",
-    "I"
+    "I",
+    "SIM"
 ]
 
 [tool.ruff.per-file-ignores]
