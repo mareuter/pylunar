@@ -17,7 +17,7 @@ import sqlite3
 from .lunar_feature import LunarFeature
 
 
-class LunarFeatureContainer(object):
+class LunarFeatureContainer:
 
     """
     This class handles collecting all of the Lunar features that are available from the
@@ -46,8 +46,7 @@ class LunarFeatureContainer(object):
         -------
         :class:`.LunarFeature`
         """
-        for feature in self.features.values():
-            yield feature
+        yield from self.features.values()
 
     def __len__(self):
         """Length of the container.
@@ -72,10 +71,10 @@ class LunarFeatureContainer(object):
             self.features = collections.OrderedDict()
 
         cur = self.conn.cursor()
-        sql = "select * from Features where Lunar_Code = \"{}\" or "\
-              "Lunar_Code = \"Both\"".format(self.club_name)
+        sql = f"select * from Features where Lunar_Code = \"{self.club_name}\" or "\
+              "Lunar_Code = \"Both\""
         if limit is not None:
-            sql += " limit {}".format(limit)
+            sql += f" limit {limit}"
         cur.execute(sql)
 
         for row in cur:

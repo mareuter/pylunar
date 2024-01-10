@@ -35,7 +35,7 @@ class TimeOfDay(Enum):
     MORNING = 0
     EVENING = 1
 
-class MoonInfo(object):
+class MoonInfo:
     """Handle all moon information.
 
     Attributes
@@ -335,9 +335,9 @@ class MoonInfo(object):
         """
         next_phase_name = self.next_four_phases()[0][0]
         try:
-            next_phase_time = getattr(ephem, "next_{}".format(next_phase_name))(self.observer.date)
+            next_phase_time = getattr(ephem, f"next_{next_phase_name}")(self.observer.date)
         except AttributeError:
-            next_phase_time = getattr(ephem, "next_{}_moon".format(next_phase_name))(self.observer.date)
+            next_phase_time = getattr(ephem, f"next_{next_phase_name}_moon")(self.observer.date)
         previous_phase = self.reverse_phase_lookup[next_phase_name]
         time_to_next_phase = math.fabs(next_phase_time - self.observer.date) * self.DAYS_TO_HOURS
         time_to_previous_phase = math.fabs(self.observer.date -
@@ -512,7 +512,7 @@ class MoonInfo(object):
                 if local_date.day == current_day:
                     times[time_type] = local_date
                 else:
-                    does_not = (time_type, "Does not {}".format(time_type))
+                    does_not = (time_type, f"Does not {time_type}")
 
         # Return observer and moon to previous state
         self.observer.pressure = old_pressure

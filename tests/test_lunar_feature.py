@@ -11,7 +11,7 @@
 from pylunar import LunarFeature
 
 
-class TestLunarFeature(object):
+class TestLunarFeature:
 
     def setup_class(self):
         self.feature_info = ("Clavius", 230.77, -58.622830884248, -14.727490317559,

@@ -14,7 +14,7 @@ import math
 import os
 
 
-class LunarFeature(object):
+class LunarFeature:
 
     """
     This class handles keeping all the information for a given Lunar feature.
@@ -76,10 +76,10 @@ class LunarFeature(object):
         str
         """
         result = []
-        result.append("Name = {}".format(self.name))
-        result.append("Lat/Long = ({:.2f}, {:.2f})".format(self.latitude, self.longitude))
-        result.append("Type = {}".format(self.feature_type))
-        result.append("Delta Lat/Long = ({:.2f}, {:.2f})".format(self.delta_latitude, self.delta_longitude))
+        result.append(f"Name = {self.name}")
+        result.append(f"Lat/Long = ({self.latitude:.2f}, {self.longitude:.2f})")
+        result.append(f"Type = {self.feature_type}")
+        result.append(f"Delta Lat/Long = ({self.delta_latitude:.2f}, {self.delta_longitude:.2f})")
         return os.linesep.join(result)
 
     @classmethod

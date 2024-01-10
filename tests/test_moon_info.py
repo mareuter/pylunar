@@ -11,7 +11,7 @@
 from pylunar import LunarFeature, MoonInfo
 
 
-class TestMoonInfo(object):
+class TestMoonInfo:
 
     def setup_class(self):
         location = ((35, 58, 10), (-84, 19, 0))

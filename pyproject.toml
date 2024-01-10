@@ -68,7 +68,8 @@ select = [
     "E",
     "F",
     "I",
-    "SIM"
+    "SIM",
+    "UP"
 ]
 
 [tool.ruff.per-file-ignores]

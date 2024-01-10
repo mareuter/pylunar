@@ -11,7 +11,7 @@
 from pylunar import mjd_to_date_tuple, tuple_to_string
 
 
-class TestHelperFunctions(object):
+class TestHelperFunctions:
 
     def test_tuple_to_string(self):
         coordinate = (-34, 23, 12)
