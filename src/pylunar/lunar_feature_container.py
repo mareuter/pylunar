@@ -8,6 +8,8 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
+"""Module for the LunarFeatureContainer class."""
+
 __all__ = ["LunarFeatureContainer"]
 
 import collections
@@ -18,11 +20,7 @@ from .lunar_feature import LunarFeature
 
 
 class LunarFeatureContainer:
-
-    """
-    This class handles collecting all of the Lunar features that are available from the
-    database.
-    """
+    """Collection of Lunar features available from the database."""
 
     def __init__(self, club_name):
         """Initialize the class.

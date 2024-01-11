@@ -8,6 +8,8 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
+"""Module for the LunarFeature class."""
+
 __all__ = ["LunarFeature"]
 
 import math
@@ -15,10 +17,7 @@ import os
 
 
 class LunarFeature:
-
-    """
-    This class handles keeping all the information for a given Lunar feature.
-    """
+    """Class keeping all the information for a given Lunar feature."""
 
     def __init__(self, name, diameter, latitude, longitude,
                  delta_latitude, delta_longitude, feature_type,
@@ -55,7 +54,6 @@ class LunarFeature:
             The Lunar Club classification of the feature: Naked Eye, Binocular, Telescope.
             For a LunarII only feature this is None.
         """
-
         self.name = name
         self.diameter = diameter
         self.latitude = latitude
@@ -69,7 +67,7 @@ class LunarFeature:
         self.lunar_club_type = str(lunar_club_type)
 
     def __str__(self):
-        """The string representation of the class.
+        """Class string representation.
 
         Returns
         -------
@@ -129,7 +127,11 @@ class LunarFeature:
         return (min_lat, max_lat)
 
     def list_from_feature(self):
-        """list: Convert the feature information into a list.
+        """Convert the feature information into a list.
+
+        Returns
+        -------
+        list
         """
         return [self.name, self.diameter, self.latitude, self.longitude,
                 self.delta_latitude, self.delta_longitude, self.feature_type,

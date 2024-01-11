@@ -8,6 +8,8 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
+"""Tests for helper functions."""
+
 from pylunar import mjd_to_date_tuple, tuple_to_string
 
 

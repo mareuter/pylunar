@@ -8,6 +8,8 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
+"""Module for the MoonInfo class."""
+
 __all__ = ["MoonInfo"]
 
 from datetime import datetime
@@ -71,9 +73,11 @@ class MoonInfo:
         Parameters
         ----------
         latitude : tuple of 3 ints
-            The latitude of the observer in GPS DMS(Degrees, Minutes and Seconds) format.
+            The latitude of the observer in GPS DMS(Degrees, Minutes and
+            Seconds) format.
         longitude : tuple of 3 ints
-            The longitude of the observer in GPS DMS(Degrees, Minutes and Seconds) format.
+            The longitude of the observer in GPS DMS(Degrees, Minutes and
+            Seconds) format.
         name : str, optional
             A name for the observer's location.
         """
@@ -83,7 +87,7 @@ class MoonInfo:
         self.moon = ephem.Moon()
 
     def age(self):
-        """The moon's age in days.
+        """Lunar age in days.
 
         Returns
         -------
@@ -93,7 +97,7 @@ class MoonInfo:
         return self.observer.date - prev_new
 
     def fractional_age(self):
-        """The moon's fractional age. Always less than 1.0.
+        """Lunar fractional age which is always less than 1.0.
 
         Returns
         -------
@@ -104,7 +108,7 @@ class MoonInfo:
         return (self.observer.date - prev_new) / (next_new - prev_new)
 
     def altitude(self):
-        """The moon's altitude in degrees.
+        """Lunar altitude in degrees.
 
         Returns
         -------
@@ -113,7 +117,7 @@ class MoonInfo:
         return math.degrees(self.moon.alt)
 
     def angular_size(self):
-        """The moon's current angular size in degrees.
+        """Lunar current angular size in degrees.
 
         Returns
         -------
@@ -122,7 +126,7 @@ class MoonInfo:
         return self.moon.size / 3600.0
 
     def azimuth(self):
-        """The moon's azimuth in degrees.
+        """Lunar azimuth in degrees.
 
         Returns
         -------
@@ -131,7 +135,7 @@ class MoonInfo:
         return math.degrees(self.moon.az)
 
     def colong(self):
-        """The moon's selenographic colongitude in degrees.
+        """Lunar selenographic colongitude in degrees.
 
         Returns
         -------
@@ -140,7 +144,7 @@ class MoonInfo:
         return math.degrees(self.moon.colong)
 
     def dec(self):
-        """The moon's current declination in degrees.
+        """Lunar current declination in degrees.
 
         Returns
         -------
@@ -149,7 +153,7 @@ class MoonInfo:
         return math.degrees(self.moon.dec)
 
     def earth_distance(self):
-        """The moon's current distance from the earth in km.
+        """Lunar current distance from the earth in km.
 
         Returns
         -------
@@ -158,7 +162,7 @@ class MoonInfo:
         return self.moon.earth_distance * ephem.meters_per_au / 1000.0
 
     def elongation(self):
-        """The moon's elongation from the sun in degrees.
+        """Lunar elongation from the sun in degrees.
 
         Returns
         -------
@@ -170,7 +174,7 @@ class MoonInfo:
         return elongation
 
     def fractional_phase(self):
-        """The moon's fractional illumination. Always less than 1.0.
+        """Lunar fractional illumination which is always less than 1.0.
 
         Returns
         -------
@@ -179,7 +183,7 @@ class MoonInfo:
         return self.moon.moon_phase
 
     def libration_lat(self):
-        """The moon's current latitudinal libration in degrees.
+        """Lunar current latitudinal libration in degrees.
 
         Returns
         -------
@@ -188,7 +192,7 @@ class MoonInfo:
         return math.degrees(self.moon.libration_lat)
 
     def libration_lon(self):
-        """The moon's current longitudinal libration in degrees.
+        """Lunar current longitudinal libration in degrees.
 
         Returns
         -------
@@ -197,7 +201,7 @@ class MoonInfo:
         return math.degrees(self.moon.libration_long)
 
     def libration_phase_angle(self):
-        """The phase angle of the moon's current libration in degrees.
+        """Phase angle of lunar current libration in degrees.
 
         Returns
         -------
@@ -208,7 +212,7 @@ class MoonInfo:
         return math.degrees(phase_angle)
 
     def magnitude(self):
-        """ The moon's current magnitude.
+        """Lunar current magnitude.
 
         Returns
         -------
@@ -217,7 +221,7 @@ class MoonInfo:
         return self.moon.mag
 
     def colong_to_long(self):
-        """The selenographic longitude in degrees based on the terminator.
+        """Selenographic longitude in degrees based on the terminator.
 
         Returns
         -------
@@ -239,7 +243,7 @@ class MoonInfo:
         Parameters
         ----------
         feature : :class:`.LunarFeature`
-            The Lunar feature instance to check.
+            The lunar feature instance to check.
 
         Returns
         -------
@@ -264,7 +268,7 @@ class MoonInfo:
         Parameters
         ----------
         feature : :class:`.LunarFeature`
-            The Lunar feature instance to check.
+            The lunar feature instance to check.
 
         Returns
         -------
@@ -305,12 +309,13 @@ class MoonInfo:
         return is_visible and self.is_libration_ok(feature)
 
     def next_four_phases(self):
-        """The next for phases in date sorted order (closest phase first).
+        """Next four phases in date sorted order (closest phase first).
 
         Returns
         -------
         list[(str, float)]
-            Set of moon phases specified by an abbreviated phase name and Modified Julian Date.
+            Set of lunar phases specified by an abbreviated phase name and
+            Modified Julian Date.
         """
         phases = {}
         phases["new_moon"] = ephem.next_new_moon(self.observer.date)
@@ -324,10 +329,10 @@ class MoonInfo:
         return sorted_phases
 
     def phase_name(self):
-        """The standard name of the moon's phase, i.e. Waxing Cresent
+        """Return standard name of lunar phase, i.e. Waxing Cresent.
 
-        This function returns a standard name for the moon's phase based on the current selenographic
-        colongitude.
+        This function returns a standard name for lunar phase based on the
+        current selenographic colongitude.
 
         Returns
         -------
@@ -359,9 +364,10 @@ class MoonInfo:
                 return PhaseName.WANING_CRESCENT.name
 
     def phase_shape_in_ascii(self):
-        """Display moon's phase shape in ASCII art,
+        """Display lunar phase shape in ASCII art.
 
-        This function returns a multi-line string demonstrate current moon shape in ASCII format
+        This function returns a multi-line string demonstrate current lunar
+        shape in ASCII format.
 
         Returns
         -------
@@ -429,10 +435,10 @@ class MoonInfo:
             return phase
 
     def phase_emoji(self):
-        """The standard emoji of the moon's phase, i.e. '🌒',
+        """Return standard emoji of lunar phase, i.e. '🌒'.
 
-        This function returns a standard emoji for the moon's phase based on the current selenographic
-        colongitude.
+        This function returns a standard emoji for lunar phase based on the
+        current selenographic colongitude.
 
         Returns
         -------
@@ -450,7 +456,7 @@ class MoonInfo:
         }[self.phase_name()]
 
     def ra(self):
-        """The moon's current right ascension in degrees.
+        """Lunar current right ascension in degrees.
 
         Returns
         -------
@@ -469,8 +475,8 @@ class MoonInfo:
         Returns
         -------
         list[(str, tuple)]
-            Set of rise, set, and transit times in the local time system. If event
-            does not happen, 'Does not xxx' is tuple value.
+            Set of rise, set, and transit times in the local time system. If
+            event does not happen, 'Does not xxx' is tuple value.
         """
         utc = pytz.utc
         try:
@@ -527,7 +533,7 @@ class MoonInfo:
         return sorted_times
 
     def subsolar_lat(self):
-        """The latitude in degress on the moon where the sun is overhead.
+        """Latitude in degress on the moon where the sun is overhead.
 
         Returns
         -------
@@ -549,7 +555,7 @@ class MoonInfo:
             return TimeOfDay.MORNING.name
 
     def time_from_new_moon(self):
-        """The time (hours) from the previous new moon.
+        """Time (hours) from the previous new moon.
 
         This function calculates the time from the previous new moon.
 
@@ -561,7 +567,7 @@ class MoonInfo:
         return MoonInfo.DAYS_TO_HOURS * (self.observer.date - previous_new_moon)
 
     def time_to_full_moon(self):
-        """The time (days) to the next full moon.
+        """Time (days) to the next full moon.
 
         This function calculates the time to the next full moon.
 
@@ -573,7 +579,7 @@ class MoonInfo:
         return next_full_moon - self.observer.date
 
     def time_to_new_moon(self):
-        """The time (hours) to the next new moon.
+        """Time (hours) to the next new moon.
 
         This function calculates the time to the next new moon.
 
@@ -587,8 +593,9 @@ class MoonInfo:
     def update(self, datetime):
         """Update the moon information based on time.
 
-        This fuction updates the Observer instance's datetime setting. The incoming datetime tuple should be
-        in UTC with the following placement of values: (YYYY, m, d, H, M, S) as defined below::
+        This fuction updates the Observer instance's datetime setting. The
+        incoming datetime tuple should be in UTC with the following placement
+        of values: (YYYY, m, d, H, M, S) as defined below::
 
             YYYY
                 Four digit year

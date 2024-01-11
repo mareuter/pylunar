@@ -61,10 +61,15 @@ docs = [
 [tool.ruff]
 exclude = [
     "docs/**",
+    "scripts/startup.py"
+]
+ignore = [
+    "D104"
 ]
 line-length = 110
 select = [
     "B",
+    "D",
     "E",
     "F",
     "I",
@@ -81,6 +86,14 @@ select = [
 "scripts/startup.py" = [
     "I001"
 ]
+"tests/**" = [
+    "D101",
+    "D102",
+    "D103",
+]
 
 [tool.ruff.isort]
 force-sort-within-sections = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
