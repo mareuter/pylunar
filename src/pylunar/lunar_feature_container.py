@@ -70,8 +70,7 @@ class LunarFeatureContainer:
             self.features = collections.OrderedDict()
 
         cur = self.conn.cursor()
-        sql = f"select * from Features where Lunar_Code = \"{self.club_name}\" or "\
-              "Lunar_Code = \"Both\""
+        sql = f'select * from Features where Lunar_Code = "{self.club_name}" or ' 'Lunar_Code = "Both"'
         if limit is not None:
             sql += f" limit {limit}"
         cur.execute(sql)

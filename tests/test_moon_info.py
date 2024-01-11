@@ -14,20 +14,21 @@ from pylunar import LunarFeature, MoonInfo
 
 
 class TestMoonInfo:
-
     def setup_class(self):
         location = ((35, 58, 10), (-84, 19, 0))
         self.obs_datetime = (2013, 10, 18, 22, 0, 0)
-        self.timezone = 'America/New_York'
+        self.timezone = "America/New_York"
         self.mi = MoonInfo(location[0], location[1])
-        self.date_list = [(2013, 10, 5, 0, 0, 0),
-                          (2013, 10, 8, 6, 0, 0),
-                          (2013, 10, 11, 22, 0, 0),
-                          (2013, 10, 12, 3, 30, 0),
-                          (2013, 10, 19, 1, 30, 0),
-                          (2013, 10, 24, 15, 0, 0),
-                          (2013, 10, 26, 23, 40, 0),
-                          (2013, 11, 2, 23, 0, 0)]
+        self.date_list = [
+            (2013, 10, 5, 0, 0, 0),
+            (2013, 10, 8, 6, 0, 0),
+            (2013, 10, 11, 22, 0, 0),
+            (2013, 10, 12, 3, 30, 0),
+            (2013, 10, 19, 1, 30, 0),
+            (2013, 10, 24, 15, 0, 0),
+            (2013, 10, 26, 23, 40, 0),
+            (2013, 11, 2, 23, 0, 0),
+        ]
 
     def test_basic_information_after_creation(self):
         assert self.mi.observer is not None
@@ -173,12 +174,15 @@ class TestMoonInfo:
         assert self.mi.time_of_day() == "EVENING"
 
     def test_is_visible(self):
-        feature1 = LunarFeature("A", 0.1, 0.0, 46.0, 0.01, 0.01, "Crater",
-                                "Taruntius", "LAC-61", "Lunar", "Telescope")
-        feature2 = LunarFeature("B", 1.0, 50.0, 46.0, 0.5, 0.5, "Crater",
-                                "Endymion", "LAC-14", "Lunar", "Binocular")
-        feature3 = LunarFeature("C", 100.0, -30.0, 46.0, 5.0, 10.0, "Mare",
-                                "Fracastorius", "LAC-97", "Lunar", "Naked Eye")
+        feature1 = LunarFeature(
+            "A", 0.1, 0.0, 46.0, 0.01, 0.01, "Crater", "Taruntius", "LAC-61", "Lunar", "Telescope"
+        )
+        feature2 = LunarFeature(
+            "B", 1.0, 50.0, 46.0, 0.5, 0.5, "Crater", "Endymion", "LAC-14", "Lunar", "Binocular"
+        )
+        feature3 = LunarFeature(
+            "C", 100.0, -30.0, 46.0, 5.0, 10.0, "Mare", "Fracastorius", "LAC-97", "Lunar", "Naked Eye"
+        )
         self.mi.update(self.date_list[0])
         assert self.mi.is_visible(feature1) is False
         assert self.mi.is_visible(feature2) is False
@@ -225,12 +229,13 @@ class TestMoonInfo:
         assert self.mi.is_visible(feature3) is False
 
     def test_is_libration_ok(self):
-        feature1 = LunarFeature("A", 374.0, -2.0, 87.0, 12.0, 12.0, "Mare",
-                                "Ansgarius", "LAC-81", "LunarII", None)
-        feature2 = LunarFeature("B", 358.0, 13.0, 86.5, 9.0, 12.0, "Mare",
-                                "Neper", "LAC-63", "LunarII", None)
-        feature3 = LunarFeature("C", 682.0, -19.5, -95.0, 22.5, 23.0, "Mons",
-                                "Mare Orientale", "LAC-108", "LunarII", None)
+        feature1 = LunarFeature(
+            "A", 374.0, -2.0, 87.0, 12.0, 12.0, "Mare", "Ansgarius", "LAC-81", "LunarII", None
+        )
+        feature2 = LunarFeature("B", 358.0, 13.0, 86.5, 9.0, 12.0, "Mare", "Neper", "LAC-63", "LunarII", None)
+        feature3 = LunarFeature(
+            "C", 682.0, -19.5, -95.0, 22.5, 23.0, "Mons", "Mare Orientale", "LAC-108", "LunarII", None
+        )
         self.mi.update((2017, 5, 27, 12, 21, 0))
         assert self.mi.is_libration_ok(feature1) is True
         assert self.mi.is_libration_ok(feature2) is True

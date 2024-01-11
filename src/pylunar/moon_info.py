@@ -33,9 +33,11 @@ class PhaseName(Enum):
     LAST_QUARTER = 6
     WANING_CRESCENT = 7
 
+
 class TimeOfDay(Enum):
     MORNING = 0
     EVENING = 1
+
 
 class MoonInfo:
     """Handle all moon information.
@@ -64,7 +66,7 @@ class MoonInfo:
         "new_moon": (ephem.previous_last_quarter_moon, "last_quarter"),
         "first_quarter": (ephem.previous_new_moon, "new_moon"),
         "full_moon": (ephem.previous_first_quarter_moon, "first_quarter"),
-        "last_quarter": (ephem.previous_full_moon, "full_moon")
+        "last_quarter": (ephem.previous_full_moon, "full_moon"),
     }
 
     def __init__(self, latitude, longitude, name=None):
@@ -345,8 +347,9 @@ class MoonInfo:
             next_phase_time = getattr(ephem, f"next_{next_phase_name}_moon")(self.observer.date)
         previous_phase = self.reverse_phase_lookup[next_phase_name]
         time_to_next_phase = math.fabs(next_phase_time - self.observer.date) * self.DAYS_TO_HOURS
-        time_to_previous_phase = math.fabs(self.observer.date -
-                                           previous_phase[0](self.observer.date)) * self.DAYS_TO_HOURS
+        time_to_previous_phase = (
+            math.fabs(self.observer.date - previous_phase[0](self.observer.date)) * self.DAYS_TO_HOURS
+        )
         previous_phase_name = previous_phase[1]
 
         if time_to_previous_phase < self.MAIN_PHASE_CUTOFF:
@@ -445,14 +448,14 @@ class MoonInfo:
         str
         """
         return {
-            'NEW_MOON': '🌑',
-            'WAXING_CRESCENT': '🌒',
-            'FIRST_QUARTER': '🌓',
-            'WAXING_GIBBOUS': '🌔',
-            'FULL_MOON': '🌕',
-            'WANING_GIBBOUS': '🌖',
-            'LAST_QUARTER': '🌗',
-            'WANING_CRESCENT': '🌘'
+            "NEW_MOON": "🌑",
+            "WAXING_CRESCENT": "🌒",
+            "FIRST_QUARTER": "🌓",
+            "WAXING_GIBBOUS": "🌔",
+            "FULL_MOON": "🌕",
+            "WANING_GIBBOUS": "🌖",
+            "LAST_QUARTER": "🌗",
+            "WANING_CRESCENT": "🌘",
         }[self.phase_name()]
 
     def ra(self):
@@ -493,27 +496,20 @@ class MoonInfo:
         self.observer.pressure = 0
         self.observer.horizon = "-0:34"
 
-        current_date_utc = datetime(*mjd_to_date_tuple(self.observer.date,
-                                                       round_off=True), tzinfo=utc)
+        current_date_utc = datetime(*mjd_to_date_tuple(self.observer.date, round_off=True), tzinfo=utc)
         current_date = current_date_utc.astimezone(tz)
         current_day = current_date.day
         times = {}
         does_not = None
         for time_type in ("rise", "transit", "set"):
-            mjd_time = getattr(self.observer,
-                               "{}_{}".format("next",
-                                              func_map[time_type]))(self.moon)
-            utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True),
-                                tzinfo=utc)
+            mjd_time = getattr(self.observer, "{}_{}".format("next", func_map[time_type]))(self.moon)
+            utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=utc)
             local_date = utc_time.astimezone(tz)
             if local_date.day == current_day:
                 times[time_type] = local_date
             else:
-                mjd_time = getattr(self.observer,
-                                   "{}_{}".format("previous",
-                                                  func_map[time_type]))(self.moon)
-                utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True),
-                                    tzinfo=utc)
+                mjd_time = getattr(self.observer, "{}_{}".format("previous", func_map[time_type]))(self.moon)
+                utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=utc)
                 local_date = utc_time.astimezone(tz)
                 if local_date.day == current_day:
                     times[time_type] = local_date

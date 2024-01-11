@@ -14,7 +14,6 @@ from pylunar import LunarFeatureContainer, MoonInfo
 
 
 class TestLunarFeatureContainer:
-
     def setup_class(self):
         self.lc_lfc = LunarFeatureContainer("Lunar")
         self.lc2_lfc = LunarFeatureContainer("LunarII")

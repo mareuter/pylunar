@@ -19,10 +19,20 @@ import os
 class LunarFeature:
     """Class keeping all the information for a given Lunar feature."""
 
-    def __init__(self, name, diameter, latitude, longitude,
-                 delta_latitude, delta_longitude, feature_type,
-                 quad_name, quad_code, code_name,
-                 lunar_club_type):
+    def __init__(
+        self,
+        name,
+        diameter,
+        latitude,
+        longitude,
+        delta_latitude,
+        delta_longitude,
+        feature_type,
+        quad_name,
+        quad_code,
+        code_name,
+        lunar_club_type,
+    ):
         """Initialize the class.
 
         Parameters
@@ -136,10 +146,19 @@ class LunarFeature:
         -------
         list
         """
-        return [self.name, self.diameter, self.latitude, self.longitude,
-                self.delta_latitude, self.delta_longitude, self.feature_type,
-                self.quad_name, self.quad_code, self.code_name,
-                self.lunar_club_type]
+        return [
+            self.name,
+            self.diameter,
+            self.latitude,
+            self.longitude,
+            self.delta_latitude,
+            self.delta_longitude,
+            self.feature_type,
+            self.quad_name,
+            self.quad_code,
+            self.code_name,
+            self.lunar_club_type,
+        ]
 
     def longitude_range(self):
         """Get the longitude range of the feature.
