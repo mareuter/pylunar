@@ -1,4 +1,4 @@
-.PHONY: help init check-build clean clean-pyc clean-build clean-docs list test test-all coverage docs release sdist
+.PHONY: help init check-build clean clean-pyc clean-build clean-docs list test test-all coverage docs docs-local release sdist
 
 help:
 	@echo "clean-build - remove build artifacts"
@@ -10,6 +10,7 @@ help:
 	@echo "testall - run tests on every Python version with tox"
 	@echo "coverage - check code coverage quickly with the default Python"
 	@echo "docs - generate Sphinx HTML documentation, including API docs"
+	@echo "docs-local - generate docs and open locally"
 	@echo "release - package and upload a release"
 	@echo "sdist - package"
 	@echo "check-build - check distribution packaging"
@@ -51,6 +52,8 @@ coverage:
 docs: clean-docs
 	sphinx-apidoc -fMeT -o docs/api src/pylunar
 	$(MAKE) -C docs html
+
+docs-local: docs
 	open docs/_build/html/index.html
 
 release: clean
