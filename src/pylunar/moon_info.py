@@ -542,7 +542,10 @@ class MoonInfo:
         return math.degrees(self.moon.subsolar_lat)
 
     def time_of_day(self):
-        """Determine if the terminator is sunrise (morning) or sunset (evening).
+        """Terminator time of day.
+
+        This function determines if the terminator is sunrise (morning) or
+        sunset (evening).
 
         Returns
         -------

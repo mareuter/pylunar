@@ -32,9 +32,11 @@ class LunarFeature:
         diameter : float
             The diameter (km) of the Lunar feature.
         latitude : float
-            The latitude (degrees) of the Lunar feature. Negative is South, positive is North.
+            The latitude (degrees) of the Lunar feature. Negative is South,
+            positive is North.
         longitude : float
-            The longitude (degrees) of the Lunar feature. Negative is West, positive is East
+            The longitude (degrees) of the Lunar feature. Negative is West,
+            positive is East
         delta_latitude : float
             The size (degrees) in latitude of the Lunar feature.
         delta_longitude : float
@@ -42,17 +44,18 @@ class LunarFeature:
         feature_type : str
             The classification of the Lunar feature: i.e. Crater, Mons.
         quad_name : str
-            Name of lunar quadrant containing feature's center point as determined
-            by the International Astronomical Union (IAU) Working Group for
-            Planetary System Nomenclature (WGPSN)
+            Name of lunar quadrant containing feature's center point as
+            determined by the International Astronomical Union (IAU) Working
+            Group for Planetary System Nomenclature (WGPSN)
         quad_code : str
-            Specific lunar quadrant containing feature's center point as determined
-            by the IAU WGPSN.
+            Specific lunar quadrant containing feature's center point as
+            determined by the IAU WGPSN.
         code_name : str
-            The AstroLeague club name for the Lunar feature. Can be: Lunar, LunarII or Both
+            The AstroLeague club name for the Lunar feature. Can be: Lunar,
+            LunarII or Both
         lunar_club_type : str or None
-            The Lunar Club classification of the feature: Naked Eye, Binocular, Telescope.
-            For a LunarII only feature this is None.
+            The Lunar Club classification of the feature: Naked Eye, Binocular,
+            Telescope. For a LunarII only feature this is None.
         """
         self.name = name
         self.diameter = diameter

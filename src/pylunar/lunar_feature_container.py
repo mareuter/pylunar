@@ -28,7 +28,8 @@ class LunarFeatureContainer:
         Parameters
         ----------
         club_name : str
-            The name of the observing club to sort on. Values are Lunar and LunarII.
+            The name of the observing club to sort on. Values are Lunar and
+            LunarII.
         """
         dbname = files("pylunar.data").joinpath("lunar.db")
         self.conn = sqlite3.connect(dbname)
