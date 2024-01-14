@@ -58,45 +58,48 @@ Get Started!
 Ready to contribute? Here's how to set up `pylunar` for
 local development.
 
-1. Fork the `pylunar` repo on GitHub.
-2. Clone your fork locally::
+#. Fork the `pylunar` repo on GitHub.
+#. Create a vitrual environment for dependency installation.
+#. Clone your fork locally::
 
     $ git clone git@github.com:your_name_here/pylunar.git
 
-3. Create a branch for local development::
+#. Install the dependencies for development and pre-commit hook::
+
+    $ make init
+
+#. Create a branch for local development::
 
     $ git checkout -b name-of-your-bugfix-or-feature
 
 Now you can make your changes locally.
 
-4. When you're done making changes, check that your changes pass style and unit
-   tests, including testing other Python versions with tox::
+#. When you're done making changes, check that your changes pass style and unit
+   tests::
 
     $ tox
 
-To get tox, just pip install it.
-
-5. Commit your changes and push your branch to GitHub::
+#. Commit your changes (this will cause the pre-commit hook to run) and push your branch to GitHub::
 
     $ git add .
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
 
-6. Submit a pull request through the GitHub website.
+#. Submit a pull request through the GitHub website.
 
 Pull Request Guidelines
 -----------------------
 
 Before you submit a pull request, check that it meets these guidelines:
 
-1. The pull request should include tests.
-2. If the pull request adds functionality, the docs should be updated. Put
+#. The pull request should include tests.
+#. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
-   feature to the list in README.rst.
-3. The pull request should work for Python 2.7, and 3.5, and for PyPy.
-   Check https://travis-ci.org/mareuter/pylunar
-   under pull requests for active pull requests or run the ``tox`` command and
-   make sure that the tests pass for all supported Python versions.
+   feature to the list in HISTORY.rst.
+#. The pull request should work for the supported range of Python versions.
+   The pull request will run GitHub actions to perform those checks.
+   Check https://github.com/mareuter/pylunar/pulls
+   for active pull requests and make sure that the checks all passed.
 
 
 Tips
@@ -104,4 +107,4 @@ Tips
 
 To run a subset of tests::
 
-	 $ py.test test/test_pylunar.py
+	 $ pytest test/test_pylunar.py
