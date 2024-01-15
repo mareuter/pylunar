@@ -100,3 +100,6 @@ convention = "numpy"
 
 [tool.ruff.lint.pycodestyle]
 max-doc-length = 79
+
+[tool.mypy]
+ignore_missing_imports = true
