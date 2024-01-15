@@ -1,0 +1,102 @@
+[build-system]
+requires = [
+    "setuptools>=64",
+    "setuptools_scm>=8",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+dynamic = ["version"]
+name = "pylunar"
+authors = [
+    {name = "Michael Reuter", email = "mareuternh@gmail.com"}
+]
+description = "Information for completing the Astronomical League's Lunar and Lunar II observing programs."
+readme = "README.rst"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "ephem",
+    "importlib-resources;python_version<'3.10'",
+    "pytz"
+]
+
+[project.urls]
+Documentation = "http://pylunar.readthedocs.io"
+Repository = "https://github.com/mareuter/pylunar"
+
+[project.optional-dependencies]
+dev = [
+    "pylunar[build,docs,lint,test]",
+    "tox"
+]
+test = [
+    "coverage[toml]>=5.0.2",
+    "pytest",
+]
+lint = [
+    "pre-commit"
+]
+build = [
+    "build",
+    "twine"
+]
+docs = [
+    "sphinx>=7,<8",
+    "sphinx_rtd_theme"
+]
+
+[tool.setuptools_scm]
+
+[tool.ruff]
+exclude = [
+    "docs/**",
+    "scripts/startup.py"
+
+]
+ignore = [
+    "D104"
+]
+line-length = 110
+select = [
+    "B",
+    "D",
+    "E",
+    "F",
+    "I",
+    "SIM",
+    "UP",
+    "W"
+]
+
+[tool.ruff.per-file-ignores]
+"src/pylunar/__init__.py" = [
+    "E402",
+    "F401",
+    "F403"
+]
+"tests/**" = [
+    "D101",
+    "D102",
+    "D103",
+]
+
+[tool.ruff.isort]
+force-sort-within-sections = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.pycodestyle]
+max-doc-length = 79

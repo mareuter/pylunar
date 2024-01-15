@@ -8,11 +8,12 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
+"""Tests for the LunarFeatureContainer class."""
+
 from pylunar import LunarFeatureContainer, MoonInfo
 
 
-class TestLunarFeatureContainer(object):
-
+class TestLunarFeatureContainer:
     def setup_class(self):
         self.lc_lfc = LunarFeatureContainer("Lunar")
         self.lc2_lfc = LunarFeatureContainer("LunarII")

@@ -31,7 +31,8 @@ import pylunar
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'sphinx.ext.viewcode']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.autosummary',
+              'sphinx.ext.napoleon', 'sphinx.ext.viewcode']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -47,7 +48,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Python Lunar'
-copyright = u'2016-2020, Michael Reuter'
+copyright = u'2016-2024, Michael Reuter'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -100,7 +101,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -129,7 +130,7 @@ html_theme = 'default'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+#html_static_path = ['_static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -237,7 +238,8 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'pylunar', u'Python Lunar Documentation',
-   u'Michael Reuter', 'pylunar', 'One line description of project.',
+   u'Michael Reuter', 'pylunar',
+   'Information for completing the Astronomical League\'s Lunar and Lunar II observing programs..',
    'Miscellaneous'),
 ]
 

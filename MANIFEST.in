@@ -1,12 +1,8 @@
-include AUTHORS.rst
-include CONTRIBUTING.rst
-include HISTORY.rst
-include LICENSE
-include README.rst
+graft docs
+graft scripts
+graft src
+graft tests
 
-recursive-include tests *
-recursive-exclude * __pycache__
-recursive-exclude * *.py[co]
-
-recursive-include docs *.rst conf.py Makefile make.bat
-recursive-include pylunar/db *.db
+global-exclude *~ *.py[cod]
+exclude .readthedocs.yaml .gitignore
+recursive-exclude .github *.yml

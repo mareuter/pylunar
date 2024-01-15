@@ -8,15 +8,26 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
+"""Tests for the LunarFeature class."""
+
 from pylunar import LunarFeature
 
 
-class TestLunarFeature(object):
-
+class TestLunarFeature:
     def setup_class(self):
-        self.feature_info = ("Clavius", 230.77, -58.622830884248, -14.727490317559,
-                             7.61545753479, 14.614604949952, "Crater", "Clavius",
-                             "LAC-126", "Both", "Binocular")
+        self.feature_info = (
+            "Clavius",
+            230.77,
+            -58.622830884248,
+            -14.727490317559,
+            7.61545753479,
+            14.614604949952,
+            "Crater",
+            "Clavius",
+            "LAC-126",
+            "Both",
+            "Binocular",
+        )
 
     def test_basic_information_after_creation(self):
         lf = LunarFeature(*self.feature_info)
@@ -39,8 +50,20 @@ class TestLunarFeature(object):
         assert val.startswith("Name")
 
     def test_creation_from_database_row(self):
-        feature_row = (33, "Clavius", 230.77, -58.622830884248, -14.727490317559, 7.61545753479,
-                       14.614604949952, "Crater", "Clavius", "LAC-126", "Both", "Binocular")
+        feature_row = (
+            33,
+            "Clavius",
+            230.77,
+            -58.622830884248,
+            -14.727490317559,
+            7.61545753479,
+            14.614604949952,
+            "Crater",
+            "Clavius",
+            "LAC-126",
+            "Both",
+            "Binocular",
+        )
         lf = LunarFeature.from_row(feature_row)
         assert lf.name == feature_row[1]
         assert lf.diameter == feature_row[2]

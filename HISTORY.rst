@@ -3,6 +3,15 @@
 History
 -------
 
+0.7.1 (upcoming)
+++++++++++++++++
+
+* Switch to pyproject.toml
+* Internal package updates
+* Update docs infrastructure
+* Switch back to tox
+* Add linting and formatting
+
 0.7.0 (2023-12-31)
 ++++++++++++++++++
 

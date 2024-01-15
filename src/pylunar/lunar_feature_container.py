@@ -8,19 +8,23 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
+"""Module for the LunarFeatureContainer class."""
+
+__all__ = ["LunarFeatureContainer"]
+
 import collections
-import pkg_resources
+
+try:
+    from importlib_resources import files
+except ImportError:
+    from importlib.resources import files
 import sqlite3
 
-from pylunar import LunarFeature
+from .lunar_feature import LunarFeature
 
 
-class LunarFeatureContainer(object):
-
-    """
-    This class handles collecting all of the Lunar features that are available from the
-    database.
-    """
+class LunarFeatureContainer:
+    """Collection of Lunar features available from the database."""
 
     def __init__(self, club_name):
         """Initialize the class.
@@ -28,10 +32,10 @@ class LunarFeatureContainer(object):
         Parameters
         ----------
         club_name : str
-            The name of the observing club to sort on. Values are Lunar and LunarII.
+            The name of the observing club to sort on. Values are Lunar and
+            LunarII.
         """
-        rsman = pkg_resources.ResourceManager()
-        dbname = rsman.resource_filename('pylunar', 'db/lunar.db')
+        dbname = files("pylunar.data").joinpath("lunar.db")
         self.conn = sqlite3.connect(dbname)
         self.club_name = club_name
         self.features = collections.OrderedDict()
@@ -45,8 +49,7 @@ class LunarFeatureContainer(object):
         -------
         :class:`.LunarFeature`
         """
-        for feature in self.features.values():
-            yield feature
+        yield from self.features.values()
 
     def __len__(self):
         """Length of the container.
@@ -71,10 +74,9 @@ class LunarFeatureContainer(object):
             self.features = collections.OrderedDict()
 
         cur = self.conn.cursor()
-        sql = "select * from Features where Lunar_Code = \"{}\" or "\
-              "Lunar_Code = \"Both\"".format(self.club_name)
+        sql = f'select * from Features where Lunar_Code = "{self.club_name}" or ' 'Lunar_Code = "Both"'
         if limit is not None:
-            sql += " limit {}".format(limit)
+            sql += f" limit {limit}"
         cur.execute(sql)
 
         for row in cur:
