@@ -13,7 +13,11 @@
 __all__ = ["LunarFeatureContainer"]
 
 import collections
-from importlib.resources import files
+
+try:
+    from importlib_resources import files
+except ImportError:
+    from importlib.resources import files
 import sqlite3
 
 from .lunar_feature import LunarFeature
