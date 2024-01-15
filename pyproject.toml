@@ -28,7 +28,7 @@ classifiers = [
 ]
 dependencies = [
     "ephem",
-    "importlib-resources;python_version<'3.9'",
+    "importlib-resources;python_version<'3.10'",
     "pytz"
 ]
 
