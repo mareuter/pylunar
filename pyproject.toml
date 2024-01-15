@@ -61,6 +61,8 @@ docs = [
 [tool.ruff]
 exclude = [
     "docs/**",
+    "scripts/startup.py"
+
 ]
 ignore = [
     "D104"
@@ -83,9 +85,6 @@ select = [
     "F401",
     "F403"
 ]
-"scripts/startup.py" = [
-    "I001"
-]
 "tests/**" = [
     "D101",
     "D102",
@@ -100,8 +99,3 @@ convention = "numpy"
 
 [tool.ruff.lint.pycodestyle]
 max-doc-length = 79
-
-[tool.ruff.format]
-exclude = [
-    "scripts/startup.py"
-]
