@@ -100,7 +100,7 @@ class MoonInfo:
         float
         """
         prev_new = ephem.previous_new_moon(self.observer.date)
-        return self.observer.date - prev_new
+        return float(self.observer.date - prev_new)
 
     def fractional_age(self) -> float:
         """Lunar fractional age which is always less than 1.0.
@@ -111,7 +111,7 @@ class MoonInfo:
         """
         prev_new = ephem.previous_new_moon(self.observer.date)
         next_new = ephem.next_new_moon(self.observer.date)
-        return (self.observer.date - prev_new) / (next_new - prev_new)
+        return float((self.observer.date - prev_new) / (next_new - prev_new))
 
     def altitude(self) -> float:
         """Lunar altitude in degrees.
@@ -129,7 +129,8 @@ class MoonInfo:
         -------
         float
         """
-        return self.moon.size / 3600.0
+        moon_size: float = self.moon.size
+        return moon_size / 3600.0
 
     def azimuth(self) -> float:
         """Lunar azimuth in degrees.
@@ -165,7 +166,7 @@ class MoonInfo:
         -------
         float
         """
-        return self.moon.earth_distance * ephem.meters_per_au / 1000.0
+        return float(self.moon.earth_distance * ephem.meters_per_au / 1000.0)
 
     def elongation(self) -> float:
         """Lunar elongation from the sun in degrees.
@@ -186,7 +187,7 @@ class MoonInfo:
         -------
         float
         """
-        return self.moon.moon_phase
+        return float(self.moon.moon_phase)
 
     def libration_lat(self) -> float:
         """Lunar current latitudinal libration in degrees.
@@ -224,7 +225,7 @@ class MoonInfo:
         -------
         float
         """
-        return self.moon.mag
+        return float(self.moon.mag)
 
     def colong_to_long(self) -> float:
         """Selenographic longitude in degrees based on the terminator.
@@ -569,7 +570,7 @@ class MoonInfo:
         float
         """
         previous_new_moon = ephem.previous_new_moon(self.observer.date)
-        return MoonInfo.DAYS_TO_HOURS * (self.observer.date - previous_new_moon)
+        return float(MoonInfo.DAYS_TO_HOURS * (self.observer.date - previous_new_moon))
 
     def time_to_full_moon(self) -> float:
         """Time (days) to the next full moon.
@@ -581,7 +582,7 @@ class MoonInfo:
         float
         """
         next_full_moon = ephem.next_full_moon(self.observer.date)
-        return next_full_moon - self.observer.date
+        return float(next_full_moon - self.observer.date)
 
     def time_to_new_moon(self) -> float:
         """Time (hours) to the next new moon.
@@ -593,7 +594,7 @@ class MoonInfo:
         float
         """
         next_new_moon = ephem.next_new_moon(self.observer.date)
-        return MoonInfo.DAYS_TO_HOURS * (next_new_moon - self.observer.date)
+        return float(MoonInfo.DAYS_TO_HOURS * (next_new_moon - self.observer.date))
 
     def update(self, datetime: DateTimeTuple) -> None:
         """Update the moon information based on time.
