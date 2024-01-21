@@ -6,11 +6,13 @@ History
 0.7.1 (upcoming)
 ++++++++++++++++
 
+* Drop support for Python 3.6 and 3.7
 * Switch to pyproject.toml
 * Internal package updates
 * Update docs infrastructure
 * Switch back to tox
 * Add linting and formatting
+* Add mypy and typing
 
 0.7.0 (2023-12-31)
 ++++++++++++++++++
