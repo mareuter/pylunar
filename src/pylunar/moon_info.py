@@ -16,11 +16,15 @@ from datetime import datetime
 from enum import Enum
 import math
 from operator import itemgetter
+from typing import List, Tuple, TypeAlias, Union
 
 import ephem
 import pytz
 
 from .helpers import mjd_to_date_tuple, tuple_to_string
+
+DateTimeTuple: TypeAlias = Tuple[int, int, int, int, int, int]
+MoonPhases: TypeAlias = List[Tuple[str, Union[DateTimeTuple, str]]]
 
 
 class PhaseName(Enum):
@@ -467,7 +471,7 @@ class MoonInfo:
         """
         return math.degrees(self.moon.ra)
 
-    def rise_set_times(self, timezone):
+    def rise_set_times(self, timezone: str) -> MoonPhases:
         """Calculate the rise, set and transit times in the local time system.
 
         Parameters
@@ -496,20 +500,20 @@ class MoonInfo:
         self.observer.pressure = 0
         self.observer.horizon = "-0:34"
 
-        current_date_utc = datetime(*mjd_to_date_tuple(self.observer.date, round_off=True), tzinfo=utc)
+        current_date_utc = datetime(*mjd_to_date_tuple(self.observer.date, round_off=True), tzinfo=utc)  # type: ignore
         current_date = current_date_utc.astimezone(tz)
         current_day = current_date.day
         times = {}
         does_not = None
         for time_type in ("rise", "transit", "set"):
             mjd_time = getattr(self.observer, "{}_{}".format("next", func_map[time_type]))(self.moon)
-            utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=utc)
+            utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=utc)  # type: ignore
             local_date = utc_time.astimezone(tz)
             if local_date.day == current_day:
                 times[time_type] = local_date
             else:
                 mjd_time = getattr(self.observer, "{}_{}".format("previous", func_map[time_type]))(self.moon)
-                utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=utc)
+                utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=utc)  # type: ignore
                 local_date = utc_time.astimezone(tz)
                 if local_date.day == current_day:
                     times[time_type] = local_date
@@ -521,8 +525,8 @@ class MoonInfo:
         self.observer.horizon = old_horizon
         self.moon.compute(self.observer)
 
-        sorted_times = sorted(times.items(), key=itemgetter(1))
-        sorted_times = [(xtime[0], xtime[1].timetuple()[:6]) for xtime in sorted_times]
+        original_sorted_times = sorted(times.items(), key=itemgetter(1))
+        sorted_times: MoonPhases = [(xtime[0], xtime[1].timetuple()[:6]) for xtime in original_sorted_times]
         if does_not is not None:
             sorted_times.insert(0, does_not)
 
