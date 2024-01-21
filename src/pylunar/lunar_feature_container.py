@@ -10,9 +10,12 @@
 
 """Module for the LunarFeatureContainer class."""
 
+from __future__ import annotations
+
 __all__ = ["LunarFeatureContainer"]
 
 import collections
+from typing import Generator
 
 try:
     from importlib_resources import files
@@ -21,12 +24,13 @@ except ImportError:
 import sqlite3
 
 from .lunar_feature import LunarFeature
+from .moon_info import MoonInfo
 
 
 class LunarFeatureContainer:
     """Collection of Lunar features available from the database."""
 
-    def __init__(self, club_name):
+    def __init__(self, club_name: str):
         """Initialize the class.
 
         Parameters
@@ -38,11 +42,11 @@ class LunarFeatureContainer:
         dbname = files("pylunar.data").joinpath("lunar.db")
         self.conn = sqlite3.connect(dbname)
         self.club_name = club_name
-        self.features = collections.OrderedDict()
-        self.club_type = set()
-        self.feature_type = set()
+        self.features: dict[int, LunarFeature] = collections.OrderedDict()
+        self.club_type: set[str] = set()
+        self.feature_type: set[str] = set()
 
-    def __iter__(self):
+    def __iter__(self) -> Generator[LunarFeature, None, None]:
         """Create iterator for container.
 
         Returns
@@ -51,7 +55,7 @@ class LunarFeatureContainer:
         """
         yield from self.features.values()
 
-    def __len__(self):
+    def __len__(self) -> int:
         """Length of the container.
 
         Returns
@@ -60,7 +64,7 @@ class LunarFeatureContainer:
         """
         return len(self.features)
 
-    def load(self, moon_info=None, limit=None):
+    def load(self, moon_info: MoonInfo | None = None, limit: int | None = None) -> None:
         """Read the Lunar features from the database.
 
         Parameters
@@ -81,10 +85,7 @@ class LunarFeatureContainer:
 
         for row in cur:
             feature = LunarFeature.from_row(row)
-            try:
-                is_visible = moon_info.is_visible(feature)
-            except AttributeError:
-                is_visible = True
+            is_visible = True if moon_info is None else moon_info.is_visible(feature)
             if is_visible:
                 self.features[id(feature)] = feature
                 self.club_type.add(row[11])

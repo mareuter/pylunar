@@ -14,7 +14,7 @@ from pylunar import LunarFeature
 
 
 class TestLunarFeature:
-    def setup_class(self):
+    def setup_class(self) -> None:
         self.feature_info = (
             "Clavius",
             230.77,
@@ -29,7 +29,7 @@ class TestLunarFeature:
             "Binocular",
         )
 
-    def test_basic_information_after_creation(self):
+    def test_basic_information_after_creation(self) -> None:
         lf = LunarFeature(*self.feature_info)
         assert lf.name == self.feature_info[0]
         assert lf.diameter == self.feature_info[1]
@@ -49,7 +49,7 @@ class TestLunarFeature:
         val = str(lf)
         assert val.startswith("Name")
 
-    def test_creation_from_database_row(self):
+    def test_creation_from_database_row(self) -> None:
         feature_row = (
             33,
             "Clavius",
@@ -77,7 +77,7 @@ class TestLunarFeature:
         assert lf.code_name == feature_row[10]
         assert lf.lunar_club_type == feature_row[11]
 
-    def test_list_from_feature(self):
+    def test_list_from_feature(self) -> None:
         lf = LunarFeature(*self.feature_info)
         feature_list = lf.list_from_feature()
         for value, truth in zip(feature_list, self.feature_info):

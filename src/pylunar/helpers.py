@@ -10,12 +10,16 @@
 
 """Module for helper functions."""
 
+from __future__ import annotations
+
 __all__ = ["mjd_to_date_tuple", "tuple_to_string"]
 
 import ephem
 
+from .extras import DateTimeTuple, DmsCoordinate
 
-def mjd_to_date_tuple(mjd, round_off=False):
+
+def mjd_to_date_tuple(mjd: float, round_off: bool = False) -> DateTimeTuple:
     """Convert a Modified Julian date to a UTC time tuple.
 
     Parameters
@@ -30,13 +34,12 @@ def mjd_to_date_tuple(mjd, round_off=False):
     tuple
         The UTC time for the MJD.
     """
-    if round_off:
-        return tuple(int(x) for x in ephem.Date(mjd).tuple())
-    else:
-        return ephem.Date(mjd).tuple()
+    date_tuple: DateTimeTuple
+    date_tuple = tuple(int(x) for x in ephem.Date(mjd).tuple()) if round_off else ephem.Date(mjd).tuple()
+    return date_tuple
 
 
-def tuple_to_string(coord):
+def tuple_to_string(coord: DmsCoordinate) -> str:
     """Return a colon-delimited string.
 
     Parameters
