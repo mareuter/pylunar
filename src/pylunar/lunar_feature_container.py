@@ -41,8 +41,8 @@ class LunarFeatureContainer:
             The name of the observing club to sort on. Values are Lunar and
             LunarII.
         """
-        dbname = files("pylunar.data").joinpath("lunar.db")
-        self.conn = sqlite3.connect(dbname)  # type: ignore
+        dbname = str(files("pylunar.data").joinpath("lunar.db"))
+        self.conn = sqlite3.connect(dbname)
         self.club_name = club_name
         self.features: dict[int, LunarFeature] = collections.OrderedDict()
         self.club_type: set[str] = set()
