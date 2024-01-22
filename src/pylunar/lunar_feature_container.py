@@ -15,12 +15,14 @@ from __future__ import annotations
 __all__ = ["LunarFeatureContainer"]
 
 import collections
+import sys
 from typing import Generator
 
-try:
-    from importlib_resources import files
-except ImportError:
+if sys.version_info >= (3, 10):
     from importlib.resources import files
+else:
+    from importlib_resources import files
+
 import sqlite3
 
 from .lunar_feature import LunarFeature
@@ -40,7 +42,7 @@ class LunarFeatureContainer:
             LunarII.
         """
         dbname = files("pylunar.data").joinpath("lunar.db")
-        self.conn = sqlite3.connect(dbname)
+        self.conn = sqlite3.connect(dbname)  # type: ignore
         self.club_name = club_name
         self.features: dict[int, LunarFeature] = collections.OrderedDict()
         self.club_type: set[str] = set()

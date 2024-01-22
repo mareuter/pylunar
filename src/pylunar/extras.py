@@ -12,16 +12,20 @@
 
 from __future__ import annotations
 
-try:
-    from typing import List, Union
+import sys
 
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias
+else:
     from typing_extensions import TypeAlias
-except ImportError:
-    from typing import List, TypeAlias, Union
 
-DateTimeTuple: TypeAlias = tuple[int, int, int, int, int, Union[int, float]]
-MoonPhases: TypeAlias = List[tuple[str, Union[DateTimeTuple, str]]]
-DmsCoordinate: TypeAlias = tuple[int, int, int]
-Range: TypeAlias = tuple[float, float]
-LunarFeatureList: TypeAlias = tuple[str, float, float, float, float, float, str, str, str, str, str | None]
-FeatureRow: TypeAlias = tuple[int, str, float, float, float, float, float, str, str, str, str, str]
+from typing import List, Tuple, Union
+
+DateTimeTuple: TypeAlias = Tuple[int, int, int, int, int, Union[int, float]]
+MoonPhases: TypeAlias = List[Tuple[str, Union[DateTimeTuple, str]]]
+DmsCoordinate: TypeAlias = Tuple[int, int, int]
+Range: TypeAlias = Tuple[float, float]
+LunarFeatureList: TypeAlias = Tuple[
+    str, float, float, float, float, float, str, str, str, str, Union[str, None]
+]
+FeatureRow: TypeAlias = Tuple[int, str, float, float, float, float, float, str, str, str, str, str]
