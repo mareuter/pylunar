@@ -12,7 +12,12 @@
 
 from __future__ import annotations
 
-from typing import List, TypeAlias, Union
+try:
+    from typing import List, Union
+
+    from typing_extensions import TypeAlias
+except ImportError:
+    from typing import List, TypeAlias, Union
 
 DateTimeTuple: TypeAlias = tuple[int, int, int, int, int, Union[int, float]]
 MoonPhases: TypeAlias = List[tuple[str, Union[DateTimeTuple, str]]]
