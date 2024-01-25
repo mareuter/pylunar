@@ -10,11 +10,12 @@
 
 """Tests for the MoonInfo class."""
 
-from pylunar import LunarFeature, MoonInfo
+from pylunar.lunar_feature import LunarFeature
+from pylunar.moon_info import MoonInfo
 
 
 class TestMoonInfo:
-    def setup_class(self):
+    def setup_class(self) -> None:
         location = ((35, 58, 10), (-84, 19, 0))
         self.obs_datetime = (2013, 10, 18, 22, 0, 0)
         self.timezone = "America/New_York"
@@ -30,15 +31,15 @@ class TestMoonInfo:
             (2013, 11, 2, 23, 0, 0),
         ]
 
-    def test_basic_information_after_creation(self):
+    def test_basic_information_after_creation(self) -> None:
         assert self.mi.observer is not None
         assert self.mi.moon is not None
 
-    def test_information_after_update(self):
+    def test_information_after_update(self) -> None:
         self.mi.update(self.obs_datetime)
         assert self.mi.observer.date == 41564.416666666664
 
-    def test_moon_information(self):
+    def test_moon_information(self) -> None:
         self.mi.update(self.obs_datetime)
 
         assert self.mi.age() == 13.892695999260468
@@ -72,7 +73,7 @@ class TestMoonInfo:
         assert phase_names == ["full_moon", "last_quarter", "new_moon", "first_quarter"]
         assert next_four_phases[0][1] == (2013, 10, 18, 23, 37, 39.633078)
 
-    def test_different_elongations(self):
+    def test_different_elongations(self) -> None:
         self.mi.update((2013, 10, 6, 22, 0, 0))
         assert self.mi.elongation() == 23.902420043945312
         self.mi.update((2013, 10, 24, 22, 0, 0))
@@ -80,7 +81,7 @@ class TestMoonInfo:
         self.mi.update((2013, 10, 31, 22, 0, 0))
         assert self.mi.elongation() == 326.54500579833984
 
-    def test_different_rise_set_times(self):
+    def test_different_rise_set_times(self) -> None:
         self.mi.update((2013, 10, 17, 22, 0, 0))
         rise_set_times = self.mi.rise_set_times(self.timezone)
         position_names = [x[0] for x in rise_set_times]
@@ -92,12 +93,12 @@ class TestMoonInfo:
         assert position_names == ["rise", "transit", "set"]
         assert rise_set_times[0][1] == "Does not rise"
 
-    def test_state_reset_after_rise_test_call(self):
+    def test_state_reset_after_rise_test_call(self) -> None:
         self.mi.update(self.obs_datetime)
         self.mi.rise_set_times(self.timezone)
         assert self.mi.colong() == 83.97189956624061
 
-    def test_different_phase_names(self):
+    def test_different_phase_names(self) -> None:
         self.mi.update((2013, 10, 18, 18, 0, 0))
         assert self.mi.phase_name() == "WAXING_GIBBOUS"
         self.mi.update((2013, 10, 5, 0, 0, 0))
@@ -117,7 +118,7 @@ class TestMoonInfo:
         self.mi.update((2013, 11, 2, 23, 0, 0))
         assert self.mi.phase_name() == "WANING_CRESCENT"
 
-    def test_different_phase_emoji(self):
+    def test_different_phase_emoji(self) -> None:
         self.mi.update((2013, 10, 18, 18, 0, 0))
         assert self.mi.phase_emoji() == "🌔"
         self.mi.update((2013, 10, 5, 0, 0, 0))
@@ -137,7 +138,7 @@ class TestMoonInfo:
         self.mi.update((2013, 11, 2, 23, 0, 0))
         assert self.mi.phase_emoji() == "🌘"
 
-    def test_colong_to_long(self):
+    def test_colong_to_long(self) -> None:
         self.mi.update(self.date_list[0])
         assert self.mi.colong_to_long() == 85.63604081994191
         self.mi.update(self.date_list[1])
@@ -155,7 +156,7 @@ class TestMoonInfo:
         self.mi.update(self.date_list[7])
         assert self.mi.colong_to_long() == -87.15293941124628
 
-    def test_time_of_day(self):
+    def test_time_of_day(self) -> None:
         self.mi.update(self.date_list[0])
         assert self.mi.time_of_day() == "MORNING"
         self.mi.update(self.date_list[1])
@@ -173,7 +174,7 @@ class TestMoonInfo:
         self.mi.update(self.date_list[7])
         assert self.mi.time_of_day() == "EVENING"
 
-    def test_is_visible(self):
+    def test_is_visible(self) -> None:
         feature1 = LunarFeature(
             "A", 0.1, 0.0, 46.0, 0.01, 0.01, "Crater", "Taruntius", "LAC-61", "Lunar", "Telescope"
         )
@@ -228,7 +229,7 @@ class TestMoonInfo:
         assert self.mi.is_visible(feature2) is False
         assert self.mi.is_visible(feature3) is False
 
-    def test_is_libration_ok(self):
+    def test_is_libration_ok(self) -> None:
         feature1 = LunarFeature(
             "A", 374.0, -2.0, 87.0, 12.0, 12.0, "Mare", "Ansgarius", "LAC-81", "LunarII", None
         )

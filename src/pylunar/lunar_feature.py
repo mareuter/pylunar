@@ -10,10 +10,14 @@
 
 """Module for the LunarFeature class."""
 
+from __future__ import annotations
+
 __all__ = ["LunarFeature"]
 
 import math
 import os
+
+from .extras import FeatureRow, Range
 
 
 class LunarFeature:
@@ -21,17 +25,17 @@ class LunarFeature:
 
     def __init__(
         self,
-        name,
-        diameter,
-        latitude,
-        longitude,
-        delta_latitude,
-        delta_longitude,
-        feature_type,
-        quad_name,
-        quad_code,
-        code_name,
-        lunar_club_type,
+        name: str,
+        diameter: float,
+        latitude: float,
+        longitude: float,
+        delta_latitude: float,
+        delta_longitude: float,
+        feature_type: str,
+        quad_name: str,
+        quad_code: str,
+        code_name: str,
+        lunar_club_type: str | None,
     ):
         """Initialize the class.
 
@@ -79,7 +83,7 @@ class LunarFeature:
         self.code_name = code_name
         self.lunar_club_type = str(lunar_club_type)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Class string representation.
 
         Returns
@@ -94,7 +98,7 @@ class LunarFeature:
         return os.linesep.join(result)
 
     @classmethod
-    def from_row(cls, row):
+    def from_row(cls: type[LunarFeature], row: FeatureRow) -> LunarFeature:
         """Initialize from a database row.
 
         Parameters
@@ -108,7 +112,7 @@ class LunarFeature:
         """
         return cls(*row[1:])
 
-    def feature_angle(self):
+    def feature_angle(self) -> float:
         """Get the angle of the feature on the lunar face relative to North.
 
         The feature angle is determined by calculating atan2(lon, lat) and
@@ -127,7 +131,7 @@ class LunarFeature:
         fa += 360.0 if fa < 0 else 0.0
         return fa
 
-    def latitude_range(self):
+    def latitude_range(self) -> Range:
         """Get the latitude range of the feature.
 
         Returns
@@ -139,7 +143,7 @@ class LunarFeature:
         max_lat = self.latitude + (self.delta_latitude / 2.0)
         return (min_lat, max_lat)
 
-    def list_from_feature(self):
+    def list_from_feature(self) -> list[object]:
         """Convert the feature information into a list.
 
         Returns
@@ -160,7 +164,7 @@ class LunarFeature:
             self.lunar_club_type,
         ]
 
-    def longitude_range(self):
+    def longitude_range(self) -> Range:
         """Get the longitude range of the feature.
 
         Returns

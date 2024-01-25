@@ -10,19 +10,20 @@
 
 """Tests for the LunarFeatureContainer class."""
 
-from pylunar import LunarFeatureContainer, MoonInfo
+from pylunar.lunar_feature_container import LunarFeatureContainer
+from pylunar.moon_info import MoonInfo
 
 
 class TestLunarFeatureContainer:
-    def setup_class(self):
+    def setup_class(self) -> None:
         self.lc_lfc = LunarFeatureContainer("Lunar")
         self.lc2_lfc = LunarFeatureContainer("LunarII")
 
-    def test_basic_information_after_creation(self):
+    def test_basic_information_after_creation(self) -> None:
         assert len(self.lc_lfc) == 0
         assert len(self.lc2_lfc) == 0
 
-    def test_short_load(self):
+    def test_short_load(self) -> None:
         self.lc_lfc.load(limit=10)
         assert len(self.lc_lfc) == 10
         assert len(self.lc_lfc.club_type) == 2
@@ -33,7 +34,7 @@ class TestLunarFeatureContainer:
         assert len(self.lc2_lfc.club_type) == 2
         assert len(self.lc2_lfc.feature_type) == 5
 
-    def test_iterator(self):
+    def test_iterator(self) -> None:
         self.lc_lfc.load(limit=2)
         assert len(self.lc_lfc) == 2
         ilfc = iter(self.lc_lfc)
@@ -46,7 +47,7 @@ class TestLunarFeatureContainer:
         feature2 = next(ilfc2)
         assert feature2.name == "Montes Jura"
 
-    def test_visibility(self):
+    def test_visibility(self) -> None:
         location = ((35, 58, 10), (-84, 19, 0))
         mi = MoonInfo(location[0], location[1])
         mi.update((2013, 10, 12, 18, 0, 0))
