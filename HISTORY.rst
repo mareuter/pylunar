@@ -7,12 +7,14 @@ History
 ++++++++++++++++
 
 * Drop support for Python 3.6 and 3.7
+* Add Python 3.9, 3.10, 3.11 and 3.12 support
 * Switch to pyproject.toml
 * Internal package updates
 * Update docs infrastructure
 * Switch back to tox
 * Add linting and formatting
 * Add mypy and typing
+* Add numpydoc and tox.ini checking
 
 0.7.0 (2023-12-31)
 ++++++++++++++++++
