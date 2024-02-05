@@ -30,17 +30,16 @@ from .moon_info import MoonInfo
 
 
 class LunarFeatureContainer:
-    """Collection of Lunar features available from the database."""
+    """Collection of Lunar features available from the database.
+
+    Parameters
+    ----------
+    club_name : str
+        The name of the observing club to sort on. Values are Lunar and
+        LunarII.
+    """
 
     def __init__(self, club_name: str):
-        """Initialize the class.
-
-        Parameters
-        ----------
-        club_name : str
-            The name of the observing club to sort on. Values are Lunar and
-            LunarII.
-        """
         dbname = str(files("pylunar.data").joinpath("lunar.db"))
         self.conn = sqlite3.connect(dbname)
         self.club_name = club_name
@@ -51,9 +50,10 @@ class LunarFeatureContainer:
     def __iter__(self) -> Generator[LunarFeature, None, None]:
         """Create iterator for container.
 
-        Returns
-        -------
+        Yields
+        ------
         :class:`.LunarFeature`
+            The current lunar feature.
         """
         yield from self.features.values()
 
@@ -63,6 +63,7 @@ class LunarFeatureContainer:
         Returns
         -------
         int
+            The length of the container.
         """
         return len(self.features)
 

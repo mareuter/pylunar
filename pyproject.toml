@@ -104,3 +104,19 @@ max-doc-length = 79
 
 [tool.mypy]
 ignore_missing_imports = true
+
+[tool.numpydoc_validation]
+checks = [
+    "all",   # report on all checks, except the below
+    "EX01",
+    "SA01",
+    "ES01",
+    "GL01",
+    "SS05"
+]
+exclude = [
+    "test_*",
+    "__init__",
+    "conf",
+    "startup"
+]
