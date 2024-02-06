@@ -22,12 +22,14 @@ from operator import itemgetter
 import ephem
 import pytz
 
-from .extras import DateTimeTuple, DmsCoordinate, MoonPhases
 from .helpers import mjd_to_date_tuple, tuple_to_string
 from .lunar_feature import LunarFeature
+from .types import DateTimeTuple, DmsCoordinate, MoonPhases
 
 
 class PhaseName(Enum):
+    """Phase names for the lunar cycle."""
+
     NEW_MOON = 0
     WAXING_CRESCENT = 1
     FIRST_QUARTER = 2
@@ -39,6 +41,8 @@ class PhaseName(Enum):
 
 
 class TimeOfDay(Enum):
+    """Time of day from the lunar terminator."""
+
     MORNING = 0
     EVENING = 1
 
@@ -52,6 +56,17 @@ class MoonInfo:
         The instance containing the observer's location information.
     moon : ephem.Moon instance
         The instance of the moon object.
+
+    Parameters
+    ----------
+    latitude : tuple of 3 ints
+        The latitude of the observer in GPS DMS(Degrees, Minutes and
+        Seconds) format.
+    longitude : tuple of 3 ints
+        The longitude of the observer in GPS DMS(Degrees, Minutes and
+        Seconds) format.
+    name : str, optional
+        A name for the observer's location.
     """
 
     DAYS_TO_HOURS = 24.0
@@ -74,19 +89,6 @@ class MoonInfo:
     }
 
     def __init__(self, latitude: DmsCoordinate, longitude: DmsCoordinate, name: str | None = None):
-        """Initialize the class.
-
-        Parameters
-        ----------
-        latitude : tuple of 3 ints
-            The latitude of the observer in GPS DMS(Degrees, Minutes and
-            Seconds) format.
-        longitude : tuple of 3 ints
-            The longitude of the observer in GPS DMS(Degrees, Minutes and
-            Seconds) format.
-        name : str, optional
-            A name for the observer's location.
-        """
         self.observer = ephem.Observer()
         self.observer.lat = tuple_to_string(latitude)
         self.observer.long = tuple_to_string(longitude)
@@ -98,6 +100,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar age.
         """
         prev_new = ephem.previous_new_moon(self.observer.date)
         return float(self.observer.date - prev_new)
@@ -108,6 +111,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The fractional lunar age.
         """
         prev_new = ephem.previous_new_moon(self.observer.date)
         next_new = ephem.next_new_moon(self.observer.date)
@@ -119,6 +123,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar altitiude.
         """
         return math.degrees(self.moon.alt)
 
@@ -128,6 +133,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar angular size.
         """
         moon_size: float = self.moon.size
         return moon_size / 3600.0
@@ -138,6 +144,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar azimuth.
         """
         return math.degrees(self.moon.az)
 
@@ -147,6 +154,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar seleographic colongitude.
         """
         return math.degrees(self.moon.colong)
 
@@ -156,6 +164,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar declination.
         """
         return math.degrees(self.moon.dec)
 
@@ -165,6 +174,7 @@ class MoonInfo:
         Returns
         -------
         float
+            THe earth-moon distance.
         """
         return float(self.moon.earth_distance * ephem.meters_per_au / 1000.0)
 
@@ -174,6 +184,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar solar elongation.
         """
         elongation = math.degrees(self.moon.elong)
         if elongation < 0:
@@ -186,6 +197,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar fractional phase.
         """
         return float(self.moon.moon_phase)
 
@@ -195,6 +207,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar libration latitude.
         """
         return math.degrees(self.moon.libration_lat)
 
@@ -204,6 +217,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar libration longitude.
         """
         return math.degrees(self.moon.libration_long)
 
@@ -213,6 +227,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar libration phase angle.
         """
         phase_angle = math.atan2(self.moon.libration_long, self.moon.libration_lat)
         phase_angle += 2.0 * math.pi if phase_angle < 0 else 0.0
@@ -224,6 +239,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar magnitude.
         """
         return float(self.moon.mag)
 
@@ -233,6 +249,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar seleographic longitude.
         """
         colong: float = self.colong()
         if 90.0 <= colong < 270.0:
@@ -344,6 +361,7 @@ class MoonInfo:
         Returns
         -------
         str
+            The lunar phase name.
         """
         next_phase_name = self.next_four_phases()[0][0]
         try:
@@ -382,6 +400,7 @@ class MoonInfo:
         Returns
         -------
         str
+            The lunar phase shape.
         """
         phase = self.phase_name()
 
@@ -453,6 +472,7 @@ class MoonInfo:
         Returns
         -------
         str
+            The lunar phase emoji.
         """
         return {
             "NEW_MOON": "🌑",
@@ -471,6 +491,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar right ascension.
         """
         return math.degrees(self.moon.ra)
 
@@ -541,6 +562,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The lunar subsolar latitude.
         """
         return math.degrees(self.moon.subsolar_lat)
 
@@ -553,6 +575,7 @@ class MoonInfo:
         Returns
         -------
         str
+            The lunar time of day.
         """
         colong = self.colong()
         if 90.0 <= colong < 270.0:
@@ -568,6 +591,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The time from new moon.
         """
         previous_new_moon = ephem.previous_new_moon(self.observer.date)
         return float(MoonInfo.DAYS_TO_HOURS * (self.observer.date - previous_new_moon))
@@ -580,6 +604,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The time to full moon.
         """
         next_full_moon = ephem.next_full_moon(self.observer.date)
         return float(next_full_moon - self.observer.date)
@@ -592,6 +617,7 @@ class MoonInfo:
         Returns
         -------
         float
+            The time to new moon.
         """
         next_new_moon = ephem.next_new_moon(self.observer.date)
         return float(MoonInfo.DAYS_TO_HOURS * (next_new_moon - self.observer.date))

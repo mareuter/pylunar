@@ -1,8 +1,0 @@
--r prod.txt
--r test.txt
-wheel>=0.22
-bumpversion
-Sphinx
-cryptography
-PyYAML
-twine

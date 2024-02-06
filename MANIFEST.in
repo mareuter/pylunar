@@ -5,4 +5,4 @@ graft tests
 
 global-exclude *~ *.py[cod]
 exclude .readthedocs.yaml .gitignore
-recursive-exclude .github *.yml
+recursive-exclude .github *.yaml

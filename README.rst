@@ -10,7 +10,7 @@ Python Lunar
    :target: https://pypi.python.org/pypi/pylunar
    :alt: Software Version
 
-.. |github| image:: https://github.com/mareuter/pylunar/actions/workflows/pythonpackage.yml/badge.svg
+.. |github| image:: https://github.com/mareuter/pylunar/actions/workflows/ci.yaml/badge.svg
   :target: https://github.com/mareuter/pylunar
   :alt: Github build status
 
@@ -22,7 +22,11 @@ Python Lunar
   :target: https://pylunar.readthedocs.io
   :alt: Readthedocs status
 
-|license| |python| |version| |github| |docs|
+.. |pre-commit| image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit
+  :target: https://github.com/pre-commit/pre-commit
+  :alt: Uses pre-commit
+
+|license| |python| |version| |github| |docs| |pre-commit|
 
 Information for completing the Astronomical League's Lunar and Lunar II observing programs.
 

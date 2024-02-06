@@ -27,10 +27,10 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
-    "ephem",
-    "importlib-resources;python_version<'3.10'",
-    "typing-extensions;python_version<'3.10'",
-    "pytz"
+    "ephem==4.1.5",
+    "importlib-resources==6.1.1;python_version<'3.10'",
+    "typing-extensions==4.9.0;python_version<'3.10'",
+    "pytz==2024.1"
 ]
 
 [project.urls]
@@ -40,22 +40,22 @@ Repository = "https://github.com/mareuter/pylunar"
 [project.optional-dependencies]
 dev = [
     "pylunar[build,docs,lint,test]",
-    "tox"
+    "tox==4.11.4"
 ]
 test = [
-    "coverage[toml]>=5.0.2",
-    "pytest",
+    "coverage[toml]==7.4.0",
+    "pytest==7.4.4",
 ]
 lint = [
-    "pre-commit"
+    "pre-commit==3.6.0"
 ]
 build = [
-    "build",
-    "twine"
+    "build==1.0.3",
+    "twine==4.0.2"
 ]
 docs = [
-    "sphinx>=7,<8",
-    "sphinx_rtd_theme"
+    "sphinx==7.2.6",
+    "sphinx_rtd_theme==2.0.0"
 ]
 
 [tool.setuptools_scm]
@@ -104,3 +104,19 @@ max-doc-length = 79
 
 [tool.mypy]
 ignore_missing_imports = true
+
+[tool.numpydoc_validation]
+checks = [
+    "all",   # report on all checks, except the below
+    "EX01",
+    "SA01",
+    "ES01",
+    "GL01",
+    "SS05"
+]
+exclude = [
+    "test_*",
+    "__init__",
+    "conf",
+    "startup"
+]

@@ -1,4 +1,0 @@
-flake8<5
-coverage
-pytest
-pytest-flake8
