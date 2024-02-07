@@ -28,11 +28,12 @@ Python Lunar
 
 |license| |python| |version| |github| |docs| |pre-commit|
 
-Information for completing the Astronomical League's Lunar and Lunar II observing programs.
+Information for completing the Astronomical League's Lunar and Lunar II observing programs. Uses the `pyephem <https://rhodesmill.org/pyephem>`_ package to calculate lunar information.
 
 
 Features
 --------
 
 * Offer moon information based on location and date/time.
+* Offer lunar targets for AL observing clubs based on terminator location.
 
