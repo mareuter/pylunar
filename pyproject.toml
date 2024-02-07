@@ -47,14 +47,14 @@ test = [
     "pytest==7.4.4",
 ]
 lint = [
-    "pre-commit==3.6.0"
+    "pre-commit~=3.5.0"
 ]
 build = [
     "build==1.0.3",
     "twine==4.0.2"
 ]
 docs = [
-    "sphinx==7.2.6",
+    "sphinx~=7.1",
     "sphinx_rtd_theme==2.0.0"
 ]
 
