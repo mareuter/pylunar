@@ -10,8 +10,7 @@
 
 """Tests for the LunarFeatureContainer class."""
 
-from pylunar.lunar_feature_container import LunarFeatureContainer
-from pylunar.moon_info import MoonInfo
+from pylunar import LunarFeatureContainer, MoonInfo
 
 
 class TestLunarFeatureContainer:

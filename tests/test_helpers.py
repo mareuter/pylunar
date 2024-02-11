@@ -10,7 +10,7 @@
 
 """Tests for helper functions."""
 
-from pylunar.helpers import mjd_to_date_tuple, tuple_to_string
+from pylunar import mjd_to_date_tuple, tuple_to_string
 
 
 class TestHelperFunctions:

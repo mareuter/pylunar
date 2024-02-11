@@ -10,7 +10,7 @@
 
 """Tests for the LunarFeature class."""
 
-from pylunar.lunar_feature import LunarFeature
+from pylunar import LunarFeature
 
 
 class TestLunarFeature:
