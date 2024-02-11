@@ -8,7 +8,17 @@
 # Use of this source code is governed by a 3-clause BSD-style
 # license that can be found in the LICENSE file.
 
-__all__ = ["__author__", "__email__", "__version__", "version_info"]
+__all__ = [
+    "__author__",
+    "__email__",
+    "__version__",
+    "LunarFeature",
+    "LunarFeatureContainer",
+    "mjd_to_date_tuple",
+    "MoonInfo",
+    "tuple_to_string",
+    "version_info",
+]
 
 from importlib.metadata import PackageNotFoundError, version
 
@@ -26,7 +36,7 @@ version_info = __version__.split(".")
 Use this for version comparison.
 """
 
-from .helpers import *
+from .helpers import mjd_to_date_tuple, tuple_to_string
 from .lunar_feature import LunarFeature
 from .lunar_feature_container import LunarFeatureContainer
 from .moon_info import MoonInfo
