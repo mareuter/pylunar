@@ -3,8 +3,8 @@
 History
 -------
 
-0.7.1 (upcoming)
-++++++++++++++++
+0.7.1 (2024-02-11)
+++++++++++++++++++
 
 * Drop support for Python 3.6 and 3.7
 * Add Python 3.9, 3.10, 3.11 and 3.12 support
