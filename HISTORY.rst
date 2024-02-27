@@ -3,6 +3,11 @@
 History
 -------
 
+0.7.2 (2024-02-26)
+++++++++++++++++++
+
+* Change types module to pkg_types to avoid shadowing builtin
+
 0.7.1 (2024-02-11)
 ++++++++++++++++++
 
