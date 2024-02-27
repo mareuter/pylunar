@@ -17,7 +17,7 @@ __all__ = ["LunarFeature"]
 import math
 import os
 
-from .types import FeatureRow, Range
+from .pkg_types import FeatureRow, Range
 
 
 class LunarFeature:
