@@ -24,7 +24,7 @@ import pytz
 
 from .helpers import mjd_to_date_tuple, tuple_to_string
 from .lunar_feature import LunarFeature
-from .types import DateTimeTuple, DmsCoordinate, MoonPhases
+from .pkg_types import DateTimeTuple, DmsCoordinate, MoonPhases
 
 
 class PhaseName(Enum):

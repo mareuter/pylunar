@@ -16,7 +16,7 @@ __all__ = ["mjd_to_date_tuple", "tuple_to_string"]
 
 import ephem
 
-from .types import DateTimeTuple, DmsCoordinate
+from .pkg_types import DateTimeTuple, DmsCoordinate
 
 
 def mjd_to_date_tuple(mjd: float, round_off: bool = False) -> DateTimeTuple:
