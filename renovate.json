@@ -1,0 +1,12 @@
+{
+    "enabled": true,
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+      "config:best-practices",
+      ":rebaseStalePrs"
+    ],
+    "timezone": "America/Phoenix",
+    "schedule": [
+      "* 0-7 25 * *"
+    ]
+}
