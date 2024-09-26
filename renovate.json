@@ -7,6 +7,6 @@
     ],
     "timezone": "America/Phoenix",
     "schedule": [
-      "* 0-7 25 * *"
+      "on the 26th day of the month before 8 am"
     ]
 }
