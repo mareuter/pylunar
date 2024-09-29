@@ -22,7 +22,7 @@ repos:
         additional_dependencies: [types-pytz==2024.2.0.20240913]
 
   - repo: https://github.com/numpy/numpydoc
-    rev: v1.8.0
+    rev: v1.6.0
     hooks:
       - id: numpydoc-validation
 
