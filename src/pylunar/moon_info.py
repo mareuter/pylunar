@@ -556,6 +556,29 @@ class MoonInfo:
 
         return sorted_times
 
+    def solar_altitude(self, feature: LunarFeature) -> float:
+        """Find the altitude of the sun over a given feature.
+
+        Sunrise is near zero degrees, noon is near 90 degrees and sunset is
+        near 180 degrees.
+
+        Parameters
+        ----------
+        feature : LunarFeature
+            Feature to calculate solar altitude.
+
+        Returns
+        -------
+        float
+            Solar altitude over feature in degrees.
+        """
+        rad_ss_lat = math.radians(self.subsolar_lat())
+        rad_feature_lat = math.radians(feature.latitude)
+        term1 = math.sin(rad_ss_lat) * math.sin(rad_feature_lat)
+        term2a = math.cos(rad_ss_lat) * math.cos(rad_feature_lat)
+        term2b = math.sin(math.radians(self.colong() + feature.longitude))
+        return math.degrees(math.asin(term1 + term2a * term2b))
+
     def subsolar_lat(self) -> float:
         """Latitude in degress on the moon where the sun is overhead.
 
