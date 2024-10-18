@@ -67,11 +67,11 @@ exclude = [
     "scripts/startup.py"
 
 ]
-ignore = [
+lint.ignore = [
     "D104"
 ]
 line-length = 110
-select = [
+lint.select = [
     "B",
     "D",
     "E",
