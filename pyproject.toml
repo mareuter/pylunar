@@ -43,7 +43,8 @@ dev = [
     "tox==4.23.2"
 ]
 test = [
-    "coverage[toml]==7.6.1",
+    "coverage[toml]==7.6.1;python_version<'3.9'",
+    "coverage[toml]==7.6.4;python_version>='3.9'",
     "pytest==8.3.3",
 ]
 lint = [
