@@ -82,7 +82,7 @@ lint.select = [
     "W"
 ]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "src/pylunar/__init__.py" = [
     "E402",
     "F401",
@@ -94,7 +94,7 @@ lint.select = [
     "D103",
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 force-sort-within-sections = true
 
 [tool.ruff.lint.pydocstyle]
