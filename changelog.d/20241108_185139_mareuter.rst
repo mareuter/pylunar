@@ -10,8 +10,8 @@
 Added
 ^^^^^
 ..
-- Solar altitude over lunar feature calculation.
-- AltitudeDict class to provide solar altitude for Lunar II features.
+- Solar altitude over lunar feature calculation
+- AltitudeDict class to provide solar altitude for Lunar II features
 - Use scriv for history generation
 ..
 .. Changed
