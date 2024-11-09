@@ -1,0 +1,36 @@
+.. A new scriv changelog fragment.
+..
+.. Uncomment the header that is right (remove the leading dots).
+..
+.. Removed
+.. ^^^^^^^
+..
+.. - A bullet item for the Removed category.
+..
+Added
+^^^^^
+..
+- Solar altitude over lunar feature calculation.
+- AltitudeDict class to provide solar altitude for Lunar II features.
+- Use scriv for history generation
+..
+.. Changed
+.. ^^^^^^^
+..
+.. - A bullet item for the Changed category.
+..
+.. Deprecated
+.. ^^^^^^^^^^
+..
+.. - A bullet item for the Deprecated category.
+..
+.. Fixed
+.. ^^^^^
+..
+.. - A bullet item for the Fixed category.
+..
+.. Security
+.. ^^^^^^^^
+..
+.. - A bullet item for the Security category.
+..
