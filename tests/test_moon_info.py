@@ -251,3 +251,20 @@ class TestMoonInfo:
         assert self.mi.is_libration_ok(feature1) is False
         assert self.mi.is_libration_ok(feature2) is False
         assert self.mi.is_libration_ok(feature3) is True
+
+    def test_solar_altitude(self) -> None:
+        self.mi.update((1992, 4, 12, 0, 0, 0))
+        feature = LunarFeature(
+            "Copernicus",
+            96.0699,
+            9.62094521642403,
+            -20.078620508253,
+            3.1684722900391,
+            3.21326828003004,
+            "Crater",
+            "Copernicus",
+            "LAC-58",
+            "Lunar",
+            "Binocular",
+        )
+        assert self.mi.solar_altitude(feature) == 1.9649120982751562

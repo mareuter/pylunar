@@ -9,6 +9,7 @@
 # license that can be found in the LICENSE file.
 
 __all__ = [
+    "AltitudeDict",
     "__author__",
     "__email__",
     "__version__",
@@ -36,6 +37,7 @@ version_info = __version__.split(".")
 Use this for version comparison.
 """
 
+from .altitude_dict import AltitudeDict
 from .helpers import mjd_to_date_tuple, tuple_to_string
 from .lunar_feature import LunarFeature
 from .lunar_feature_container import LunarFeatureContainer
