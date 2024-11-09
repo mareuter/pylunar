@@ -40,6 +40,7 @@ Repository = "https://github.com/mareuter/pylunar"
 [project.optional-dependencies]
 dev = [
     "pylunar[build,docs,lint,test]",
+    "scriv==1.5.1",
     "tox==4.23.2"
 ]
 test = [
@@ -122,3 +123,8 @@ exclude = [
     "conf",
     "startup"
 ]
+
+[tool.scriv]
+entry_title_template = "{{ version }} ({{ date.strftime('%Y-%m-%d') }})"
+output_file = "HISTORY.${config:format}"
+rst_header_chars = "+^"

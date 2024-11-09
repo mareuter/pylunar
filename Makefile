@@ -17,6 +17,7 @@ help:
 init:
 	pip install --editable .[dev]
 	pre-commit install
+	mkdir changelog.d
 
 clean: clean-build clean-docs clean-pyc
 
