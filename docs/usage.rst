@@ -22,22 +22,22 @@ API requires UTC, so add 4 hours since on Daylight Savings (changes day)
     >>> mi.phase_name()
     'WAXING_GIBBOUS'
 
-This package also contains the :py:class:`.LunarFeatureContainer` class which holds features on the moon for the Astronomical League's Lunar Club and Lunar II observing programs. To create a container for the Lunar Club program, do.
+This package also contains the :py:class:`pylunar.LunarFeatureContainer` class which holds features on the moon for the Astronomical League's Lunar Club and Lunar II observing programs. To create a container for the Lunar Club program, do.
 
 	>>> lc = pylunar.LunarFeatureContainer("Lunar")
 	>>> lc.load()
 	>>> len(lc)
 	90
 
-There are 90 features available to this observing program. The container allows one to filter those features based on the position of the lunar terminator with respect to a given feature. The :py:meth:`.LunarFeatureContainer.load` method can be passed a :py:class:`.MoonInfo` instance to perform that filtering.
+There are 90 features available to this observing program. The container allows one to filter those features based on the position of the lunar terminator with respect to a given feature. The :py:meth:`pylunar.LunarFeatureContainer.load` method can be passed a :py:class:`pylunar.MoonInfo` instance to perform that filtering.
 
 	>>> lc.load(mi)
 	>>> len(lc)
 	12
 
-A container for Lunar II can be created by passing the `LunarII` string to the constructor of :py:class:`.LunarFeatureContainer`.
+A container for Lunar II can be created by passing the `LunarII` string to the constructor of :py:class:`pylunar.LunarFeatureContainer`.
 
-Feature instances (:py:class:`.LunarFeature`) can be obtained from the container in usual manner.
+Feature instances (:py:class:`pylunar.LunarFeature`) can be obtained from the container in usual manner.
 
 	>>> for feature in lc:
 	...     print(feature)
