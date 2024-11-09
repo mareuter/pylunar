@@ -7,27 +7,25 @@
 ..
 .. - A bullet item for the Removed category.
 ..
-Added
-^^^^^
+.. Added
+.. ^^^^^
 ..
-- Solar altitude over lunar feature calculation
-- AltitudeDict class to provide solar altitude for Lunar II features
-- Use scriv for history generation
+.. - A bullet item for the Added category.
 ..
-.. Changed
-.. ^^^^^^^
+Changed
+^^^^^^^
 ..
-.. - A bullet item for the Changed category.
+- OS version for readthedocs build
 ..
 .. Deprecated
 .. ^^^^^^^^^^
 ..
 .. - A bullet item for the Deprecated category.
 ..
-.. Fixed
-.. ^^^^^
+Fixed
+^^^^^
 ..
-.. - A bullet item for the Fixed category.
+- Internal class cross-references in docs
 ..
 .. Security
 .. ^^^^^^^^

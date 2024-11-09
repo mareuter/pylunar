@@ -266,7 +266,7 @@ class MoonInfo:
 
         Parameters
         ----------
-        feature : :class:`.LunarFeature`
+        feature : :class:`pylunar.LunarFeature`
             The lunar feature instance to check.
 
         Returns
@@ -291,7 +291,7 @@ class MoonInfo:
 
         Parameters
         ----------
-        feature : :class:`.LunarFeature`
+        feature : :class:`pylunar.LunarFeature`
             The lunar feature instance to check.
 
         Returns
@@ -564,7 +564,7 @@ class MoonInfo:
 
         Parameters
         ----------
-        feature : LunarFeature
+        feature : :class:`pylunar.LunarFeature`
             Feature to calculate solar altitude.
 
         Returns

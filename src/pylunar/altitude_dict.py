@@ -36,7 +36,7 @@ class AltitudeDict(Dict[str, float]):
 
         Parameters
         ----------
-        moon_info : :class:`MoonInfo`
+        moon_info : :class:`pylunar.MoonInfo`
             Instance of the Lunar information class.
         """
         features = ["Byrgius A", "Proclus", "Rupes Recta", "Tycho"]

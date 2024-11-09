@@ -52,7 +52,7 @@ class LunarFeatureContainer:
 
         Yields
         ------
-        :class:`.LunarFeature`
+        :class:`pylunar.LunarFeature`
             The current lunar feature.
         """
         yield from self.features.values()
@@ -72,7 +72,7 @@ class LunarFeatureContainer:
 
         Parameters
         ----------
-        moon_info : :class:`.MoonInfo`, optional
+        moon_info : :class:`pylunar.MoonInfo`, optional
             Instance of the Lunar information class.
         limit : int, optional
             Restrict the number of features read to the given value.

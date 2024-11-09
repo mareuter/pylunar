@@ -108,7 +108,7 @@ class LunarFeature:
 
         Returns
         -------
-        :class:`.LunarFeature`
+        :class:`pylunar.LunarFeature`
             Class initialized from database row.
         """
         return cls(*row[1:])
