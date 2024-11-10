@@ -12,20 +12,20 @@
 ..
 .. - A bullet item for the Added category.
 ..
-Changed
-^^^^^^^
+.. Changed
+.. ^^^^^^^
 ..
-- OS version for readthedocs build
+.. - A bullet item for the Changed category.
 ..
 .. Deprecated
 .. ^^^^^^^^^^
 ..
 .. - A bullet item for the Deprecated category.
 ..
-.. Fixed
-.. ^^^^^
+Fixed
+^^^^^
 ..
-.. - Internal class cross-references in docs
+- Internal class cross-references in docs
 ..
 .. Security
 .. ^^^^^^^^
