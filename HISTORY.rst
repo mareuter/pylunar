@@ -4,6 +4,29 @@ History
 -------
 .. scriv-insert-here
 
+.. _changelog-0.8.0:
+
+0.8.0 (2024-11-09)
+++++++++++++++++++
+
+Added
+^^^^^
+
+- Solar altitude over lunar feature calculation
+- AltitudeDict class to provide solar altitude for Lunar II features
+- Use scriv for history generation
+
+Changed
+^^^^^^^
+
+- OS version for readthedocs build
+- Updated CONTRIBUTING.rst to add scriv usage
+
+Fixed
+^^^^^
+
+- Internal class cross-references in docs
+
 0.7.4 (2024-10-27)
 ++++++++++++++++++
 
