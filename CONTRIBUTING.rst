@@ -93,9 +93,8 @@ Pull Request Guidelines
 Before you submit a pull request, check that it meets these guidelines:
 
 #. The pull request should include tests.
-#. If the pull request adds functionality, the docs should be updated. Put
-   your new functionality into a function with a docstring, and add the
-   feature to the list in HISTORY.rst.
+#. If the pull request adds functionality, put your new functionality into a
+   function with a docstring. Run ``scriv create`` to add a changelog fragment and fill out the appropriate section for the change. Add that to the commits for the pull request.
 #. The pull request should work for the supported range of Python versions.
    The pull request will run GitHub actions to perform those checks.
    Check https://github.com/mareuter/pylunar/pulls
