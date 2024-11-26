@@ -58,7 +58,7 @@ build = [
 ]
 docs = [
     "sphinx~=7.1",
-    "sphinx_rtd_theme==2.0.0"
+    "sphinx_rtd_theme==3.0.2"
 ]
 
 [tool.setuptools_scm]
