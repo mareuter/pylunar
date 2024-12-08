@@ -20,11 +20,11 @@ classifiers = [
     "License :: OSI Approved :: BSD License",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
     "ephem==4.1.6",
@@ -44,13 +44,11 @@ dev = [
     "tox==4.23.2"
 ]
 test = [
-    "coverage[toml]==7.6.1;python_version<'3.9'",
-    "coverage[toml]==7.6.4;python_version>='3.9'",
+    "coverage[toml]==7.6.4",
     "pytest==8.3.3",
 ]
 lint = [
-    "pre-commit==3.5.0;python_version<'3.9'",
-    "pre-commit==3.8.0;python_version>='3.9'"
+    "pre-commit==3.8.0"
 ]
 build = [
     "build==1.2.2.post1",
