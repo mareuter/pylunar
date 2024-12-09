@@ -19,13 +19,13 @@ if sys.version_info >= (3, 10):
 else:
     from typing_extensions import TypeAlias
 
-from typing import List, Tuple, Union
+from typing import Union
 
-DateTimeTuple: TypeAlias = Tuple[int, int, int, int, int, Union[int, float]]
-MoonPhases: TypeAlias = List[Tuple[str, Union[DateTimeTuple, str]]]
-DmsCoordinate: TypeAlias = Tuple[int, int, int]
-Range: TypeAlias = Tuple[float, float]
-LunarFeatureList: TypeAlias = Tuple[
+DateTimeTuple: TypeAlias = Union[tuple[int, ...], tuple[int, int, int, int, int, float]]
+MoonPhases: TypeAlias = list[tuple[str, Union[DateTimeTuple, str]]]
+DmsCoordinate: TypeAlias = tuple[int, int, int]
+Range: TypeAlias = tuple[float, float]
+LunarFeatureList: TypeAlias = tuple[
     str, float, float, float, float, float, str, str, str, str, Union[str, None]
 ]
-FeatureRow: TypeAlias = Tuple[int, str, float, float, float, float, float, str, str, str, str, str]
+FeatureRow: TypeAlias = tuple[int, str, float, float, float, float, float, str, str, str, str, str]

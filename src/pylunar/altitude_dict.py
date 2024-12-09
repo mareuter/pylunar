@@ -13,7 +13,6 @@
 from __future__ import annotations
 
 import sys
-from typing import Dict
 
 if sys.version_info >= (3, 10):
     from importlib.resources import files
@@ -28,7 +27,7 @@ from .moon_info import MoonInfo
 __all__ = ["AltitudeDict"]
 
 
-class AltitudeDict(Dict[str, float]):
+class AltitudeDict(dict[str, float]):
     """Dictionary for the Lunar II features requiring solar altitude."""
 
     def load(self, moon_info: MoonInfo) -> None:

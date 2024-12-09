@@ -15,8 +15,8 @@ from __future__ import annotations
 __all__ = ["LunarFeatureContainer"]
 
 import collections
+from collections.abc import Generator
 import sys
-from typing import Generator
 
 if sys.version_info >= (3, 10):
     from importlib.resources import files
