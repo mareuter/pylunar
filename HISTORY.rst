@@ -4,6 +4,22 @@ History
 -------
 .. scriv-insert-here
 
+.. _changelog-0.9.0:
+
+0.9.0 (2024-12-10)
+++++++++++++++++++
+
+Changed
+^^^^^^^
+
+- Remove Python 3.8 support.
+- Add Python 3.13 support.
+
+Fixed
+^^^^^
+
+- Issues from pre-commit config version updates.
+
 .. _changelog-0.8.0:
 
 0.8.0 (2024-11-09)
