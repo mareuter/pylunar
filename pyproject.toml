@@ -48,7 +48,7 @@ test = [
     "pytest==8.3.4",
 ]
 lint = [
-    "pre-commit==4.0.1"
+    "pre-commit==4.1.0"
 ]
 build = [
     "build==1.2.2.post1",
