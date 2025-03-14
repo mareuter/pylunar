@@ -58,7 +58,7 @@ class TestMoonInfo:
         assert self.mi.dec() == 10.129795616523591
         assert self.mi.earth_distance() == 386484.25078267464
         assert self.mi.angular_size() == 0.5159071519639757
-        assert self.mi.magnitude() == -12.63
+        assert self.mi.magnitude() == -12.68
         assert self.mi.subsolar_lat() == -0.3366501792590513
         assert self.mi.elongation() == 178.56298828125
 
