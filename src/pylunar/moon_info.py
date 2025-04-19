@@ -14,13 +14,13 @@ from __future__ import annotations
 
 __all__ = ["MoonInfo"]
 
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 import math
 from operator import itemgetter
+import zoneinfo
 
 import ephem
-import pytz
 
 from .helpers import mjd_to_date_tuple, tuple_to_string
 from .lunar_feature import LunarFeature
@@ -495,13 +495,13 @@ class MoonInfo:
         """
         return math.degrees(self.moon.ra)
 
-    def rise_set_times(self, timezone: str) -> MoonPhases:
+    def rise_set_times(self, timezone_name: str) -> MoonPhases:
         """Calculate the rise, set and transit times in the local time system.
 
         Parameters
         ----------
-        timezone : str
-            The timezone identifier for the calculations.
+        timezone_name : str
+            The timezone_name identifier for the calculations.
 
         Returns
         -------
@@ -509,11 +509,11 @@ class MoonInfo:
             Set of rise, set, and transit times in the local time system. If
             event does not happen, 'Does not xxx' is tuple value.
         """
-        utc = pytz.utc
+        tz: zoneinfo.ZoneInfo | timezone
         try:
-            tz = pytz.timezone(timezone)
-        except pytz.UnknownTimeZoneError:
-            tz = utc
+            tz = zoneinfo.ZoneInfo(timezone_name)
+        except zoneinfo.ZoneInfoNotFoundError:
+            tz = timezone.utc
 
         func_map = {"rise": "rising", "transit": "transit", "set": "setting"}
 
@@ -524,20 +524,22 @@ class MoonInfo:
         self.observer.pressure = 0
         self.observer.horizon = "-0:34"
 
-        current_date_utc = datetime(*mjd_to_date_tuple(self.observer.date, round_off=True), tzinfo=utc)  # type: ignore
+        current_date_utc = datetime(
+            *mjd_to_date_tuple(self.observer.date, round_off=True), tzinfo=timezone.utc
+        )  # type: ignore
         current_date = current_date_utc.astimezone(tz)
         current_day = current_date.day
         times = {}
         does_not = None
         for time_type in ("rise", "transit", "set"):
             mjd_time = getattr(self.observer, "{}_{}".format("next", func_map[time_type]))(self.moon)
-            utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=utc)  # type: ignore
+            utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=timezone.utc)  # type: ignore
             local_date = utc_time.astimezone(tz)
             if local_date.day == current_day:
                 times[time_type] = local_date
             else:
                 mjd_time = getattr(self.observer, "{}_{}".format("previous", func_map[time_type]))(self.moon)
-                utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=utc)  # type: ignore
+                utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=timezone.utc)  # type: ignore
                 local_date = utc_time.astimezone(tz)
                 if local_date.day == current_day:
                     times[time_type] = local_date

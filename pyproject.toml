@@ -30,7 +30,6 @@ dependencies = [
     "ephem==4.2",
     "importlib-resources==6.5.2;python_version<'3.10'",
     "typing-extensions==4.12.2;python_version<'3.10'",
-    "pytz==2024.2"
 ]
 
 [project.urls]
