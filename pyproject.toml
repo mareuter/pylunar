@@ -54,7 +54,8 @@ build = [
     "twine==6.1.0"
 ]
 docs = [
-    "sphinx~=8.2",
+    "sphinx~=7.4;python_version<'3.11'",
+    "sphinx~=8.2;python_version>='3.11'",
     "sphinx_rtd_theme==3.0.2"
 ]
 
