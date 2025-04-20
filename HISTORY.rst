@@ -4,6 +4,31 @@ History
 -------
 .. scriv-insert-here
 
+.. _changelog-0.10.0:
+
+0.10.0 (2025-04-20)
++++++++++++++++++++
+
+Added
+^^^^^
+
+- py.typed file for type hints.
+
+Changed
+^^^^^^^
+
+- Switched to zoneinfo from pytz.
+- Renovate configuration and schedule.
+- Updated pre-commit and package versions.
+- License identifier in pyproject.toml.
+- Copyright year.
+
+Fixed
+^^^^^
+
+- Linting issues from new pre-commit versions.
+- Splitting sphinx version based on python version.
+
 .. _changelog-0.9.0:
 
 0.9.0 (2024-12-10)
