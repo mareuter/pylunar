@@ -14,10 +14,10 @@ authors = [
 ]
 description = "Information for completing the Astronomical League's Lunar and Lunar II observing programs."
 readme = "README.rst"
+license = "BSD-3-Clause"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: BSD License",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
