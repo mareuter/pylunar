@@ -14,10 +14,10 @@ authors = [
 ]
 description = "Information for completing the Astronomical League's Lunar and Lunar II observing programs."
 readme = "README.rst"
+license = "BSD-3-Clause"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: BSD License",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
@@ -29,7 +29,7 @@ classifiers = [
 dependencies = [
     "ephem==4.2",
     "importlib-resources==6.5.2;python_version<'3.10'",
-    "typing-extensions==4.12.2;python_version<'3.10'",
+    "typing-extensions==4.13.2;python_version<'3.10'",
 ]
 
 [project.urls]
@@ -39,22 +39,23 @@ Repository = "https://github.com/mareuter/pylunar"
 [project.optional-dependencies]
 dev = [
     "pylunar[build,docs,lint,test]",
-    "scriv==1.5.1",
-    "tox==4.23.2"
+    "scriv==1.6.2",
+    "tox==4.25.0"
 ]
 test = [
-    "coverage[toml]==7.6.12",
+    "coverage[toml]==7.8.0",
     "pytest==8.3.5",
 ]
 lint = [
-    "pre-commit==4.1.0"
+    "pre-commit==4.2.0"
 ]
 build = [
     "build==1.2.2.post1",
-    "twine==6.0.1"
+    "twine==6.1.0"
 ]
 docs = [
-    "sphinx~=7.1",
+    "sphinx~=7.4;python_version<'3.11'",
+    "sphinx~=8.2;python_version>='3.11'",
     "sphinx_rtd_theme==3.0.2"
 ]
 

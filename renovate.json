@@ -5,8 +5,16 @@
       "config:best-practices",
       ":rebaseStalePrs"
     ],
+    "packageRules": [
+      {
+        "description": "Automerge non-major updates",
+        "matchUpdateTypes": [
+          "minor",
+          "patch"
+        ],
+        "automerge": true
+      }
+    ],
     "timezone": "America/Phoenix",
-    "schedule": [
-      "on the 26th day of the month before 8am"
-    ]
+    "schedule": ["* * 12,24 * *"]
 }
