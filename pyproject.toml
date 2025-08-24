@@ -43,7 +43,7 @@ dev = [
     "tox==4.28.4"
 ]
 test = [
-    "coverage[toml]==7.10.3",
+    "coverage[toml]==7.10.5",
     "pytest==8.4.1",
 ]
 lint = [
