@@ -50,7 +50,7 @@ test = [
 ]
 lint = [
     "pre-commit==4.3.0;python_version<'3.10'",
-    "pre-commit==4.4.0;python_version>='3.10'"
+    "pre-commit==4.5.0;python_version>='3.10'"
 ]
 build = [
     "build==1.3.0",
