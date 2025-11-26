@@ -44,7 +44,7 @@ dev = [
 ]
 test = [
     "coverage[toml]==7.10.7;python_version<'3.10'",
-    "coverage[toml]==7.11.3;python_version>='3.10'",
+    "coverage[toml]==7.12.0;python_version>='3.10'",
     "pytest==8.4.2;python_version<'3.10'",
     "pytest==9.0.1;python_version>='3.10'"
 ]
