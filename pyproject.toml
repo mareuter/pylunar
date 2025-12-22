@@ -15,6 +15,7 @@ authors = [
 description = "Information for completing the Astronomical League's Lunar and Lunar II observing programs."
 readme = "README.rst"
 license = "BSD-3-Clause"
+requires-python = ">=3.10"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -24,6 +25,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
     "ephem==4.2"

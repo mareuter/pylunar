@@ -12,13 +12,7 @@
 
 from __future__ import annotations
 
-import sys
-
-if sys.version_info >= (3, 10):
-    from importlib.resources import files
-else:
-    from importlib_resources import files
-
+from importlib.resources import files
 import sqlite3
 
 from .lunar_feature import LunarFeature
