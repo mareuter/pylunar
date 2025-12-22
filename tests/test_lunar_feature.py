@@ -80,5 +80,5 @@ class TestLunarFeature:
     def test_list_from_feature(self) -> None:
         lf = LunarFeature(*self.feature_info)
         feature_list = lf.list_from_feature()
-        for value, truth in zip(feature_list, self.feature_info):
+        for value, truth in zip(feature_list, self.feature_info, strict=False):
             assert value == truth
