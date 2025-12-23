@@ -28,7 +28,7 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-    "ephem==4.2"
+    "ephem"
 ]
 
 [project.urls]
@@ -38,24 +38,23 @@ Repository = "https://github.com/mareuter/pylunar"
 [project.optional-dependencies]
 dev = [
     "pylunar[build,docs,lint,test]",
-    "scriv==1.7.0",
-    "tox==4.32.0"
+    "scriv",
+    "tox"
 ]
 test = [
-    "coverage[toml]==7.13.0",
-    "pytest==9.0.2"
+    "coverage[toml]",
+    "pytest"
 ]
 lint = [
-    "pre-commit==4.5.1"
+    "pre-commit"
 ]
 build = [
-    "build==1.3.0",
-    "twine==6.2.0"
+    "build",
+    "twine"
 ]
 docs = [
-    "sphinx~=7.4;python_version<'3.11'",
-    "sphinx~=8.2;python_version>='3.11'",
-    "sphinx_rtd_theme==3.0.2"
+    "sphinx",
+    "sphinx_rtd_theme"
 ]
 
 [tool.setuptools_scm]
