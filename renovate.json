@@ -5,6 +5,9 @@
       "config:best-practices",
       ":rebaseStalePrs"
     ],
+    "lockFileMaintenance": {
+      "enabled": true
+    },
     "packageRules": [
       {
         "description": "Automerge non-major updates",
