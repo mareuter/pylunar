@@ -39,7 +39,8 @@ Repository = "https://github.com/mareuter/pylunar"
 dev = [
     "pylunar[build,docs,lint,test]",
     "scriv",
-    "tox"
+    "tox",
+    "tox-uv>=1.29.0",
 ]
 test = [
     "coverage[toml]",
@@ -68,7 +69,6 @@ exclude = [
 lint.ignore = [
     "D104"
 ]
-line-length = 110
 lint.select = [
     "B",
     "D",
@@ -79,6 +79,7 @@ lint.select = [
     "UP",
     "W"
 ]
+line-length = 110
 
 [tool.ruff.lint.per-file-ignores]
 "src/pylunar/__init__.py" = [
