@@ -4,6 +4,27 @@ History
 -------
 .. scriv-insert-here
 
+.. _changelog-0.11.0:
+
+0.11.0 (2026-01-25)
++++++++++++++++++++
+
+Removed
+^^^^^^^
+
+- Support for Python 3.9.
+
+Added
+^^^^^
+
+- Support for Python 3.14.
+
+Changed
+^^^^^^^
+
+- pre-commit and package versions.
+- Updated copyright year.
+
 .. _changelog-0.10.0:
 
 0.10.0 (2025-04-20)
