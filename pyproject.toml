@@ -49,7 +49,7 @@ lint = [
     "pre-commit==4.5.1"
 ]
 build = [
-    "build==1.4.0",
+    "build==1.4.1",
     "twine==6.2.0"
 ]
 docs = [
