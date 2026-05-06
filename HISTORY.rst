@@ -4,6 +4,16 @@ History
 -------
 .. scriv-insert-here
 
+.. _changelog-0.11.1:
+
+0.11.1 (2026-05-05)
++++++++++++++++++++
+
+Changed
+^^^^^^^
+
+- Updates to project dependencies.
+
 .. _changelog-0.11.0:
 
 0.11.0 (2026-01-25)
