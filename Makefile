@@ -57,11 +57,11 @@ docs-local: docs
 	open docs/_build/html/index.html
 
 release: clean
-	python -m build
-	twine upload dist/*
+	uv build
+	uv publish
 
 check-build: clean
-	python -m build
+	uv build
 	twine check dist/*
 
 update-precommit:
