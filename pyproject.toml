@@ -1,11 +1,3 @@
-[build-system]
-requires = [
-    "setuptools>=64",
-    "setuptools_scm>=8",
-    "wheel"
-]
-build-backend = "setuptools.build_meta"
-
 [project]
 dynamic = ["version"]
 name = "pylunar"
@@ -38,23 +30,11 @@ Repository = "https://github.com/mareuter/pylunar"
 [dependency-groups]
 dev = [
     "scriv",
+    { include-group = "build" },
+    { include-group = "docs" },
+    { include-group = "lint" },
     { include-group = "test" },
     { include-group = "tox" },
-    { include-group = "lint" },
-    { include-group = "build" },
-    { include-group = "docs" }
-]
-test = [
-    "coverage[toml]",
-    "pytest"
-]
-tox = [
-    "tox",
-    "tox-uv>=1.29.0",
-]
-lint = [
-    "prek!=0.4.2",
-    "uv"
 ]
 build = [
     "uv",
@@ -64,14 +44,50 @@ docs = [
     "sphinx",
     "sphinx_rtd_theme"
 ]
+lint = [
+    "prek!=0.4.2",
+    "uv"
+]
+test = [
+    "coverage[toml]",
+    "pytest"
+]
+tox = [
+    "tox",
+    "tox-uv>=1.29.0",
+]
 
-[tool.setuptools_scm]
+[build-system]
+requires = [
+    "setuptools>=64",
+    "setuptools_scm>=8",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.numpydoc_validation]
+checks = [
+    "all",   # report on all checks, except the below
+    "EX01",
+    "SA01",
+    "ES01",
+    "GL01",
+    "SS05"
+]
+exclude = [
+    "test_*",
+    "__init__",
+    "conf",
+    "startup"
+]
 
 [tool.ruff]
 exclude = [
     "docs/**",
     "scripts/startup.py"
-
 ]
 lint.ignore = [
     "D104"
@@ -109,29 +125,12 @@ convention = "numpy"
 [tool.ruff.lint.pycodestyle]
 max-doc-length = 79
 
-[tool.mypy]
-ignore_missing_imports = true
-
-[tool.numpydoc_validation]
-checks = [
-    "all",   # report on all checks, except the below
-    "EX01",
-    "SA01",
-    "ES01",
-    "GL01",
-    "SS05"
-]
-exclude = [
-    "test_*",
-    "__init__",
-    "conf",
-    "startup"
-]
-
 [tool.scriv]
 entry_title_template = "{{ version }} ({{ date.strftime('%Y-%m-%d') }})"
 output_file = "HISTORY.${config:format}"
 rst_header_chars = "+^"
+
+[tool.setuptools_scm]
 
 [[tool.uv.index]]
 name = "testpypi"
