@@ -38,12 +38,19 @@ Repository = "https://github.com/mareuter/pylunar"
 [dependency-groups]
 dev = [
     "scriv",
-    "tox",
-    "tox-uv>=1.29.0",
+    {include-group = "test"},
+    {include-group = "tox"},
+    {include-group = "lint"},
+    {include-group = "build"},
+    {include-group = "docs"}
 ]
 test = [
     "coverage[toml]",
     "pytest"
+]
+tox = [
+    "tox",
+    "tox-uv>=1.29.0",
 ]
 lint = [
     "prek!=0.4.2",

@@ -21,11 +21,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
 
-      - name: Run tox
-        uses: lsst-sqre/run-tox@c8c881a52dfa4e98e55817bac3195df8b0db715c # v1
+      - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8
         with:
           python-version: ${{ matrix.python }}
-          tox-envs: "lint"
+
+      - name: Run linters
+        run: uv run --only-group=tox tox run -e lint
 
   test:
     runs-on: ubuntu-latest
@@ -43,11 +44,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
 
-      - name: Run tox
-        uses: lsst-sqre/run-tox@c8c881a52dfa4e98e55817bac3195df8b0db715c # v1
+      - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8
         with:
           python-version: ${{ matrix.python }}
-          tox-envs: "py,coverage-report"
+
+      - name: Run tests
+        run: uv run --only-group=tox tox run -e py,coverage-report
 
   check-docs:
     runs-on: ubuntu-latest
@@ -67,11 +69,12 @@ jobs:
         with:
           fetch-depth: 0 # full history for setuptools_scm
 
-      - name: Run tox
-        uses: lsst-sqre/run-tox@c8c881a52dfa4e98e55817bac3195df8b0db715c # v1
+      - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8
         with:
           python-version: ${{ matrix.python }}
-          tox-envs: "docs"
+
+      - name: Run tox
+        run: uv run --only-group=tox tox run -e docs
 
   test-packaging:
     runs-on: ubuntu-latest
@@ -92,8 +95,9 @@ jobs:
         with:
           fetch-depth: 0 # full history for setuptools_scm
 
-      - name: Run tox
-        uses: lsst-sqre/run-tox@c8c881a52dfa4e98e55817bac3195df8b0db715c # v1
+      - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8
         with:
           python-version: ${{ matrix.python }}
-          tox-envs: "check-packaging"
+
+      - name: Run tox
+        run: uv run --only-group=tox tox run -e check-packaging
