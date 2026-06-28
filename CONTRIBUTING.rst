@@ -59,10 +59,15 @@ Ready to contribute? Here's how to set up `pylunar` for
 local development.
 
 #. Fork the `pylunar` repo on GitHub.
-#. Create a vitrual environment for dependency installation.
+#. Setup `uv <https://docs.astral.sh/uv>`_ for your preferred development environment.
 #. Clone your fork locally::
 
     $ git clone git@github.com:your_name_here/pylunar.git
+
+#. From the top-level directory run::
+
+    $ uv venv
+    $ source .venv/bin/activate
 
 #. Install the dependencies for development and pre-commit hook::
 
