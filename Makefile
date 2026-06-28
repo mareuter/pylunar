@@ -1,4 +1,4 @@
-.PHONY: help init clean-pyc clean-build clean-docs clean lint test coverage docs docs-local release check-build update-precommit
+.PHONY: help init clean-pyc clean-build clean-docs clean lint test coverage docs docs-local release check-build update-precommit update-deps
 
 help:
 	@echo "init - initialize a clean clone"
@@ -14,11 +14,12 @@ help:
 	@echo "release - package and upload a release"
 	@echo "check-build - check distribution packaging"
 	@echo "update-precommit - update pre-commit config"
+	@echo "update-deps" - update dependencies"
 
 init:
 	uv sync --frozen --all-groups
-	uv run pre-commit install
-	mkdir changelog.d
+	uv run prek install
+	mkdir -p changelog.d
 
 clean: clean-build clean-docs clean-pyc
 
@@ -64,4 +65,10 @@ check-build: clean
 	twine check dist/*
 
 update-precommit:
-	uv run --only-group=lint pre-commit autoupdate
+	uv run --only-group=lint prek autoupdate
+
+update-deps: update-precommit
+	uv lock --upgrade
+
+.PHONY: update
+update: update-deps init
