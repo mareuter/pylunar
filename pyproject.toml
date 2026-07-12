@@ -39,7 +39,7 @@ Repository = "https://github.com/mareuter/pylunar"
 dev = [
     "pylunar[build,docs,lint,test]",
     "scriv==1.8.0",
-    "tox==4.56.0"
+    "tox==4.56.4"
 ]
 test = [
     "coverage[toml]==7.14.3",
