@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
 
       - name: Run tox
-        uses: lsst-sqre/run-tox@c8c881a52dfa4e98e55817bac3195df8b0db715c # v1
+        uses: lsst-sqre/run-tox@60388bf07b890f290280e7786796123574dd03eb # v1
         with:
           python-version: ${{ matrix.python }}
           tox-envs: "lint"
@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
 
       - name: Run tox
-        uses: lsst-sqre/run-tox@c8c881a52dfa4e98e55817bac3195df8b0db715c # v1
+        uses: lsst-sqre/run-tox@60388bf07b890f290280e7786796123574dd03eb # v1
         with:
           python-version: ${{ matrix.python }}
           tox-envs: "py,coverage-report"
@@ -68,7 +68,7 @@ jobs:
           fetch-depth: 0 # full history for setuptools_scm
 
       - name: Run tox
-        uses: lsst-sqre/run-tox@c8c881a52dfa4e98e55817bac3195df8b0db715c # v1
+        uses: lsst-sqre/run-tox@60388bf07b890f290280e7786796123574dd03eb # v1
         with:
           python-version: ${{ matrix.python }}
           tox-envs: "docs"
@@ -93,7 +93,7 @@ jobs:
           fetch-depth: 0 # full history for setuptools_scm
 
       - name: Run tox
-        uses: lsst-sqre/run-tox@c8c881a52dfa4e98e55817bac3195df8b0db715c # v1
+        uses: lsst-sqre/run-tox@60388bf07b890f290280e7786796123574dd03eb # v1
         with:
           python-version: ${{ matrix.python }}
           tox-envs: "check-packaging"
