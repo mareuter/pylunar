@@ -50,7 +50,7 @@ lint = [
 ]
 build = [
     "build==1.5.1",
-    "twine==6.2.0"
+    "twine==7.0.0"
 ]
 docs = [
     "sphinx~=7.4;python_version<'3.11'",
