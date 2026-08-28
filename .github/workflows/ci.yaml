@@ -5,9 +5,7 @@ on:
   pull_request: {}
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-
+  ci:
     strategy:
       matrix:
         python:
@@ -16,40 +14,9 @@ jobs:
           - "3.12"
           - "3.13"
           - "3.14"
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-
-      - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8
-        with:
-          python-version: ${{ matrix.python }}
-
-      - name: Run linters
-        run: uv run --only-group=tox tox run -e lint
-
-  test:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        python:
-          - "3.10"
-          - "3.11"
-          - "3.12"
-          - "3.13"
-          - "3.14"
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-
-      - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8
-        with:
-          python-version: ${{ matrix.python }}
-
-      - name: Run tests
-        run: uv run --only-group=tox tox run -e py,coverage-report
+    uses: mareuter/shared-workflows/.github/workflows/uv-python-ci.yaml@main
+    with:
+      python-version: ${{ matrix.python }}
 
   check-docs:
     runs-on: ubuntu-latest
@@ -78,7 +45,7 @@ jobs:
 
   test-packaging:
     runs-on: ubuntu-latest
-    needs: [lint, test, check-docs]
+    needs: [ci, check-docs]
 
     strategy:
       matrix:
