@@ -37,8 +37,7 @@ dev = [
     { include-group = "tox" },
 ]
 build = [
-    "uv",
-    "twine"
+    "twine",
 ]
 docs = [
     "sphinx",
@@ -46,7 +45,6 @@ docs = [
 ]
 lint = [
     "prek!=0.4.2",
-    "uv"
 ]
 test = [
     "coverage[toml]",
@@ -54,7 +52,7 @@ test = [
 ]
 tox = [
     "tox",
-    "tox-uv>=1.29.0",
+    "tox-uv-bare>=1.36.0",
 ]
 
 [build-system]
