@@ -1007,7 +1007,7 @@ tox = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "ephem" }]
+requires-dist = [{ name = "ephem", specifier = "==4.2.1" }]
 
 [package.metadata.requires-dev]
 build = [{ name = "twine" }]
