@@ -37,3 +37,4 @@ Features
 * Offer moon information based on location and date/time.
 * Offer lunar targets for AL observing clubs based on terminator location.
 
+*Note*: Package development now requires `uv <https://docs.astral.sh/uv>`_. See `Contributing <https://pylunar.readthedocs.io/en/latest/contributing.html>`_.
