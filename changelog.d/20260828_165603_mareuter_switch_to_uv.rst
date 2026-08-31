@@ -17,6 +17,7 @@ Changed
 ^^^^^^^
 
 - Switch to using uv for development.
+- Copyright year.
 ..
 .. Deprecated
 .. ^^^^^^^^^^
