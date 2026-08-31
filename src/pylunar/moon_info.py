@@ -50,13 +50,6 @@ class TimeOfDay(Enum):
 class MoonInfo:
     """Handle all moon information.
 
-    Attributes
-    ----------
-    observer : ephem.Observer instance.
-        The instance containing the observer's location information.
-    moon : ephem.Moon instance
-        The instance of the moon object.
-
     Parameters
     ----------
     latitude : tuple of 3 ints
@@ -67,6 +60,13 @@ class MoonInfo:
         Seconds) format.
     name : str, optional
         A name for the observer's location.
+
+    Attributes
+    ----------
+    observer : ephem.Observer instance.
+        The instance containing the observer's location information.
+    moon : ephem.Moon instance
+        The instance of the moon object.
     """
 
     DAYS_TO_HOURS = 24.0
