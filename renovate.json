@@ -16,6 +16,10 @@
           "patch"
         ],
         "automerge": true
+      },
+      {
+        "matchManagers": ["pyenv"],
+        "enabled": false
       }
     ],
     "timezone": "America/Phoenix",
