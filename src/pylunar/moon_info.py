@@ -14,7 +14,7 @@ from __future__ import annotations
 
 __all__ = ["MoonInfo"]
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime, timezone
 from enum import Enum
 import math
 from operator import itemgetter
@@ -513,7 +513,7 @@ class MoonInfo:
         try:
             tz = zoneinfo.ZoneInfo(timezone_name)
         except zoneinfo.ZoneInfoNotFoundError:
-            tz = timezone.utc
+            tz = UTC
 
         func_map = {"rise": "rising", "transit": "transit", "set": "setting"}
 
@@ -524,22 +524,20 @@ class MoonInfo:
         self.observer.pressure = 0
         self.observer.horizon = "-0:34"
 
-        current_date_utc = datetime(
-            *mjd_to_date_tuple(self.observer.date, round_off=True), tzinfo=timezone.utc
-        )  # type: ignore
+        current_date_utc = datetime(*mjd_to_date_tuple(self.observer.date, round_off=True), tzinfo=UTC)  # type: ignore
         current_date = current_date_utc.astimezone(tz)
         current_day = current_date.day
         times = {}
         does_not = None
         for time_type in ("rise", "transit", "set"):
             mjd_time = getattr(self.observer, "{}_{}".format("next", func_map[time_type]))(self.moon)
-            utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=timezone.utc)  # type: ignore
+            utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=UTC)  # type: ignore
             local_date = utc_time.astimezone(tz)
             if local_date.day == current_day:
                 times[time_type] = local_date
             else:
                 mjd_time = getattr(self.observer, "{}_{}".format("previous", func_map[time_type]))(self.moon)
-                utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=timezone.utc)  # type: ignore
+                utc_time = datetime(*mjd_to_date_tuple(mjd_time, round_off=True), tzinfo=UTC)  # type: ignore
                 local_date = utc_time.astimezone(tz)
                 if local_date.day == current_day:
                     times[time_type] = local_date
