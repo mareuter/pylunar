@@ -129,6 +129,50 @@ rst_header_chars = "+^"
 
 [tool.setuptools_scm]
 
+
+[tool.tox]
+requires = ["tox>=4.22"]
+env_list = [
+    "py",
+    "lint",
+    "coverage-report",
+    "docs",
+    "check-packaging"
+]
+
+[tool.tox.env_run_base]
+runner = "uv-venv-lock-runner"
+description = "Setup base environment for {envname}"
+
+[tool.tox.env.py]
+description = "Run pytest with coverage"
+commands = [["coverage", "run", "-m", "pytest", "--doctest-glob=docs/usage.rst", "{tty:--color=yes}", "{posargs}"]]
+dependency_groups = ["test"]
+
+[tool.tox.env.lint]
+description = "Lint codebase by running pre-commit."
+package = "skip"
+commands = [["prek", "run", "--all-files"]]
+uv_sync_flags = ["--only-group", "lint"]
+
+[tool.tox.env.coverage-report]
+description = "Compile coverage from each test run."
+commands = [["coverage", "report"]]
+depends = ["py"]
+dependency_groups = ["test"]
+
+[tool.tox.env.docs]
+description = "Check docs build"
+commands = [["make", "docs"]]
+allowlist_externals = ["make"]
+dependency_groups = ["docs"]
+
+[tool.tox.env.check-packaging]
+description = "Check packaging"
+commands = [["make", "check-build"]]
+allowlist_externals = ["make"]
+dependency_groups = ["build", "docs"]
+
 [[tool.uv.index]]
 name = "testpypi"
 url = "https://test.pypi.org/simple/"
